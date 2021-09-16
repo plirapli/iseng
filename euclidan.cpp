@@ -20,21 +20,21 @@ int main()
 	cout << "Masukkan jumlah dimensi: ";
 	cin >> jmlDimensi;
 
-	float x[jmlDimensi], y[jmlDimensi], res[jmlDimensi];
+	float a[jmlDimensi], b[jmlDimensi], res[jmlDimensi];
 
 	cout << "\n"
-			 << "titik x:"
+			 << "titik A:"
 			 << "\n";
-	inputPoint(x, jmlDimensi);
+	inputPoint(a, jmlDimensi);
 
 	cout << "\n"
-			 << "titik y:"
+			 << "titik B:"
 			 << "\n";
-	inputPoint(y, jmlDimensi);
+	inputPoint(b, jmlDimensi);
 
 	for (i = 0; i < jmlDimensi; i++)
 	{
-		res[i] = pow((x[i] - y[i]), 2);
+		res[i] = pow((a[i] - b[i]), 2);
 		sum += res[i];
 	}
 
