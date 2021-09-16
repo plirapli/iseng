@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void inputPoint(int point[], int n)
+void inputPoint(float point[], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -20,7 +20,7 @@ int main()
 	cout << "Masukkan jumlah dimensi: ";
 	cin >> jmlDimensi;
 
-	int x[jmlDimensi], y[jmlDimensi], res[jmlDimensi];
+	float x[jmlDimensi], y[jmlDimensi], res[jmlDimensi];
 
 	cout << "\n"
 			 << "titik x:"
