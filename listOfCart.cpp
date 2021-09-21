@@ -8,8 +8,7 @@ int main()
 {
 	// Muhammad Rafli / 123210078
 	string nama[3];
-	int harga[3], namaMax, jmlStrip, i;
-	float jml[3], total[3];
+	int i, harga[3], jml[3], totalHarga[3], totalJml = 0, total = 0, namaMax, jmlStrip;
 
 	for (i = 0; i < 3; i++)
 	{
@@ -26,9 +25,13 @@ int main()
 		cout << "\n";
 	}
 
-	// Menghitung Total
+	// Menghitung Total Harga
 	for (i = 0; i < 3; i++)
-		total[i] = harga[i] * jml[i];
+	{
+		totalHarga[i] = harga[i] * jml[i];
+		totalJml += jml[i];
+		total += totalHarga[i];
+	}
 
 	for (i = 0; i < 3; i++)
 	{
@@ -59,7 +62,7 @@ int main()
 			 << setw(7) << "Total" << setw(6) << "|"
 			 << "\n";
 
-	cout << setfill('=') << setw(jmlStrip) << "="
+	cout << setfill('-') << setw(jmlStrip) << "-"
 			 << "\n";
 	// == End Header ==
 
@@ -72,12 +75,22 @@ int main()
 				 << setw(namaMax + 2) << nama[i] << setw(3) << "|"
 				 << setw(8) << jml[i] << setw(3) << "|"
 				 << setw(14) << harga[i] << setw(3) << "|"
-				 << setw(10) << total[i] << setw(3) << "|"
+				 << setw(10) << totalHarga[i] << setw(3) << "|"
 				 << "\n";
 	}
 	// == End Row ==
 
-	cout << setfill('-') << setw(jmlStrip) << "=";
+	cout << setfill('-') << setw(jmlStrip) << "-"
+			 << "\n";
+
+	cout << setfill(' ')
+			 << "|"
+			 << setw(7 + namaMax + 2) << "Total" << setw(3) << "|"
+			 << setw(8) << totalJml << setw(3) << "|"
+			 << setw(27) << total << setw(3) << "|"
+			 << "\n";
+
+	cout << setfill('-') << setw(jmlStrip) << "-";
 
 	return 0;
 }
