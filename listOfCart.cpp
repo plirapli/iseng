@@ -25,7 +25,7 @@ int main()
 		cout << "\n";
 	}
 
-	// Menghitung Total Harga
+	// Menghitung Total
 	for (i = 0; i < 3; i++)
 	{
 		totalHarga[i] = harga[i] * jml[i];
