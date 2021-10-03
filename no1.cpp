@@ -4,9 +4,11 @@ using namespace std;
 
 int main()
 {
+	// Initialize variable
 	int no, angka;
 	char nama;
 
+	// Input name and number
 	cout << "Nomor = ";
 	cin >> no;
 	cout << "Nama = ";
