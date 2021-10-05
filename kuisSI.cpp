@@ -20,14 +20,14 @@ int main()
 		cout << "Password: ";
 		cin >> passwd;
 
-		if (username != "mrafli" || passwd != "123")
+		if (username != "mrafli" || passwd != "123210078")
 			cout << "Username atau Password anda salah!";
 		else
 			cout << "Login Berhasil!";
 
 		cout << "\n\n";
 
-	} while (username != "mrafli" || passwd != "123");
+	} while (username != "mrafli" || passwd != "123210078");
 
 	do
 	{
