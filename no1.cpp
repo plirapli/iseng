@@ -28,8 +28,8 @@ int main()
 			break;
 
 		case 2:
-			no = (angka + no) - no / 2;
-			angka = angka * 2 + no;
+			no = (angka + no) - no / 2 + 1;
+			angka = (angka + 1) * 2 - no;
 			break;
 
 		default:
