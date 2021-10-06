@@ -137,7 +137,7 @@ int main()
 		case 2:
 		{
 			const float pi = 3.14;
-			const float konstan = 4 / 3;
+			const float konstan = 4.0 / 3.0;
 			float r;
 
 			cout << "Menghitung Volume Bola \n";
