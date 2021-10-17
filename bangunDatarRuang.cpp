@@ -5,14 +5,14 @@ using namespace std;
 int main()
 {
 	int inputJenisBangun, inputNamaBangun;
+	string bangun[2][4] =
+			{{"Persegi Panjang", "Lingkaran", "Jajar Genjang", "Belah Ketupat"},
+			 {"Kubus", "Bola", "Prisma Segitiga"}};
 
 	cout << "=========================\n"
-			 << "Nama \t"
-			 << ": Muhammad Rafli \n"
-			 << "NIM \t"
-			 << ": 123210078 \n"
-			 << "=========================\n"
-			 << "\n";
+			 << "Nama \t : Muhammad Rafli \n"
+			 << "NIM \t : 123210078 \n"
+			 << "=========================\n\n";
 
 	cout << "[1] Bangun datar \n"
 			 << "[2] Bangun ruang \n"
@@ -23,20 +23,19 @@ int main()
 
 	if (inputJenisBangun == 1)
 	{
-		cout << "Menghitung luas Bangun Datar: \n"
-				 << "1. Persegi Panjang \n"
-				 << "2. Lingkaran \n"
-				 << "3. Jajar genjang \n"
-				 << "4. Belah ketupat \n"
-				 << "Pilihan: ";
+		float luas;
+		cout << "Menghitung luas Bangun Datar: \n";
+
+		for (int i = 0; i < 4; i++)
+			cout << i + 1 << ". " << bangun[0][i] << "\n";
+
+		cout << "Pilihan: ";
 		cin >> inputNamaBangun;
 
 		cout << "\n";
 
 		switch (inputNamaBangun)
 		{
-			float luas;
-
 		case 1:
 		{
 			float p, l;
@@ -48,8 +47,6 @@ int main()
 			cin >> l;
 
 			luas = p * l;
-
-			cout << "Luas Persegi Panjang: " << luas;
 			break;
 		}
 
@@ -63,8 +60,6 @@ int main()
 			cin >> r;
 
 			luas = pi * r * r;
-
-			cout << "Luas Lingkaran: " << luas;
 			break;
 		}
 
@@ -79,8 +74,6 @@ int main()
 			cin >> t;
 
 			luas = a * t;
-
-			cout << "Luas Jajar Genjang: " << luas;
 			break;
 		}
 
@@ -95,8 +88,6 @@ int main()
 			cin >> d2;
 
 			luas = 0.5 * d1 * d2;
-
-			cout << "Luas Belah Ketupat: " << luas;
 			break;
 		}
 
@@ -104,22 +95,28 @@ int main()
 			cout << "Pilihan tidak valid";
 			break;
 		}
+
+		if (luas)
+			cout << "Luas " << bangun[0][inputNamaBangun - 1] << ": " << luas;
+		else
+			cout << "Luas Invalid";
 	}
 	else if (inputJenisBangun == 2)
 	{
-		cout << "Menghitung Volume Bangun Ruang: \n"
-				 << "1. Kubus \n"
-				 << "2. Bola \n"
-				 << "3. Prisma Segitiga \n"
-				 << "Pilihan: ";
+		float volume;
+
+		cout << "Menghitung Volume Bangun Ruang: \n";
+
+		for (int i = 0; i < 3; i++)
+			cout << i + 1 << ". " << bangun[1][i] << "\n";
+
+		cout << "Pilihan: ";
 		cin >> inputNamaBangun;
 
 		cout << "\n";
 
 		switch (inputNamaBangun)
 		{
-			float volume;
-
 		case 1:
 		{
 			float s;
@@ -129,8 +126,6 @@ int main()
 			cin >> s;
 
 			volume = s * s * s;
-
-			cout << "Volume Kubus: " << volume;
 			break;
 		}
 
@@ -145,8 +140,6 @@ int main()
 			cin >> r;
 
 			volume = konstan * pi * r * r * r;
-
-			cout << "Volume Bola: " << volume;
 			break;
 		}
 
@@ -159,10 +152,10 @@ int main()
 			cin >> a;
 			cout << "Masukkan Besar Tinggi Segitiga: ";
 			cin >> t;
+			cout << "Masukkan Besar Tinggi Prisma: ";
+			cin >> tPrisma;
 
 			volume = 0.5 * a * t * tPrisma;
-
-			cout << "Volume Prisma Segitiga: " << volume;
 			break;
 		}
 
@@ -170,6 +163,11 @@ int main()
 			cout << "Pilihan anda tidak valid!";
 			break;
 		}
+
+		if (volume)
+			cout << "Volume " << bangun[1][inputNamaBangun - 1] << ": " << volume;
+		else
+			cout << "Volume Invalid";
 	}
 	else
 		cout << "Input anda tidak valid!";
