@@ -4,24 +4,27 @@ using namespace std;
 
 int main()
 {
-	// * left align (standard)
-	for (int i = 0; i < 10; i++)
+	int t;
+	cout << "Masukkan tinggi: ";
+	cin >> t;
+	cout << "\n";
+
+	// * half py left align (standard)
+	for (int i = 0; i < t; i++) // i = 2
+	{
+		for (int j = 0; j <= i; j++) // j = 0 -> 0 <= 2
+			cout << "* ";
+		cout << "\n";
+	}
+
+	cout << "\n";
+
+	// * hollow half py left align
+	for (int i = 0; i < t; i++)
 	{
 		for (int j = 0; j <= i; j++)
 		{
-			cout << "* ";
-		}
-		cout << "\n";
-	}
-
-	cout << "\n";
-
-	// * hollow left align
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j <= i; j++)
-		{
-			if (i == 9 || j == 0 || j == i)
+			if (i == t - 1 || j == 0 || i == j)
 				cout << "* ";
 			else
 				cout << "  ";
@@ -31,24 +34,22 @@ int main()
 
 	cout << "\n";
 
-	// * inverted left align
-	for (int i = 10; i > 0; i--)
+	// * inverted half py left align
+	for (int i = t; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+			cout << "* ";
+		cout << "\n";
+	}
+
+	cout << "\n";
+
+	// * hollow inverted half py left align
+	for (int i = t; i > 0; i--)
 	{
 		for (int j = 0; j < i; j++)
 		{
-			cout << "* ";
-		}
-		cout << "\n";
-	}
-
-	cout << "\n";
-
-	// * inverted hollow left align
-	for (int i = 10; i > 0; i--)
-	{
-		for (int j = 0; j < i; j++)
-		{
-			if (i == 10 || j == i - 1 || j == 0)
+			if (i == t || j == i - 1 || j == 0)
 				cout << "* ";
 			else
 				cout << "  ";
@@ -56,155 +57,171 @@ int main()
 		cout << "\n";
 	}
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * right align
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (j < 9 - i)
-				cout << "  ";
-			else
-				cout << "* ";
-		}
-		cout << "\n";
-	}
+	// // * right align
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (j < 9 - i)
+	// 			cout << "  ";
+	// 		else
+	// 			cout << "* ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * hollow right align
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (i == 9 || j == 9 - i || j == 9)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * hollow right align
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (i == 9 || j == 9 - i || j == 9)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * inverted right align
-	for (int i = 10; i > 0; i--)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (j < 10 - i)
-				cout << "  ";
-			else
-				cout << "* ";
-		}
-		cout << "\n";
-	}
+	// // * inverted right align
+	// for (int i = 10; i > 0; i--)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (j < 10 - i)
+	// 			cout << "  ";
+	// 		else
+	// 			cout << "* ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * inverted hollow right align
-	for (int i = 10; i > 0; i--)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (i == 10 || j == 10 - i || j == 9)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * inverted hollow right align
+	// for (int i = 10; i > 0; i--)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (i == 10 || j == 10 - i || j == 9)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * triangle
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 20; j++)
-		{
-			if (j < 9 - i || j > 9 + i)
-				cout << "  ";
-			else
-				cout << "* ";
-		}
-		cout << "\n";
-	}
+	// // * triangle
+	// for (int i = 0; i < 5; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (j < 4 - i || j > 4 + i)
+	// 			cout << "  ";
+	// 		else
+	// 			cout << "* ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * hollow triangle
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 19; j++)
-		{
-			if (i == 9 || j == 9 - i || j == 9 + i)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// for (int i = 0; i < 5; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (j < 4 - i || j > 4 + 1)
+	// 			cout << "  ";
+	// 		else if (i % 2 == 0)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << " *";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * inverted triangle
-	for (int i = 10; i > 0; i--)
-	{
-		for (int j = 0; j < 19; j++)
-		{
-			if (j < 10 - i || j >= 9 + i)
-				cout << "  ";
-			else
-				cout << "* ";
-		}
-		cout << "\n";
-	}
+	// // * hollow triangle
+	// for (int i = 0; i < 5; i++)
+	// {
+	// 	for (int j = 0; j < 9; j++)
+	// 	{
+	// 		if (i == 4 || j == 4 - i || j == 4 + i)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * inverted hollow triangle
-	for (int i = 10; i > 0; i--)
-	{
-		for (int j = 0; j < 19; j++)
-		{
-			if (i == 10 || j == 10 - i || j == 8 + i)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * inverted triangle
+	// for (int i = 5; i > 0; i--)
+	// {
+	// 	for (int j = 0; j < 9; j++)
+	// 	{
+	// 		if (j < 5 - i || j >= 4 + i)
+	// 			cout << "  ";
+	// 		else
+	// 			cout << "* ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * hollow square star pattern with diagonal
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (i == 0 || i == 9 || j == 9 - i || j == i || j == 0 || j == 9)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * inverted hollow triangle
+	// for (int i = 10; i > 0; i--)
+	// {
+	// 	for (int j = 0; j < 19; j++)
+	// 	{
+	// 		if (i == 10 || j == 10 - i || j == 8 + i)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
-	cout << "\n";
+	// cout << "\n";
 
-	// * N with rectangle
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
-			if (i == 0 || i == 9 || j == 0 || j == 9 || i == j)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * hollow square star pattern with diagonal
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (i == 0 || i == 9 || j == 9 - i || j == i || j == 0 || j == 9)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
+
+	// cout << "\n";
+
+	// // * N with rectangle
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
+	// 		if (i == 0 || i == 9 || j == 0 || j == 9 || i == j)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
 	return 0;
 }
