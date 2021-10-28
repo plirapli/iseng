@@ -4,6 +4,7 @@ using namespace std;
 
 int main()
 {
+	// Muhammad Rafli / 123210078
 	int input, inputAwal, inputMenu, inputUlang;
 	string username, passwd, nim = "123210078";
 
@@ -47,7 +48,6 @@ int main()
 
 					int total = input * 2 - 2;
 					int oddIndex = 0;
-					int evenIndex = total;
 
 					for (int i = 0; i < total; i++)
 					{
@@ -64,14 +64,13 @@ int main()
 						}
 						else
 						{
-							for (int j = total; j > 0; j--)
+							for (int j = 0; j < total; j++)
 							{
-								if (j > evenIndex / 2 || j <= evenIndex / 2 - i)
+								if (j < (total - i) / 2 || j > ((total - i) / 2 - 1 + i))
 									cout << "* ";
 								else
 									cout << "  ";
 							}
-							evenIndex += 2;
 						}
 						cout << "\n";
 					}
