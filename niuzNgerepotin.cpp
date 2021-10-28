@@ -51,20 +51,17 @@ int main()
 
 					for (int i = 0; i < total; i++)
 					{
-						if (i % 2 != 0)
+						oddIndex = (i % 2 != 0) ? oddIndex + 1 : oddIndex;
+						for (int j = 0; j < total; j++)
 						{
-							oddIndex++;
-							for (int j = 0; j < total; j++)
+							if (i % 2 != 0)
 							{
 								if (j < oddIndex || j > (total - 1) - oddIndex)
 									cout << "* ";
 								else
 									cout << "  ";
 							}
-						}
-						else
-						{
-							for (int j = 0; j < total; j++)
+							else
 							{
 								if (j < (total - i) / 2 || j > ((total - i) / 2 - 1 + i))
 									cout << "* ";
@@ -81,7 +78,7 @@ int main()
 							 << "Ingin memasukkan input yang lain? > ";
 					cin >> inputUlang;
 					cout << "\n";
-				} while (inputUlang == 1);
+				} while (inputUlang);
 
 				cout << "Terima kasih \n\n";
 			}
