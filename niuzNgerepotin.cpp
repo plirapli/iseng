@@ -78,7 +78,7 @@ int main()
 							 << "Ingin memasukkan input yang lain? > ";
 					cin >> inputUlang;
 					cout << "\n";
-				} while (inputUlang);
+				} while (inputUlang == 1);
 
 				cout << "Terima kasih \n\n";
 			}
