@@ -6,7 +6,7 @@ void questionSymptom(int &outJmlPertanyaan, string symptom, char &outInput);
 
 int main()
 {
-	char inputG[17], ulangiBaru, ulangi;
+	char inputG, ulangiBaru, ulangi;
 	string nim, tgl, nama,
 			garis = "------------------------------------------",
 			outG[17] =
@@ -32,12 +32,10 @@ int main()
 			outP[9] =
 					{"TIDAK ADA HASIL", "[ P01 ] Whiteheads", "[ P02 ] Blackheads",
 					 "[ P03 ] Papule", "[ P04 ] Postule", "[ P05 ] Nodule", "[ P06 ] Cyst",
-					 "[ P07 ] Milia", "[ P08 ] Acne rosacea"},
-			diagnosa = outP[0];
+					 "[ P07 ] Milia", "[ P08 ] Acne rosacea"};
 
 	do
 	{
-		int jmlPertanyaan = 0;
 
 		cout << garis << "\n";
 		cout << "No. Diagnosa \t: ";
@@ -52,6 +50,9 @@ int main()
 
 		do
 		{
+			int jmlPertanyaan = 0;
+			string diagnosa = outP[0];
+
 			if (ulangiBaru == 't' || ulangiBaru == 'T')
 			{
 				cout << garis << "\n"
@@ -62,43 +63,43 @@ int main()
 			}
 
 			cout << "PERTANYAAN GEJALA :";
-			questionSymptom(jmlPertanyaan, outG[15], inputG[15]);
+			questionSymptom(jmlPertanyaan, outG[15], inputG);
 
-			if (inputG[15] == 'Y' || inputG[15] == 'y')
+			if (inputG == 'Y' || inputG == 'y')
 			{
-				questionSymptom(jmlPertanyaan, outG[12], inputG[12]);
+				questionSymptom(jmlPertanyaan, outG[12], inputG);
 
-				if (inputG[12] == 'Y' || inputG[12] == 'y')
+				if (inputG == 'Y' || inputG == 'y')
 				{
-					questionSymptom(jmlPertanyaan, outG[13], inputG[13]);
+					questionSymptom(jmlPertanyaan, outG[13], inputG);
 
-					if (inputG[13] == 'Y' || inputG[13] == 'y')
+					if (inputG == 'Y' || inputG == 'y')
 						diagnosa = outP[1];
 					else
 					{
-						questionSymptom(jmlPertanyaan, outG[14], inputG[14]);
+						questionSymptom(jmlPertanyaan, outG[14], inputG);
 
-						if (inputG[14] == 'Y' || inputG[14] == 'y')
+						if (inputG == 'Y' || inputG == 'y')
 							diagnosa = outP[2];
 						else
 						{
-							questionSymptom(jmlPertanyaan, outG[1], inputG[1]);
+							questionSymptom(jmlPertanyaan, outG[1], inputG);
 
-							if (inputG[1] == 'Y' || inputG[1] == 'y')
+							if (inputG == 'Y' || inputG == 'y')
 							{
-								questionSymptom(jmlPertanyaan, outG[3], inputG[3]);
+								questionSymptom(jmlPertanyaan, outG[3], inputG);
 
-								if (inputG[3] == 'Y' || inputG[3] == 'y')
+								if (inputG == 'Y' || inputG == 'y')
 									diagnosa = outP[3];
 								else
 								{
-									questionSymptom(jmlPertanyaan, outG[4], inputG[4]);
+									questionSymptom(jmlPertanyaan, outG[4], inputG);
 
-									if (inputG[4] == 'Y' || inputG[4] == 'y')
+									if (inputG == 'Y' || inputG == 'y')
 									{
-										questionSymptom(jmlPertanyaan, outG[2], inputG[2]);
+										questionSymptom(jmlPertanyaan, outG[2], inputG);
 
-										if (inputG[2] == 'Y' || inputG[2] == 'y')
+										if (inputG == 'Y' || inputG == 'y')
 											diagnosa = outP[4];
 									}
 								}
@@ -109,46 +110,46 @@ int main()
 			}
 			else
 			{
-				questionSymptom(jmlPertanyaan, outG[5], inputG[5]);
+				questionSymptom(jmlPertanyaan, outG[5], inputG);
 
-				if (inputG[5] == 'Y' || inputG[5] == 'y')
+				if (inputG == 'Y' || inputG == 'y')
 				{
-					questionSymptom(jmlPertanyaan, outG[6], inputG[6]);
+					questionSymptom(jmlPertanyaan, outG[6], inputG);
 
-					if (inputG[6] == 'Y' || inputG[6] == 'y')
+					if (inputG == 'Y' || inputG == 'y')
 						diagnosa = outP[5];
 				}
 				else
 				{
-					questionSymptom(jmlPertanyaan, outG[11], inputG[11]);
+					questionSymptom(jmlPertanyaan, outG[11], inputG);
 
-					if (inputG[11] == 'Y' || inputG[11] == 'y')
+					if (inputG == 'Y' || inputG == 'y')
 					{
-						questionSymptom(jmlPertanyaan, outG[16], inputG[16]);
+						questionSymptom(jmlPertanyaan, outG[16], inputG);
 
-						if (inputG[6] == 'Y' || inputG[6] == 'y')
+						if (inputG == 'Y' || inputG == 'y')
 							diagnosa = outP[8];
 					}
 					else
 					{
-						questionSymptom(jmlPertanyaan, outG[9], inputG[9]);
+						questionSymptom(jmlPertanyaan, outG[9], inputG);
 
-						if (inputG[9] == 'Y' || inputG[9] == 'y')
+						if (inputG == 'Y' || inputG == 'y')
 						{
-							questionSymptom(jmlPertanyaan, outG[10], inputG[10]);
+							questionSymptom(jmlPertanyaan, outG[10], inputG);
 
-							if (inputG[10] == 'Y' || inputG[10] == 'y')
+							if (inputG == 'Y' || inputG == 'y')
 								diagnosa = outP[7];
 						}
 						else
 						{
-							questionSymptom(jmlPertanyaan, outG[7], inputG[7]);
+							questionSymptom(jmlPertanyaan, outG[7], inputG);
 
-							if (inputG[7] == 'Y' || inputG[7] == 'y')
+							if (inputG == 'Y' || inputG == 'y')
 							{
-								questionSymptom(jmlPertanyaan, outG[8], inputG[8]);
+								questionSymptom(jmlPertanyaan, outG[8], inputG);
 
-								if (inputG[8] == 'Y' || inputG[8] == 'y')
+								if (inputG == 'Y' || inputG == 'y')
 									diagnosa = outP[6];
 							}
 						}
@@ -159,7 +160,7 @@ int main()
 			cout << "\n Jumlah Pertanyaan Gejala = " << jmlPertanyaan
 					 << "\n\n" + garis + "\n\n" + hasilDiagnosaText + diagnosa + "\n\n" + garis;
 
-			ulangiBaru = '\0';
+			ulangiBaru = '\0'; // reset the val
 			cout << "\n"
 					 << "Ulangi Lagi (Y/T) ? > ";
 			cin >> ulangi;
