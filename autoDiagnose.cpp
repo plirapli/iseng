@@ -36,7 +36,7 @@ int main()
 
 	do
 	{
-
+		// Input pasien
 		cout << garis << "\n";
 		cout << "No. Diagnosa \t: ";
 		getline(cin, nim);
@@ -62,6 +62,7 @@ int main()
 						 << garis << "\n\n";
 			}
 
+			// Start Pertanyaan
 			cout << "PERTANYAAN GEJALA :";
 			questionSymptom(jmlPertanyaan, outG[15], inputG);
 
@@ -156,7 +157,9 @@ int main()
 					}
 				}
 			}
+			// End Pertanyaan
 
+			// Hasil diagnosa
 			cout << "\n Jumlah Pertanyaan Gejala = " << jmlPertanyaan
 					 << "\n\n" + garis + "\n\n" + hasilDiagnosaText + diagnosa + "\n\n" + garis;
 
