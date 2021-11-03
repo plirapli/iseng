@@ -163,7 +163,7 @@ int main()
 			cout << "\n Jumlah Pertanyaan Gejala = " << jmlPertanyaan
 					 << "\n\n" + garis + "\n\n" + hasilDiagnosaText + diagnosa + "\n\n" + garis;
 
-			ulangiBaru = '\0'; // reset the val
+			// Ulangi?
 			cout << "\n"
 					 << "Ulangi Lagi (Y/T) ? > ";
 			cin >> ulangi;
@@ -180,8 +180,8 @@ int main()
 				cout << "\n"
 						 << "Terima Kasih.";
 
-		} while (ulangiBaru == 't' || ulangiBaru == 'T');
-	} while (ulangiBaru == 'y' || ulangiBaru == 'Y');
+		} while (ulangi == 'y' || ulangi == 'Y' && (ulangiBaru == 't' || ulangiBaru == 'T'));
+	} while (ulangi == 'y' || ulangi == 'Y' && (ulangiBaru == 'y' || ulangiBaru == 'Y'));
 
 	return 0;
 }
