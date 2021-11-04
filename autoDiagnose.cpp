@@ -160,8 +160,13 @@ int main()
 			// End Pertanyaan
 
 			// Hasil diagnosa
-			cout << "\n Jumlah Pertanyaan Gejala = " << jmlPertanyaan
-					 << "\n\n" + garis + "\n\n" + hasilDiagnosaText + diagnosa + "\n\n" + garis;
+			cout << "\nJumlah Pertanyaan Gejala = " << jmlPertanyaan
+					 << "\n" + garis + "\n"
+					 << "No. Diagnosa \t : " + nim + "\n"
+					 << "Tgl. Diagnosa \t : " << tgl << "\n"
+					 << "Nama Pasien \t : " << nama
+					 << "\n" + garis + "\n"
+					 << hasilDiagnosaText + diagnosa + "\n" + garis;
 
 			// Ulangi?
 			cout << "\n"
@@ -177,11 +182,14 @@ int main()
 				system("cls");
 			}
 			else
+			{
+				ulangiBaru = '\0';
 				cout << "\n"
 						 << "Terima Kasih.";
+			}
 
-		} while (ulangi == 'y' || ulangi == 'Y' && (ulangiBaru == 't' || ulangiBaru == 'T'));
-	} while (ulangi == 'y' || ulangi == 'Y' && (ulangiBaru == 'y' || ulangiBaru == 'Y'));
+		} while (ulangiBaru == 't' || ulangiBaru == 'T');
+	} while (ulangiBaru == 'y' || ulangiBaru == 'Y');
 
 	return 0;
 }
