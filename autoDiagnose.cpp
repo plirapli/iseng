@@ -7,32 +7,7 @@ void questionSymptom(int &outJmlPertanyaan, string symptom, char &outInput);
 int main()
 {
 	char inputG, ulangiBaru, ulangi;
-	string nim, tgl, nama,
-			garis = "------------------------------------------",
-			outG[17] =
-					{
-							"",
-							"[G01] Berwarna merah",
-							"[G02] Berisi putih seperti nasi",
-							"[G03] Memliki jumlah yang banyak",
-							"[G04] Berwarna merah dipinggir dan putih ditengah",
-							"[G05] Berukuran Besar",
-							"[G06] Terasa sakit bila disentuh",
-							"[G07] Menyebar keseluruh wajah",
-							"[G08] Berbentuk tonjolan yang meradang",
-							"[G09] Berbentuk bintik-bintik putih yang berukuran kecil dari komedo",
-							"[G10] Terasa saat diraba",
-							"[G11] Menyebar ke bagian tubuh",
-							"[G12] Berukuran kecil",
-							"[G13] Berwarna putih",
-							"[G14] Berwarna hitam",
-							"[G15] Tidak terasa sakit bila disentuh",
-							"[G16] Bentuknya melebar",
-					},
-			outP[9] =
-					{"TIDAK ADA HASIL", "[ P01 ] Whiteheads", "[ P02 ] Blackheads",
-					 "[ P03 ] Papule", "[ P04 ] Postule", "[ P05 ] Nodule", "[ P06 ] Cyst",
-					 "[ P07 ] Milia", "[ P08 ] Acne rosacea"};
+	string nim, tgl, nama, garis = "------------------------------------------";
 
 	do
 	{
@@ -46,12 +21,10 @@ int main()
 		getline(cin, nama);
 		cout << garis << "\n\n";
 
-		string hasilDiagnosaText = "HASIL DIAGNOSA PENYAKIT JERAWAT (" + nama + "): \n";
-
 		do
 		{
 			int jmlPertanyaan = 0;
-			string diagnosa = outP[0];
+			string diagnosa = "TIDAK ADA HASIL";
 
 			if (ulangiBaru == 't' || ulangiBaru == 'T')
 			{
@@ -64,44 +37,44 @@ int main()
 
 			// Start Pertanyaan
 			cout << "PERTANYAAN GEJALA :";
-			questionSymptom(jmlPertanyaan, outG[15], inputG);
+			questionSymptom(jmlPertanyaan, "[G15] Tidak terasa sakit bila disentuh", inputG);
 
 			if (inputG == 'Y' || inputG == 'y')
 			{
-				questionSymptom(jmlPertanyaan, outG[12], inputG);
+				questionSymptom(jmlPertanyaan, "[G12] Berukuran kecil", inputG);
 
 				if (inputG == 'Y' || inputG == 'y')
 				{
-					questionSymptom(jmlPertanyaan, outG[13], inputG);
+					questionSymptom(jmlPertanyaan, "[G13] Berwarna putih", inputG);
 
 					if (inputG == 'Y' || inputG == 'y')
-						diagnosa = outP[1];
+						diagnosa = "[ P01 ] Whiteheads";
 					else
 					{
-						questionSymptom(jmlPertanyaan, outG[14], inputG);
+						questionSymptom(jmlPertanyaan, "[G14] Berwarna hitam", inputG);
 
 						if (inputG == 'Y' || inputG == 'y')
-							diagnosa = outP[2];
+							diagnosa = "[ P02 ] Blackheads";
 						else
 						{
-							questionSymptom(jmlPertanyaan, outG[1], inputG);
+							questionSymptom(jmlPertanyaan, "[G01] Berwarna merah", inputG);
 
 							if (inputG == 'Y' || inputG == 'y')
 							{
-								questionSymptom(jmlPertanyaan, outG[3], inputG);
+								questionSymptom(jmlPertanyaan, "[G03] Memliki jumlah yang banyak", inputG);
 
 								if (inputG == 'Y' || inputG == 'y')
-									diagnosa = outP[3];
+									diagnosa = "[ P03 ] Papule";
 								else
 								{
-									questionSymptom(jmlPertanyaan, outG[4], inputG);
+									questionSymptom(jmlPertanyaan, "[G04] Berwarna merah dipinggir dan putih ditengah", inputG);
 
 									if (inputG == 'Y' || inputG == 'y')
 									{
-										questionSymptom(jmlPertanyaan, outG[2], inputG);
+										questionSymptom(jmlPertanyaan, "[G02] Berisi putih seperti nasi", inputG);
 
 										if (inputG == 'Y' || inputG == 'y')
-											diagnosa = outP[4];
+											diagnosa = "[ P04 ] Postule";
 									}
 								}
 							}
@@ -111,47 +84,47 @@ int main()
 			}
 			else
 			{
-				questionSymptom(jmlPertanyaan, outG[5], inputG);
+				questionSymptom(jmlPertanyaan, "[G05] Berukuran Besar", inputG);
 
 				if (inputG == 'Y' || inputG == 'y')
 				{
-					questionSymptom(jmlPertanyaan, outG[6], inputG);
+					questionSymptom(jmlPertanyaan, "[G06] Terasa sakit bila disentuh", inputG);
 
 					if (inputG == 'Y' || inputG == 'y')
-						diagnosa = outP[5];
+						diagnosa = "[ P05 ] Nodule";
 				}
 				else
 				{
-					questionSymptom(jmlPertanyaan, outG[11], inputG);
+					questionSymptom(jmlPertanyaan, "[G11] Menyebar ke bagian tubuh", inputG);
 
 					if (inputG == 'Y' || inputG == 'y')
 					{
-						questionSymptom(jmlPertanyaan, outG[16], inputG);
+						questionSymptom(jmlPertanyaan, "[G16] Bentuknya melebar", inputG);
 
 						if (inputG == 'Y' || inputG == 'y')
-							diagnosa = outP[8];
+							diagnosa = "[ P08 ] Acne rosacea";
 					}
 					else
 					{
-						questionSymptom(jmlPertanyaan, outG[9], inputG);
+						questionSymptom(jmlPertanyaan, "[G09] Berbentuk bintik-bintik putih yang berukuran kecil dari komedo", inputG);
 
 						if (inputG == 'Y' || inputG == 'y')
 						{
-							questionSymptom(jmlPertanyaan, outG[10], inputG);
+							questionSymptom(jmlPertanyaan, "[G10] Terasa saat diraba", inputG);
 
 							if (inputG == 'Y' || inputG == 'y')
-								diagnosa = outP[7];
+								diagnosa = "[ P07 ] Milia";
 						}
 						else
 						{
-							questionSymptom(jmlPertanyaan, outG[7], inputG);
+							questionSymptom(jmlPertanyaan, "[G07] Menyebar keseluruh wajah", inputG);
 
 							if (inputG == 'Y' || inputG == 'y')
 							{
-								questionSymptom(jmlPertanyaan, outG[8], inputG);
+								questionSymptom(jmlPertanyaan, "[G08] Berbentuk tonjolan yang meradang", inputG);
 
 								if (inputG == 'Y' || inputG == 'y')
-									diagnosa = outP[6];
+									diagnosa = "[ P06 ] Cyst";
 							}
 						}
 					}
@@ -166,10 +139,10 @@ int main()
 					 << "Tgl. Diagnosa \t : " << tgl << "\n"
 					 << "Nama Pasien \t : " << nama
 					 << "\n" + garis + "\n"
-					 << hasilDiagnosaText + diagnosa + "\n" + garis;
+					 << "HASIL DIAGNOSA PENYAKIT JERAWAT: \n" + diagnosa + "\n" + garis;
 
 			// Ulangi?
-			cout << "\n"
+			cout << "\n\n"
 					 << "Ulangi Lagi (Y/T) ? > ";
 			cin >> ulangi;
 
