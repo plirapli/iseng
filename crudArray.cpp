@@ -60,6 +60,15 @@ int main()
 			cout << "Data Edited!";
 		}
 
+		if (inMenu == '0')
+		{
+			cout << "Data ke: ";
+			cin >> dataEdited;
+
+			data[dataEdited - 1] = "";
+			cout << "Data Deleted!";
+		}
+
 		cout << "\n\n";
 	} while (inMenu >= '0' && inMenu <= '3');
 
