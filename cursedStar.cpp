@@ -4,27 +4,16 @@ using namespace std;
 
 int main()
 {
-	int t;
-	cout << "Masukkan tinggi: ";
-	cin >> t;
-	cout << "\n";
+	int jmlBarisKolom;
+	cout << "Masukkan jumlah kolom dan baris: ";
+	cin >> jmlBarisKolom;
 
 	// * half py left align (standard)
-	for (int i = 0; i < t; i++) // i = 2
+	for (int baris = 0; baris < jmlBarisKolom; baris++)
 	{
-		for (int j = 0; j <= i; j++) // j = 0 -> 0 <= 2
-			cout << "* ";
-		cout << "\n";
-	}
-
-	cout << "\n";
-
-	// * hollow half py left align
-	for (int i = 0; i < t; i++)
-	{
-		for (int j = 0; j <= i; j++)
+		for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
 		{
-			if (i == t - 1 || j == 0 || i == j)
+			if (kolom <= baris)
 				cout << "* ";
 			else
 				cout << "  ";
@@ -32,30 +21,50 @@ int main()
 		cout << "\n";
 	}
 
-	cout << "\n";
+	// cout << "\n";
+
+	// // * hollow half py left align
+	// for (int i = 0; i < t; i++)
+	// {
+	// 	for (int j = 0; j <= i; j++)
+	// 	{
+	// 		if (i == t - 1 || j == 0 || i == j)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
+
+	// cout << "\n";
 
 	// * inverted half py left align
-	for (int i = t; i > 0; i--)
+	for (int baris = 0; baris < jmlBarisKolom; baris++)
 	{
-		for (int j = 0; j < i; j++)
-			cout << "* ";
-		cout << "\n";
-	}
-
-	cout << "\n";
-
-	// * hollow inverted half py left align
-	for (int i = t; i > 0; i--)
-	{
-		for (int j = 0; j < i; j++)
+		for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
 		{
-			if (i == t || j == i - 1 || j == 0)
+			if (kolom < jmlBarisKolom - baris)
 				cout << "* ";
 			else
 				cout << "  ";
 		}
 		cout << "\n";
 	}
+
+	// cout << "\n";
+
+	// // * hollow inverted half py left align
+	// for (int i = t; i > 0; i--)
+	// {
+	// 	for (int j = 0; j < i; j++)
+	// 	{
+	// 		if (i == t || j == i - 1 || j == 0)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
 	// cout << "\n";
 
