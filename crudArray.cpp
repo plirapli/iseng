@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
 	string newData;
+	string menu[5] = {"[1] Read Data", "[2] Add Data", "[3] Edit Data", "[4] Delete Data", "[0] Exit"};
 	int i, arrLength, dataAdded = 0, dataEdited;
 	char inMenu;
 
@@ -17,13 +18,11 @@ int main()
 
 	do
 	{
-		cout << "Menu : \n"
-				 << "[1] Read Data \n"
-				 << "[2] Add Data \n"
-				 << "[3] Edit Data \n"
-				 << "[0] Delete Data \n"
-				 << "[Others] Exit \n"
-				 << "Choose > ";
+		cout << "Menu : \n";
+		for (i = 0; i < 5; i++)
+			cout << menu[i] + "\n";
+
+		cout << "Choose > ";
 		cin >> inMenu;
 
 		if (inMenu == '1')
@@ -65,7 +64,7 @@ int main()
 			cout << "Data Edited!";
 		}
 
-		if (inMenu == '0')
+		if (inMenu == '4')
 		{
 			do
 			{
@@ -81,8 +80,11 @@ int main()
 			cout << "Data Deleted!";
 		}
 
+		if (inMenu > '4')
+			cout << "Menu tidak ada! \n";
+
 		cout << "\n";
-	} while (inMenu >= '0' && inMenu <= '3');
+	} while (inMenu != '0');
 
 	cout << "Terima kasih.";
 	return 0;
