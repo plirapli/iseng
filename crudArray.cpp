@@ -43,12 +43,17 @@ int main()
 
 		if (inMenu == '2')
 		{
-			cout << "Masukkan data > ";
-			cin >> newData;
+			if (dataAdded < arrLength)
+			{
+				cout << "Masukkan data > ";
+				cin >> newData;
 
-			data[dataAdded] = newData;
-			dataAdded++;
-			cout << "Data Added!";
+				data[dataAdded] = newData;
+				dataAdded++;
+				cout << "Data Added! \n";
+			}
+			else
+				cout << "Data telah melebihi kapasitas! \n";
 		}
 
 		if (inMenu == '3')
@@ -59,6 +64,7 @@ int main()
 				if (data[i] != "")
 					found++;
 			}
+
 			if (found >= 1)
 			{
 				do
@@ -75,7 +81,7 @@ int main()
 				cin >> newData;
 
 				data[dataEdited - 1] = newData;
-				cout << "Data Edited!";
+				cout << "Data Edited! \n";
 			}
 			else
 				cout << "Data tidak ada. \n";
