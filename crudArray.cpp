@@ -7,7 +7,7 @@ int main()
 {
 	string newData;
 	string menu[5] = {"[1] Read Data", "[2] Add Data", "[3] Edit Data", "[4] Delete Data", "[0] Exit"};
-	int i, arrLength, dataAdded = 0, dataEdited;
+	int i, arrLength, found, dataAdded = 0, dataEdited;
 	char inMenu;
 
 	do
@@ -53,21 +53,32 @@ int main()
 
 		if (inMenu == '3')
 		{
-			do
+			found = 0;
+			for (i = 0; i < arrLength; i++)
 			{
-				cout << "Data ke: ";
-				cin >> dataEdited;
+				if (data[i] != "")
+					found++;
+			}
+			if (found >= 1)
+			{
+				do
+				{
+					cout << "Data ke: ";
+					cin >> dataEdited;
 
-				if (data[dataEdited - 1] == "")
-					cout << "Data tidak ditemukan.";
+					if (dataEdited == 0)
+						cout << "Data tidak ditemukan. \n";
 
-			} while (data[dataEdited - 1] == "");
+				} while (dataEdited == 0);
 
-			cout << "Data baru: ";
-			cin >> newData;
+				cout << "Data baru: ";
+				cin >> newData;
 
-			data[dataEdited - 1] = newData;
-			cout << "Data Edited!";
+				data[dataEdited - 1] = newData;
+				cout << "Data Edited!";
+			}
+			else
+				cout << "Data tidak ada. \n";
 		}
 
 		if (inMenu == '4')
@@ -77,10 +88,10 @@ int main()
 				cout << "Data ke: ";
 				cin >> dataEdited;
 
-				if (data[dataEdited - 1] == "")
-					cout << "Data tidak ditemukan.";
+				if (dataEdited == 0 || data[dataEdited - 1] == "")
+					cout << "Data tidak ditemukan. \n";
 
-			} while (data[dataEdited - 1] == "");
+			} while (dataEdited == 0 || data[dataEdited - 1] == "");
 
 			data[dataEdited - 1] = "";
 			cout << "Data Deleted!";
