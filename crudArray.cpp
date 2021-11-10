@@ -10,11 +10,17 @@ int main()
 	int i, arrLength, dataAdded = 0, dataEdited;
 	char inMenu;
 
-	cout << "Masukkan jumlah data (lebih dari 2): ";
-	cin >> arrLength;
+	do
+	{
+		cout << "Masukkan jumlah data (lebih dari 2): ";
+		cin >> arrLength;
+
+		if (arrLength <= 2)
+			cout << "Data harus lebih dari 2! \n";
+
+	} while (arrLength <= 2);
 
 	string data[arrLength];
-	int arrSize = sizeof(data) / sizeof(data[0]);
 
 	do
 	{
@@ -28,7 +34,7 @@ int main()
 		if (inMenu == '1')
 		{
 			cout << "Data saat ini: \n";
-			for (i = 0; i < arrSize; i++)
+			for (i = 0; i < arrLength; i++)
 			{
 				string res = (data[i] == "") ? "[Data tidak ada]." : data[i];
 				cout << i + 1 << ". " + res + "\n";
