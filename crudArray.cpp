@@ -6,20 +6,14 @@ using namespace std;
 int main()
 {
 	string newData;
-	int i = 0, arrLength, dataAdded = 0, dataEdited;
+	int i, arrLength, dataAdded = 0, dataEdited;
 	char inMenu;
 
 	cout << "Masukkan jumlah data (lebih dari 2): ";
 	cin >> arrLength;
 
 	string data[arrLength];
-
 	int arrSize = sizeof(data) / sizeof(data[0]);
-
-	// cout << "Data saat ini: \n";
-	// for (i = 0; i < 0; i++)
-	// 	cout << data[i] + " ";
-	// cout << "\n";
 
 	do
 	{
@@ -36,7 +30,10 @@ int main()
 		{
 			cout << "Data saat ini: \n";
 			for (i = 0; i < arrSize; i++)
-				cout << data[i] + " ";
+			{
+				string res = (data[i] == "") ? "[Data tidak ada]." : data[i];
+				cout << i + 1 << ". " + res + "\n";
+			}
 		}
 
 		if (inMenu == '2')
@@ -51,8 +48,16 @@ int main()
 
 		if (inMenu == '3')
 		{
-			cout << "Data ke: ";
-			cin >> dataEdited;
+			do
+			{
+				cout << "Data ke: ";
+				cin >> dataEdited;
+
+				if (data[dataEdited - 1] == "")
+					cout << "Data tidak ditemukan.";
+
+			} while (data[dataEdited - 1] == "");
+
 			cout << "Data baru: ";
 			cin >> newData;
 
@@ -62,17 +67,23 @@ int main()
 
 		if (inMenu == '0')
 		{
-			cout << "Data ke: ";
-			cin >> dataEdited;
+			do
+			{
+				cout << "Data ke: ";
+				cin >> dataEdited;
+
+				if (data[dataEdited - 1] == "")
+					cout << "Data tidak ditemukan.";
+
+			} while (data[dataEdited - 1] == "");
 
 			data[dataEdited - 1] = "";
 			cout << "Data Deleted!";
 		}
 
-		cout << "\n\n";
+		cout << "\n";
 	} while (inMenu >= '0' && inMenu <= '3');
 
 	cout << "Terima kasih.";
-
 	return 0;
 }
