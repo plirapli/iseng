@@ -89,18 +89,30 @@ int main()
 
 		if (inMenu == '4')
 		{
-			do
+			found = 0;
+			for (i = 0; i < arrLength; i++)
 			{
-				cout << "Data ke: ";
-				cin >> dataEdited;
+				if (data[i] != "")
+					found++;
+			}
 
-				if (dataEdited == 0 || data[dataEdited - 1] == "")
-					cout << "Data tidak ditemukan. \n";
+			if (found >= 1)
+			{
+				do
+				{
+					cout << "Data ke: ";
+					cin >> dataEdited;
 
-			} while (dataEdited == 0 || data[dataEdited - 1] == "");
+					if (dataEdited == 0 || data[dataEdited - 1] == "")
+						cout << "Data tidak ditemukan. \n";
 
-			data[dataEdited - 1] = "";
-			cout << "Data Deleted!";
+				} while (dataEdited == 0 || data[dataEdited - 1] == "");
+
+				data[dataEdited - 1] = "";
+				cout << "Data Deleted!";
+			}
+			else
+				cout << "Data tidak ada. \n";
 		}
 
 		if (inMenu > '4')
