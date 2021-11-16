@@ -8,7 +8,7 @@ void readData(int length, string data[][3], string datafield[]);
 
 int main()
 {
-	string newData;
+	string newData[3];
 	string menu[5] = {"[1] Read Data", "[2] Add Data", "[3] Edit Data", "[4] Delete Data", "[0] Exit"};
 	string dataField[3] = {"Nama", "Alamat", "Umur"};
 	int i, arrLength, found, dataAdded = 0, dataEdited;
@@ -61,36 +61,44 @@ int main()
 				cout << "Data telah melebihi kapasitas! \n";
 		}
 
-		// if (inMenu == '3')
-		// {
-		// 	found = 0;
-		// 	for (i = 0; i < arrLength; i++)
-		// 	{
-		// 		if (data[i] != "")
-		// 			found++;
-		// 	}
+		if (inMenu == '3')
+		{
+			readData(arrLength, data, dataField);
 
-		// 	if (found >= 1)
-		// 	{
-		// 		do
-		// 		{
-		// 			cout << "Data ke: ";
-		// 			cin >> dataEdited;
+			found = 0;
+			for (i = 0; i < arrLength; i++)
+			{
+				if (data[i][0] != "")
+					found++;
+			}
 
-		// 			if (dataEdited == 0)
-		// 				cout << "Data tidak ditemukan. \n";
+			if (found >= 1)
+			{
+				do
+				{
+					cout << "Data ke: ";
+					cin >> dataEdited;
+					cin.ignore();
 
-		// 		} while (dataEdited == 0);
+					if (dataEdited == 0 || dataEdited > arrLength || data[dataEdited - 1][0] == "")
+						cout << "Data tidak ditemukan. \n";
 
-		// 		cout << "Data baru: ";
-		// 		cin >> newData;
+				} while (dataEdited == 0 || dataEdited > arrLength || data[dataEdited - 1][0] == "");
 
-		// 		data[dataEdited - 1] = newData;
-		// 		cout << "Data Edited! \n";
-		// 	}
-		// 	else
-		// 		cout << "Data tidak ada. \n";
-		// }
+				for (i = 0; i < 3; i++)
+				{
+					cout << dataField[i] + " (Ketik" + " - " + "jika tidak ada perubahan) : ";
+					getline(cin, newData[i]);
+
+					data[dataEdited - 1][i] = (newData[i] == "-") ? data[dataEdited - 1][i] : newData[i];
+				}
+
+				cout << "Data Edited! \n";
+				readData(arrLength, data, dataField);
+			}
+			else
+				cout << "Data tidak ada. \n";
+		}
 
 		// if (inMenu == '4')
 		// {
