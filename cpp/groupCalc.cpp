@@ -1,38 +1,56 @@
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
-void hitungGrup(int n, int k);
+int noTransaksi(int offset, int range);
+void hitungGrup(int qty, int group);
 
 int main()
 {
-	int n, k;
+	int qty, group, firstNIM;
 
-	cout << "n > ";
-	cin >> n;
-	cout << "k > ";
-	cin >> k;
+	cout << "Jml. Anggota > ";
+	cin >> qty;
+	cout << "Kelompok > ";
+	cin >> group;
 
-	hitungGrup(n, k);
+	cout << "NIM Awal > ";
+	cin >> firstNIM;
+
+	// if (qty > group)
+	// 	hitungGrup(qty, group);
+	// else
+	// 	cout << "Jumlah anggota invalid. \n";
+
+	cout << noTransaksi(firstNIM, qty);
 
 	return 0;
 }
 
-void hitungGrup(int n, int k)
+int noTransaksi(int offset, int range)
 {
-	int m = n / k;
+	srand(time(0));
+	int res = offset + (rand() % range);
+	return res;
+}
 
-	for (int i = 0; i < k; i++)
+void hitungGrup(int qty, int group)
+{
+	int m = qty / group;
+
+	for (int i = 0; i < group; i++)
 	{
-		if (i != 0 && (n % (m + 1) == 0))
+		if (i != 0 && (qty % (m + 1) == 0))
 		{
 			cout << m + 1 << " ";
-			n -= (m + 1);
+			qty -= (m + 1);
 		}
 		else
 		{
 			cout << m << " ";
-			n -= m;
+			qty -= m;
 		}
 	}
 }
