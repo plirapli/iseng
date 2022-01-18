@@ -4,12 +4,12 @@
 
 using namespace std;
 
-int noTransaksi(int offset, int range);
-void hitungGrup(int qty, int group);
+int generateMember(int offset, int range, int seed);
+void hitungGrup(int qty, int group, int first);
 
 int main()
 {
-	int qty, group, firstNIM;
+	int qty, group, firstMember;
 
 	cout << "Jml. Anggota > ";
 	cin >> qty;
@@ -17,40 +17,58 @@ int main()
 	cin >> group;
 
 	cout << "NIM Awal > ";
-	cin >> firstNIM;
+	cin >> firstMember;
 
-	// if (qty > group)
-	// 	hitungGrup(qty, group);
-	// else
-	// 	cout << "Jumlah anggota invalid. \n";
-
-	cout << noTransaksi(firstNIM, qty);
+	if (qty > group)
+		hitungGrup(qty, group, firstMember);
+	else
+		cout << "Jumlah anggota invalid. \n";
 
 	return 0;
 }
 
-int noTransaksi(int offset, int range)
+int generateMember(int offset, int range, int seed)
 {
-	srand(time(0));
+	srand(seed);
 	int res = offset + (rand() % range);
 	return res;
 }
 
-void hitungGrup(int qty, int group)
+void hitungGrup(int qty, int group, int firstMember)
 {
-	int m = qty / group;
+	int m = (qty / group) + 1;
+	int numbering;
+	int noGroup = 1;
 
 	for (int i = 0; i < group; i++)
 	{
-		if (i != 0 && (qty % (m + 1) == 0))
+		numbering = 1;
+		if (i != 0 && (qty % (m - 1) == 0))
 		{
-			cout << m + 1 << " ";
-			qty -= (m + 1);
+			cout << "Kelompok: " << noGroup << "\n";
+			for (int j = 0; j < (m - 1); j++)
+			{
+				int seed = time(0) + j;
+				cout << numbering << ". " << generateMember(firstMember, qty, seed) << "\n";
+				numbering++;
+			}
+			// cout << m - 1 << " ";
+			noGroup++;
+			qty -= m - 1;
 		}
 		else
 		{
-			cout << m << " ";
+			cout << "Kelompok: " << noGroup << "\n";
+			for (int j = 0; j < m; j++)
+			{
+				int seed = time(0) + j + qty;
+				cout << numbering << ". " << generateMember(firstMember, qty, seed) << "\n";
+				numbering++;
+			}
+			// cout << m << " ";
+			noGroup++;
 			qty -= m;
 		}
+		cout << "\n";
 	}
 }
