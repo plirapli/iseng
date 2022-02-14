@@ -1,2 +1,2 @@
 # iseng
-Contains all of my "iseng" files 😁 :D
+Contains all of my little side project.
