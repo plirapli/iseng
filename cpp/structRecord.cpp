@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -14,11 +13,25 @@ struct mahasiswa
 
 int main()
 {
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Input ke-" << i + 1 << ": \n";
+		cout << "NIM \t: ";
+		cin >> Mhs[i].noMhs;
+		cin.ignore();
 
-	Mhs[0].noMhs = 123210078;
-	Mhs[0].nama = "John Doe";
-	Mhs[0].kelas = 'C';
-	Mhs[0].nilaiAngka = 20;
+		cout << "Nama \t: ";
+		getline(cin, Mhs[i].nama);
+
+		cout << "Kelas \t: ";
+		cin >> Mhs[i].kelas;
+
+		cout << "Nilai \t: ";
+		cin >> Mhs[i].nilaiAngka;
+		cout << "\n";
+
+		system("CLS");
+	}
 
 	for (int i = 0; i < 5; i++)
 	{
