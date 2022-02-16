@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <conio.h>
 
 using namespace std;
 
@@ -87,6 +88,8 @@ int main()
 	}
 	else
 		cout << "Tidak dapat melakukan perkalian.";
+
+	getch();
 
 	return 0;
 }
