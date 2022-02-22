@@ -3,12 +3,16 @@
 
 using namespace std;
 
-float pangkat(int base, int n);
 void deret1(int n);
 void deret2(int n);
 void deret3(int n);
 void deret4(int n);
 void deret5(int n);
+
+int deretA(int n);
+int deretB(int n);
+
+float pangkat(int base, int n);
 
 int main()
 {
@@ -16,7 +20,9 @@ int main()
 
 	cout << "Jumlah Suku n: ";
 	cin >> n;
+	cout << "\n";
 
+	cout << "Relasi Rekurensi: \n";
 	deret1(n);
 	cout << "\n";
 	deret2(n);
@@ -26,6 +32,11 @@ int main()
 	deret4(n);
 	cout << "\n";
 	deret5(n);
+	cout << "\n\n";
+
+	cout << "Rekursi: \n"
+			 << "Deret A: S =  " << deretA(n) << "\n"
+			 << "Deret B: S =  " << deretB(n) << "\n";
 
 	return 0;
 }
@@ -136,6 +147,34 @@ void deret5(int n)
 		cout << operasi << pangkat(2, i) << "/" << pangkat(3, i);
 	}
 	cout << " = " << setprecision(3) << S;
+}
+
+int deretA(int n)
+{
+	if (n != 1)
+	{
+		cout << n << "+";
+		return n + deretA(n - 1);
+	}
+	else
+	{
+		cout << 1 << " = ";
+		return 1;
+	}
+}
+
+int deretB(int n)
+{
+	if (n != 1)
+	{
+		cout << 2 * n << "+";
+		return 2 * n + deretB(n - 1);
+	}
+	else
+	{
+		cout << 2 << " = ";
+		return 2;
+	}
 }
 
 float pangkat(int base, int n)
