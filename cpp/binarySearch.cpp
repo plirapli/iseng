@@ -13,17 +13,20 @@ int main()
 	int inputNum;
 
 	showArr(arr, n);
-	cout << "Cari nomor: ";
-	cin >> inputNum;
+	cout << "(Unsorted) \n";
 
 	bubbleSort(arr); // sorting arr (asc)
-	int index = binarySearch(arr, 0, n - 1, inputNum);
+	showArr(arr, n);
+	cout << "(Sorted) \n\n";
+
+	cout << "Cari nomor: ";
+	cin >> inputNum;
+	int i = binarySearch(arr, 0, n - 1, inputNum);
 
 	cout << "---------------- \n";
 
-	if (index != -1)
-		cout
-				<< inputNum << " ada di index ke-" << index;
+	if (i != -1)
+		cout << inputNum << " ada di index ke-" << i;
 	else
 		cout << inputNum << " tidak ditemukan";
 
@@ -34,7 +37,6 @@ void showArr(int arr[], int n)
 {
 	for (int i = 0; i < n; i++)
 		cout << arr[i] << " ";
-	cout << "\n";
 }
 
 void bubbleSort(int (&arr)[10])
@@ -47,7 +49,7 @@ void bubbleSort(int (&arr)[10])
 		{
 			if (arr[j] < arr[i])
 			{
-				// Swap el
+				// Swap arr el
 				temp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = temp;
@@ -64,12 +66,9 @@ int binarySearch(int arr[], int awal, int akhir, int num)
 		cout << awal << " " << tengah << " " << akhir << " "
 				 << "(" << num << " & " << arr[tengah] << ") \n";
 
-		if (num == arr[tengah])
-			return tengah;
-		else if (num < arr[tengah])
-			return binarySearch(arr, awal, tengah - 1, num);
-		else
-			return binarySearch(arr, tengah + 1, akhir, num);
+		return (num == arr[tengah])	 ? tengah
+					 : (num < arr[tengah]) ? binarySearch(arr, awal, tengah - 1, num)
+																 : binarySearch(arr, tengah + 1, akhir, num);
 	}
 	return -1;
 }
