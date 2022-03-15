@@ -79,14 +79,6 @@ float S(int n) // [NOMOR 3]
 	float p = 2 * n;
 	float q = 3 * n + 1;
 
-	if (n == 1)
-	{
-		cout << p << "/" << q << " = ";
-		return 0.5;
-	}
-	else
-	{
-		cout << p << "/" << q << " + ";
-		return p / q + S(n - 1);
-	}
+	cout << p << "/" << q << (n == 1 ? " = " : " + ");
+	return (n == 1) ? 0.5 : (p / q + S(n - 1));
 }
