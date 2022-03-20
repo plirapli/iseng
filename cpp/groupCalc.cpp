@@ -105,24 +105,24 @@ void hitungGrup(int qty, int group, int firstMember)
 				int seed, num;
 				bool isAdded, checkNum;
 
-				// do
-				// {
+				do
+				{
 				seed = time(0) + qty + seedGen;
 				num = generateMember(firstMember, qty, seed);
-				// 	checkNum = findNum(num, addedNum);
+					checkNum = findNum(num, addedNum);
 
-				// 	if (checkNum != true)
-				// 	{
-				// 		isAdded == false;
-				// 		seedGen++;
-				// 	}
-				// 	else
-				// 	{
-				// 		isAdded == true;
-				// 		dbNum[addedNum] = num;
-				// 		addedNum++;
-				// 	}
-				// } while (isAdded == false);
+					if (checkNum != true)
+					{
+						isAdded == false;
+						seedGen++;
+					}
+					else
+					{
+						isAdded == true;
+						dbNum[addedNum] = num;
+						addedNum++;
+					}
+				} while (isAdded == false);
 
 				cout << numbering << ". " << num << "\n";
 				seedGen++;
