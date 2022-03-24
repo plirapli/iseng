@@ -36,13 +36,19 @@ int main()
 	// [NOMOR 1]
 	Peminjaman bukti[10];
 	int jmlBukti = 0;
-	inputBuktiPeminjaman(bukti, jmlBukti);
+
+	for (int i = 0; i < 10; i++)
+		inputBuktiPeminjaman(bukti, jmlBukti);
+
+	cout << "\n";
 
 	// [NOMOR 2]
 	char arr[] =
 			{'A', 'B', 'E', 'A', 'B', 'C', 'D', 'E', 'A', 'B', 'C', 'D', 'E', 'A', 'A'};
 	int ukuran = sizeof(arr) / sizeof(arr[0]);
 	searchTerbanyak(arr, ukuran);
+
+	cout << "\n";
 
 	// [NOMOR 3]
 	int a, b;
@@ -74,6 +80,7 @@ void inputBuktiPeminjaman(Peminjaman bukti[], int &jmlBukti) // [NOMOR 1]
 	cin >> bukti[jmlBukti].tglPinjam;
 	cout << "Tanggal Harus Kembali (dd-mm-yy): \n";
 	cin >> bukti[jmlBukti].tglHarusKembali;
+	system("CLS");
 
 	cout << "Masukkan jumlah buku yang ingin dipinjam: ";
 	cin >> jmlBuku;
@@ -90,37 +97,33 @@ void inputBuktiPeminjaman(Peminjaman bukti[], int &jmlBukti) // [NOMOR 1]
 		cin >> bukti[jmlBukti].buku[jmlBuku].pengarang;
 		cout << "Penerbit: ";
 		cin >> bukti[jmlBukti].buku[jmlBuku].penerbit;
+		system("CLS");
 	}
 	jmlBukti++;
 }
 
 void searchTerbanyak(char arr[], int n) // [NOMOR 2]
 {
-	char huruf[5] = {'A', 'B', 'C', 'D', 'E'};
-	int jml[5] = {};
-	int index = 0;
+	int index, indexTerbesar = 0, jml[5] = {};
 
 	for (int i = 0; i < n; i++)
 	{
-		if (arr[i] == 'A')
-			jml[0]++;
-		else if (arr[i] == 'B')
-			jml[1]++;
-		else if (arr[i] == 'C')
-			jml[2]++;
-		else if (arr[i] == 'D')
-			jml[3]++;
-		else if (arr[i] == 'E')
-			jml[4]++;
+		index = (arr[i] == 'A')		? 0
+						: (arr[i] == 'B') ? 1
+						: (arr[i] == 'C') ? 2
+						: (arr[i] == 'D') ? 3
+															: 4;
+		jml[index]++;
 	}
 
 	// Mencari huruf terbanyak
 	for (int i = 0; i < 5; i++)
-		if (jml[i] > jml[index])
-			index = i;
+		if (jml[i] > jml[indexTerbesar])
+			indexTerbesar = i;
 
-	cout << "Huruf Terbanyak: " << huruf[index] << "\n";
-	cout << "Jumlah: " << jml[index];
+	cout << "Huruf Terbanyak: " << char(65 + indexTerbesar) << "\n";
+	cout << "Jumlah: " << jml[indexTerbesar];
 }
 
+// [NOMOR 3]
 int pangkat(int a, int b) { return (b > 0) ? (a * pangkat(a, b - 1)) : 1; }
