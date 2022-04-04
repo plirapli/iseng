@@ -7,6 +7,7 @@ void showArr(int arr[], int size);
 
 void bubbleSort(int arr[], int size);    // Bubble Sort
 void insertionSort(int arr[], int size); // Insertion Sort
+void selectionSort(int arr[], int n);    // Selection Sort
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
 
   bubbleSort(arr, size);
   insertionSort(arr, size);
+  selectionSort(arr, size);
 
   return 0;
 }
@@ -30,7 +32,7 @@ void bubbleSort(int arr[], int size)
     {
       if (arr[j] > arr[j + 1])
       {
-        // Swap el
+        // Swap element
         temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
@@ -48,7 +50,7 @@ void insertionSort(int arr[], int size)
     key = arr[i];
     j = i - 1;
 
-    /* Bandingkan key sama elemen di kirinya. Kalo lebih kecil,
+    /* Bandingkan key sama elemen di kirinya. Kalo key lebih kecil,
        tuker sampe key lebih besar dari elemen di kirinya
        atau mentok paling ujung kiri */
     while (j >= 0 && arr[j] > key)
@@ -59,6 +61,27 @@ void insertionSort(int arr[], int size)
     arr[j + 1] = key;
   }
   showArr(arr, size);
+}
+
+void selectionSort(int arr[], int n)
+{
+  int i, j, minIdx;
+
+  // One by one move boundary of unsorted subarray
+  for (i = 0; i < n - 1; i++)
+  {
+    // Cari elemen terkecil mulai dari elemen ke-i
+    minIdx = i;
+    for (j = i + 1; j < n; j++)
+      if (arr[j] < arr[minIdx])
+        minIdx = j;
+
+    // Tukar elemen terkecil dengan elemen ke-i
+    int temp = arr[minIdx];
+    arr[minIdx] = arr[i];
+    arr[i] = temp;
+  }
+  showArr(arr, n);
 }
 
 void showArr(int arr[], int size)
