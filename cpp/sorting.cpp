@@ -3,29 +3,67 @@
 
 using namespace std;
 
-int *max(int arr[], int size);
+void showArr(int arr[], int size);
+
+void bubbleSort(int arr[], int size);    // Bubble Sort
+void insertionSort(int arr[], int size); // Insertion Sort
 
 int main()
 {
-  int arr[6] = {23, 45, 34, 12, 36, 18}, temp;
+  int arr[6] = {23, 45, 34, 12, 36, 18};
+  int size = 6;
 
-  // Bubble Sort
-  for (int i = 0; i < 6; i++)
+  bubbleSort(arr, size);
+  insertionSort(arr, size);
+
+  return 0;
+}
+
+// Bubble Sort
+void bubbleSort(int arr[], int size)
+{
+  int temp;
+
+  for (int i = 0; i < size - 1; i++)
   {
-    for (int j = i + 1; j < 6; j++)
+    for (int j = 0; j < size - 1 - i; j++)
     {
-      if (arr[j] < arr[i])
+      if (arr[j] > arr[j + 1])
       {
         // Swap el
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
       }
     }
   }
+  showArr(arr, size);
+}
 
-  for (int i = 0; i < 6; i++)
+void insertionSort(int arr[], int size)
+{
+  int i, j, key;
+  for (i = 0; i < size - 1; i++)
+  {
+    key = arr[i];
+    j = i - 1;
+
+    /* Bandingkan key sama elemen di kirinya. Kalo lebih kecil,
+       tuker sampe key lebih besar dari elemen di kirinya
+       atau mentok paling ujung kiri */
+    while (j >= 0 && arr[j] > key)
+    {
+      arr[j + 1] = arr[j];
+      j -= 1;
+    }
+    arr[j + 1] = key;
+  }
+  showArr(arr, size);
+}
+
+void showArr(int arr[], int size)
+{
+  for (int i = 0; i < size - 1; i++)
     cout << arr[i] << " ";
-
-  return 0;
+  cout << "\n";
 }
