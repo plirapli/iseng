@@ -8,15 +8,23 @@ void showArr(int arr[], int size);
 void bubbleSort(int arr[], int size);    // Bubble Sort
 void insertionSort(int arr[], int size); // Insertion Sort
 void selectionSort(int arr[], int n);    // Selection Sort
+void shellSort(int arr[], int n);        // Shell Sort
 
 int main()
 {
   int arr[6] = {23, 45, 34, 12, 36, 18};
   int size = 6;
 
+  cout << "Unsorted \t: ";
+  showArr(arr, size);
+  cout << "Bubble sort \t: ";
   bubbleSort(arr, size);
-  insertionSort(arr, size);
-  selectionSort(arr, size);
+  // cout << "Insertion sort \t: ";
+  // insertionSort(arr, size);
+  // cout << "Selection sort \t: ";
+  // selectionSort(arr, size);
+  // cout << "Shell sort \t: ";
+  // shellSort(arr, size);
 
   return 0;
 }
@@ -39,7 +47,7 @@ void bubbleSort(int arr[], int size)
       }
     }
   }
-  showArr(arr, size);
+  showArr(arr, size); // Menampilkan array
 }
 
 void insertionSort(int arr[], int size)
@@ -60,7 +68,7 @@ void insertionSort(int arr[], int size)
     }
     arr[j + 1] = key;
   }
-  showArr(arr, size);
+  showArr(arr, size); // Menampilkan array
 }
 
 void selectionSort(int arr[], int n)
@@ -81,12 +89,39 @@ void selectionSort(int arr[], int n)
     arr[minIdx] = arr[i];
     arr[i] = temp;
   }
-  showArr(arr, n);
+  showArr(arr, n); // Menampilkan array
+}
+
+void shellSort(int arr[], int n)
+{
+  // Start with a big gap, then reduce the gap
+  for (int gap = n / 2; gap > 0; gap /= 2)
+  {
+    // Do a gapped insertion sort for this gap size.
+    // The first gap elements a[0..gap-1] are already in gapped order
+    // keep adding one more element until the entire array is
+    // gap sorted
+    for (int i = gap; i < n; i++)
+    {
+      // tampung data kanan ke temp
+      int temp = arr[i];
+
+      // shift earlier gap-sorted elements up until the correct
+      // location for a[i] is found
+      int j;
+      for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+        arr[j] = arr[j - gap];
+
+      //  put temp (the original a[i]) in its correct location
+      arr[j] = temp;
+    }
+  }
+  showArr(arr, n); // Menampilkan array
 }
 
 void showArr(int arr[], int size)
 {
-  for (int i = 0; i < size - 1; i++)
+  for (int i = 0; i < size; i++)
     cout << arr[i] << " ";
   cout << "\n";
 }
