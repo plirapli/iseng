@@ -10,6 +10,9 @@ void insertionSort(int arr[], int size); // Insertion Sort
 void selectionSort(int arr[], int n);    // Selection Sort
 void shellSort(int arr[], int n);        // Shell Sort
 
+void quickSort(int arr[], int start, int end); // Quick Sort
+int partition(int arr[], int start, int end);
+
 int main()
 {
   int arr[6] = {23, 45, 34, 12, 36, 18};
@@ -17,14 +20,26 @@ int main()
 
   cout << "Unsorted \t: ";
   showArr(arr, size);
+
   cout << "Bubble sort \t: ";
   bubbleSort(arr, size);
-  // cout << "Insertion sort \t: ";
-  // insertionSort(arr, size);
-  // cout << "Selection sort \t: ";
-  // selectionSort(arr, size);
-  // cout << "Shell sort \t: ";
-  // shellSort(arr, size);
+  showArr(arr, size);
+
+  cout << "Insertion sort \t: ";
+  insertionSort(arr, size);
+  showArr(arr, size);
+
+  cout << "Selection sort \t: ";
+  selectionSort(arr, size);
+  showArr(arr, size);
+
+  cout << "Shell sort \t: ";
+  shellSort(arr, size);
+  showArr(arr, size);
+
+  cout << "Quick sort \t: ";
+  quickSort(arr, 0, size - 1);
+  showArr(arr, size);
 
   return 0;
 }
@@ -34,7 +49,7 @@ void bubbleSort(int arr[], int size)
 {
   int temp;
 
-  for (int i = 0; i < size - 1; i++)
+  for (int i = 0; i < size; i++)
   {
     for (int j = 0; j < size - 1 - i; j++)
     {
@@ -47,12 +62,12 @@ void bubbleSort(int arr[], int size)
       }
     }
   }
-  showArr(arr, size); // Menampilkan array
 }
 
 void insertionSort(int arr[], int size)
 {
   int i, j, key;
+
   for (i = 0; i < size - 1; i++)
   {
     key = arr[i];
@@ -61,25 +76,25 @@ void insertionSort(int arr[], int size)
     /* Bandingkan key sama elemen di kirinya. Kalo key lebih kecil,
        tuker sampe key lebih besar dari elemen di kirinya
        atau mentok paling ujung kiri */
-    while (j >= 0 && arr[j] > key)
+    while (key < arr[j] && j >= 0)
     {
       arr[j + 1] = arr[j];
-      j -= 1;
+      j--;
     }
     arr[j + 1] = key;
   }
-  showArr(arr, size); // Menampilkan array
 }
 
 void selectionSort(int arr[], int n)
 {
-  int i, j, minIdx;
+  int i, j, temp, minIdx;
 
   // One by one move boundary of unsorted subarray
   for (i = 0; i < n - 1; i++)
   {
     // Cari elemen terkecil mulai dari elemen ke-i
     minIdx = i;
+
     for (j = i + 1; j < n; j++)
       if (arr[j] < arr[minIdx])
         minIdx = j;
@@ -89,7 +104,6 @@ void selectionSort(int arr[], int n)
     arr[minIdx] = arr[i];
     arr[i] = temp;
   }
-  showArr(arr, n); // Menampilkan array
 }
 
 void shellSort(int arr[], int n)
@@ -112,11 +126,61 @@ void shellSort(int arr[], int n)
       for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
         arr[j] = arr[j - gap];
 
-      //  put temp (the original a[i]) in its correct location
+      // Put temp (the original a[i]) in its correct location
       arr[j] = temp;
     }
   }
-  showArr(arr, n); // Menampilkan array
+}
+
+int partition(int arr[], int start, int end)
+{
+
+  int pivot = arr[start];
+
+  int count = 0;
+  for (int i = start + 1; i <= end; i++)
+  {
+    if (arr[i] <= pivot)
+      count++;
+  }
+
+  // Giving pivot element its correct position
+  int pivotIndex = start + count;
+  swap(arr[pivotIndex], arr[start]);
+
+  // Sorting left and right parts of the pivot element
+  int i = start, j = end;
+
+  while (i < pivotIndex && j > pivotIndex)
+  {
+    while (arr[i] <= pivot)
+      i++;
+
+    while (arr[j] > pivot)
+      j--;
+
+    if (i < pivotIndex && j > pivotIndex)
+      swap(arr[i++], arr[j--]);
+  }
+
+  return pivotIndex;
+}
+
+void quickSort(int arr[], int start, int end)
+{
+
+  // base case
+  if (start >= end)
+    return;
+
+  // partitioning the array
+  int p = partition(arr, start, end);
+
+  // Sorting the left part
+  quickSort(arr, start, p - 1);
+
+  // Sorting the right part
+  quickSort(arr, p + 1, end);
 }
 
 void showArr(int arr[], int size)
