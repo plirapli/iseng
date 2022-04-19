@@ -14,7 +14,7 @@ int main()
 	int *ptgl;
 	ptgl = tgl;
 
-	cout << "Nilai yang ditunjuk ptgl = " << *(ptgl + 1) << "\n"
+	cout << "Nilai yang ditunjuk ptgl = " << *(ptgl) << "\n"
 			 << "Alamat dari tgl = " << ptgl;
 	cout << "\n\n";
 
