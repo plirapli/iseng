@@ -20,26 +20,27 @@ int main()
 
   cout << "Unsorted \t: ";
   showArr(arr, size);
+  cout << "\n";
 
   cout << "Bubble sort \t: ";
   bubbleSort(arr, size);
   showArr(arr, size);
 
-  cout << "Insertion sort \t: ";
-  insertionSort(arr, size);
-  showArr(arr, size);
+  // cout << "Insertion sort \t: ";
+  // insertionSort(arr, size);
+  // showArr(arr, size);
 
-  cout << "Selection sort \t: ";
-  selectionSort(arr, size);
-  showArr(arr, size);
+  // cout << "Selection sort \t: ";
+  // selectionSort(arr, size);
+  // showArr(arr, size);
 
-  cout << "Shell sort \t: ";
-  shellSort(arr, size);
-  showArr(arr, size);
+  // cout << "Shell sort \t: ";
+  // shellSort(arr, size);
+  // showArr(arr, size);
 
-  cout << "Quick sort \t: ";
-  quickSort(arr, 0, size - 1);
-  showArr(arr, size);
+  // cout << "Quick sort \t: ";
+  // quickSort(arr, 0, size - 1);
+  // showArr(arr, size);
 
   return 0;
 }
@@ -47,12 +48,14 @@ int main()
 // Bubble Sort
 void bubbleSort(int arr[], int size)
 {
-  int temp;
+  int i, j, temp;
+  int jml[size] = {}, total = 0; // Variabel menghitung jumlah
 
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size - 1; i++)
   {
     for (int j = 0; j < size - 1 - i; j++)
     {
+      jml[i]++;
       if (arr[j] > arr[j + 1])
       {
         // Swap element
@@ -61,7 +64,13 @@ void bubbleSort(int arr[], int size)
         arr[j + 1] = temp;
       }
     }
+    // cout << "Perulangan ke-" << i << " = " << jml[i] << "\n";
   }
+
+  // for (i = 0; i < size; i++)
+  //   total += jml[i];
+
+  // cout << "Total = " << total << "\n";
 }
 
 void insertionSort(int arr[], int size)
