@@ -1,0 +1,4 @@
+Coca-Cola minuman 99 3000
+Fanta minuman 78 4000
+Lays keripik 65 6500
+Donat kue 8 12000
