@@ -64,13 +64,7 @@ void bubbleSort(int arr[], int size)
         arr[j + 1] = temp;
       }
     }
-    // cout << "Perulangan ke-" << i << " = " << jml[i] << "\n";
   }
-
-  // for (i = 0; i < size; i++)
-  //   total += jml[i];
-
-  // cout << "Total = " << total << "\n";
 }
 
 void insertionSort(int arr[], int size)
