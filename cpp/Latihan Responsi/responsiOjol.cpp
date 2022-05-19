@@ -44,7 +44,7 @@ int main()
   {
     cout << "Menu: \n"
          << "[1] Input Data \n"
-         << "[2] Liat \n"
+         << "[2] Liat (Lokal) \n"
          << "[2] Searching \n"
          << "[3] Cetak Receipt \n"
          << "[...] Exit \n"
@@ -199,70 +199,69 @@ int main()
       //   break;
       // }
 
-      // case '3':
-      // {
-      //   Pemesan pemesan[5];
-      //   string fileName;
+    case '3':
+    {
+      Pemesan pemesan[5];
+      string fileName;
 
-      //   cout << "Pemesanan atas nama siapa kak? ";
-      //   cin.ignore();
-      //   getline(cin, fileName);
-      //   cout << "\n";
+      cout << "Pemesanan atas nama siapa kak? ";
+      cin.ignore();
+      getline(cin, fileName);
+      cout << "\n";
 
-      //   fileName = replaceSpasi(fileName) + ".txt";
+      fileName = replaceSpasi(fileName) + ".txt";
 
-      //   ifstream myFile(fileName);
-      //   int jmlData = 0;
+      ifstream myFile(fileName);
+      int jmlData = 0;
 
-      //   if (myFile.is_open())
-      //   {
-      //     int i = jmlData;
-      //     while (!myFile.eof())
-      //     {
-      //       myFile >> pemesan[i].username >> pemesan[i].email >> pemesan[i].noHp;
-      //       myFile >> pemesan[i].saldo;
-      //       myFile >> pemesan[i].dataLokasi.lokasi >> pemesan[i].dataLokasi.tujuan;
-      //       myFile >> pemesan[i].dataLokasi.jarak >> pemesan[i].dataLokasi.tarif;
-      //       i++;
-      //     }
+      if (myFile.is_open())
+      {
+        int i = jmlData;
+        while (!myFile.eof())
+        {
+          myFile >> pemesan[i].username >> pemesan[i].email >> pemesan[i].noHp;
+          myFile >> pemesan[i].saldo;
+          myFile >> pemesan[i].dataLokasi.lokasi >> pemesan[i].dataLokasi.tujuan;
+          myFile >> pemesan[i].dataLokasi.jarak >> pemesan[i].dataLokasi.tarif;
+          i++;
+        }
 
-      //     jmlData += i - 1;
-      //     myFile.close();
+        jmlData += i - 1;
+        myFile.close();
 
-      //     for (int i = 0; i < jmlData; i++)
-      //     {
-      //       int saldo = pemesan[i].saldo;
-      //       int tarif = pemesan[i].dataLokasi.tarif;
+        for (int i = 0; i < jmlData; i++)
+        {
+          int saldo = pemesan[i].saldo;
+          int tarif = pemesan[i].dataLokasi.tarif;
 
-      //       cout << "Pemesan ke-" << i + 1 << "\n"
-      //            << "Username: " << pemesan[i].username << "\n"
-      //            << "Email: " << pemesan[i].email << "\n"
-      //            << "No. HP: " << pemesan[i].noHp << "\n"
-      //            << "Saldo Anda: " << saldo << "\n";
+          cout << "Pemesan ke-" << i + 1 << "\n"
+               << "Username: " << pemesan[i].username << "\n"
+               << "Email: " << pemesan[i].email << "\n"
+               << "No. HP: " << pemesan[i].noHp << "\n"
+               << "Saldo Anda: " << saldo << "\n";
 
-      //       cout << "Pesanan: \n"
-      //            << "- Asal: " << pemesan[i].dataLokasi.lokasi << "\n"
-      //            << "- Tujuan: " << pemesan[i].dataLokasi.tujuan << "\n"
-      //            << "- Jarik (km): " << pemesan[i].dataLokasi.jarak << "\n"
-      //            << "- Tarif (km): " << tarif << "\n";
+          cout << "Pesanan: \n"
+               << "- Asal: " << pemesan[i].dataLokasi.lokasi << "\n"
+               << "- Tujuan: " << pemesan[i].dataLokasi.tujuan << "\n"
+               << "- Jarik (km): " << pemesan[i].dataLokasi.jarak << "\n"
+               << "- Tarif (km): " << tarif << "\n";
 
-      //       if (saldo > tarif)
-      //         cout << "Pembayaran via saldo: Rp" << tarif << "\n";
-      //       else
-      //       {
-      //         cout << "Pembayaran via saldo: Rp" << saldo << "\n"
-      //              << "Pembayaran via tunai: Rp" << tarif - saldo << "\n";
-      //       }
-      //       cout << "\n";
-      //     }
-      //     cout << "\n";
-      //   }
-      //   else
-      //     cout << "Pemesanan atas nama " << replaceHyphen(fileName) << " tidak ditemukan. \n";
+          if (saldo > tarif)
+            cout << "Pembayaran via saldo: Rp" << tarif << "\n";
+          else
+          {
+            cout << "Pembayaran via saldo: Rp" << saldo << "\n"
+                 << "Pembayaran via tunai: Rp" << tarif - saldo << "\n";
+          }
+          cout << "\n";
+        }
+      }
+      else
+        cout << "Pemesanan atas nama " << replaceHyphen(fileName) << " tidak ditemukan.";
 
-      //   pressAnyKey();
-      //   break;
-      // }
+      pressAnyKey();
+      break;
+    }
 
     default:
       cout << "Terima kasih.";
