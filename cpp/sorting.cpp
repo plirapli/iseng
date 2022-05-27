@@ -26,21 +26,21 @@ int main()
   bubbleSort(arr, size);
   showArr(arr, size);
 
-  // cout << "Insertion sort \t: ";
-  // insertionSort(arr, size);
-  // showArr(arr, size);
+  cout << "Insertion sort \t: ";
+  insertionSort(arr, size);
+  showArr(arr, size);
 
-  // cout << "Selection sort \t: ";
-  // selectionSort(arr, size);
-  // showArr(arr, size);
+  cout << "Selection sort \t: ";
+  selectionSort(arr, size);
+  showArr(arr, size);
 
-  // cout << "Shell sort \t: ";
-  // shellSort(arr, size);
-  // showArr(arr, size);
+  cout << "Shell sort \t: ";
+  shellSort(arr, size);
+  showArr(arr, size);
 
-  // cout << "Quick sort \t: ";
-  // quickSort(arr, 0, size - 1);
-  // showArr(arr, size);
+  cout << "Quick sort \t: ";
+  quickSort(arr, 0, size - 1);
+  showArr(arr, size);
 
   return 0;
 }

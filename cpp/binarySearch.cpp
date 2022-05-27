@@ -60,15 +60,28 @@ void bubbleSort(int (&arr)[10])
 
 int binarySearch(int arr[], int awal, int akhir, int num)
 {
+	/* Jika index awal <= index akhir, maka lakukan pencarian,
+		 jika tidak maka pencarian tidak ditemukan. */
 	if (awal <= akhir)
 	{
 		int tengah = (awal + akhir) / 2;
-		cout << awal << " " << tengah << " " << akhir << " "
-				 << "(" << num << " & " << arr[tengah] << ") \n";
 
-		return (num == arr[tengah])	 ? tengah
-					 : (num < arr[tengah]) ? binarySearch(arr, awal, tengah - 1, num)
-																 : binarySearch(arr, tengah + 1, akhir, num);
+		/* - Jika input = nilai tengah, maka fungsi mengembalikan nilai tengah.
+			 - Jika input berada di sisi kiri nilai tengah,
+				 maka lakukan pemanggilan fungsi lagi (rekursif) dengan nilai tengah-1 sebagai parameter akhir
+			 - Jika input berada di sisi kanan nilai tengah,
+				 maka lakukan pemanggilan fungsi lagi (rekursif) dengan nilai tengah+1 sebagai parameter awal
+		*/
+		if (num == arr[tengah])
+			return tengah;
+		else if (num < arr[tengah])
+			return binarySearch(arr, awal, tengah - 1, num);
+		else
+			return binarySearch(arr, tengah + 1, akhir, num);
+
+		// return (num == arr[tengah])	 ? tengah
+		// 			 : (num < arr[tengah]) ? binarySearch(arr, awal, tengah - 1, num)
+		// 														 : binarySearch(arr, tengah + 1, akhir, num);
 	}
 	return -1;
 }
