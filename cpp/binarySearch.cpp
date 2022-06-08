@@ -72,16 +72,9 @@ int binarySearch(int arr[], int awal, int akhir, int num)
 			 - Jika input berada di sisi kanan nilai tengah,
 				 maka lakukan pemanggilan fungsi lagi (rekursif) dengan nilai tengah+1 sebagai parameter awal
 		*/
-		if (num == arr[tengah])
-			return tengah;
-		else if (num < arr[tengah])
-			return binarySearch(arr, awal, tengah - 1, num);
-		else
-			return binarySearch(arr, tengah + 1, akhir, num);
-
-		// return (num == arr[tengah])	 ? tengah
-		// 			 : (num < arr[tengah]) ? binarySearch(arr, awal, tengah - 1, num)
-		// 														 : binarySearch(arr, tengah + 1, akhir, num);
+		return (num == arr[tengah])	 ? tengah
+					 : (num < arr[tengah]) ? binarySearch(arr, awal, tengah - 1, num)
+																 : binarySearch(arr, tengah + 1, akhir, num);
 	}
 	return -1;
 }
