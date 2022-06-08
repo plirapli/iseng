@@ -137,7 +137,6 @@ void shellSort(int arr[], int n)
 
 int partition(int arr[], int start, int end)
 {
-
   int pivot = arr[start];
 
   int count = 0;
