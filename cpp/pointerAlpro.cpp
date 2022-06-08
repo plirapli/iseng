@@ -5,12 +5,15 @@ using namespace std;
 
 void latihanSatu();
 void latihanDua();
+void latihanTiga();
 
 int main()
 {
 	latihanSatu();
 	cout << "\n";
 	latihanDua();
+	cout << "\n";
+	latihanTiga();
 
 	return 0;
 }
@@ -37,7 +40,7 @@ void latihanSatu()
 	// Expected output = 5 3 5 2 5 5
 }
 
-void latihanDua()
+void latihanDua() // UAS 17/18 Nomor 2b
 {
 	int e[3] = {10, 20, 30}, f = 40;
 	int *a, *b, *c, **d;
@@ -49,10 +52,10 @@ void latihanDua()
 
 	a = &e[1];			 // a = alamat dari e[1] (e[1] = 20)
 	c = a;					 // c menunjuk alamat yg sama dengan a (e[1] = 20)
-	*a = *c + f;		 // nilai int yang ditunjuk a = 20 + 40 (e[1] = 60)
+	*a = *c + f;		 // nilai yang ditunjuk a = 20 + 40 (e[1] = 60)
 	d = &a;					 // d menunjuk alamat a
 	a = b;					 // a menunjuk alamat yang sama dengan b (f = 40)
-	b = e;					 // b = alamat dari e[0] (e[0] = 10)
+	b = e;					 // b = alamat dari array e
 	e[0] = *(b + 1); // nilai e[0] = 60
 	*(b + 2) = **d;	 // nilai e[2] = 40
 
@@ -61,4 +64,27 @@ void latihanDua()
 			 << **d << " " << f << "\n";
 
 	// Expected output = 60 60 40 40 60 60 40 40
+}
+
+void latihanTiga() // UAS 18/19 Nomor 2
+{
+	int *a, *b, **c, d, e[2] = {1, 2};
+
+	cout << "satu digit terakhir nim Anda = ";
+	cin >> d;
+
+	a = e;	// e[2] = {1, 2}
+	b = a;	// e[2] = {1, 2}
+	c = &a; // e[2] = {1, 2}
+
+	cout << d << " " << e[0] << " " << e[1] << " " << *a << " " << *b << " " << **c << " " << endl;
+	// Expected output: 8 1 2 1 1 1
+
+	b = &e[1];					// b[0] = 2
+	**c = d + e[1];			// 8 + 2 = 10 (a[0] = e[0] = 10)
+	a = &d;							// a = 8
+	*a = *(b - 1) - *b; // 10 - 2 = 8 (d = 8)
+
+	cout << d << " " << e[0] << " " << e[1] << " " << *a << " " << *b << " " << **c << " " << endl;
+	// Expected output: 8 10 2 8 2 8
 }
