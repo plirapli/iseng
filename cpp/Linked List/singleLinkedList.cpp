@@ -28,6 +28,7 @@ void changeLast(string nama, int umur);  // Change last node
 
 // Read
 void printSingleLinkedList(); // Print nodes
+int readLength();             // Return nodes length
 
 int main()
 {
@@ -124,23 +125,30 @@ void delFirst()
 
 void delMiddle(int posisi)
 {
-  Mhs *before;
-
-  cur = head;
-  int i = 1;
-  while (i <= posisi)
+  if (posisi < 1 || posisi > readLength())
+    cout << "Posisi invalid! \n";
+  else if (posisi == 1 || posisi == readLength())
+    cout << "Posisi bukan di tengah! \n";
+  else
   {
-    if (i == posisi - 1)
-      before = cur;
-    if (i == posisi)
-      delNode = cur;
+    Mhs *before;
 
-    cur = cur->next;
-    i++;
+    cur = head;
+    int i = 1;
+    while (i <= posisi)
+    {
+      if (i == posisi - 1)
+        before = cur;
+      if (i == posisi)
+        delNode = cur;
+
+      cur = cur->next;
+      i++;
+    }
+
+    before->next = cur;
+    delete delNode;
   }
-
-  before->next = cur;
-  delete delNode;
 }
 
 void delLast()
@@ -159,9 +167,10 @@ void delLast()
 
 void printSingleLinkedList()
 {
+  cout << "Jumlah data: " << readLength() << "\n";
+
   cur = head;
   int i = 1;
-
   while (cur != NULL)
   {
     cout << i << ". " << cur->nama << ", " << cur->umur << "\n";
@@ -170,4 +179,17 @@ void printSingleLinkedList()
     i++;
   }
   cout << "\n";
+}
+
+int readLength()
+{
+  cur = head;
+  int i = 0;
+  while (cur != NULL)
+  {
+    cur = cur->next;
+    i++;
+  }
+
+  return i;
 }
