@@ -18,8 +18,9 @@ void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 void addLast(string nama, int umur);               // Add node to last
 
 // Delete
-void delFirst(); // Delete first node
-void delLast();  // Delete last node
+void delFirst();            // Delete first node
+void delMiddle(int posisi); // Delete nth node
+void delLast();             // Delete last node
 
 // Update
 void changeFirst(string nama, int umur); // Change first node
@@ -43,9 +44,11 @@ int main()
   changeFirst("Seva", 24);
   changeLast("Syaikul", 17);
   addMiddle("Giantama", 18, 2);
+  addFirst("Rafli", 22);
+  delMiddle(3);
 
   printSingleLinkedList();
-  // Seva, Giantama, Syaikul
+  // Rafli, Seva, Syaikul
 
   return 0;
 }
@@ -76,7 +79,7 @@ void addMiddle(string nama, int umur, int posisi)
   newNode->nama = nama;
   newNode->umur = umur;
 
-  // Tranversing
+  // Traversing
   cur = head;
   int i = 1;
   while (i < posisi - 1)
@@ -116,6 +119,27 @@ void delFirst()
 {
   delNode = head;
   head = head->next;
+  delete delNode;
+}
+
+void delMiddle(int posisi)
+{
+  Mhs *before;
+
+  cur = head;
+  int i = 1;
+  while (i <= posisi)
+  {
+    if (i == posisi - 1)
+      before = cur;
+    if (i == posisi)
+      delNode = cur;
+
+    cur = cur->next;
+    i++;
+  }
+
+  before->next = cur;
   delete delNode;
 }
 
