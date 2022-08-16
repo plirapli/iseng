@@ -73,17 +73,17 @@ void latihanTiga() // UAS 18/19 Nomor 2
 	cout << "satu digit terakhir nim Anda = ";
 	cin >> d;
 
-	a = e;	// e[2] = {1, 2}
-	b = a;	// e[2] = {1, 2}
-	c = &a; // e[2] = {1, 2}
+	a = e;	// a menunjuk alamat array e, e[] = {1, 2}
+	b = a;	// b menunjuk alamat array e, e[] = {1, 2}
+	c = &a; // c menunjuk alamat a, e[] = {1, 2}
 
 	cout << d << " " << e[0] << " " << e[1] << " " << *a << " " << *b << " " << **c << " " << endl;
 	// Expected output: 8 1 2 1 1 1
 
-	b = &e[1];					// b[0] = 2
-	**c = d + e[1];			// 8 + 2 = 10 (a[0] = e[0] = 10)
-	a = &d;							// a = 8
-	*a = *(b - 1) - *b; // 10 - 2 = 8 (d = 8)
+	b = &e[1];					// b menunjuk alamat e[1], b = 2
+	**c = d + e[1];			// 8 + 2 = 10, a[0] = e[0] = 10
+	a = &d;							// a menunjuk alamat d, a = 8
+	*a = *(b - 1) - *b; // 10 - 2 = 8, d = 8
 
 	cout << d << " " << e[0] << " " << e[1] << " " << *a << " " << *b << " " << **c << " " << endl;
 	// Expected output: 8 10 2 8 2 8
