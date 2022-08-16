@@ -14,17 +14,18 @@ void createSingleLinkedList(string nama, int umur); // Create first node
 
 // Create
 void addFirst(string nama, int umur);              // Add node to first
-void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 void addLast(string nama, int umur);               // Add node to last
+void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
 // Delete
 void delFirst();            // Delete first node
-void delMiddle(int posisi); // Delete nth node
 void delLast();             // Delete last node
+void delMiddle(int posisi); // Delete nth node
 
 // Update
-void changeFirst(string nama, int umur); // Change first node
-void changeLast(string nama, int umur);  // Change last node
+void changeFirst(string nama, int umur);              // Change first node
+void changeLast(string nama, int umur);               // Change last node
+void changeMiddle(string nama, int umur, int posisi); // Change nth node
 
 // Read
 void printSingleLinkedList(); // Print nodes
@@ -47,9 +48,10 @@ int main()
   addMiddle("Giantama", 18, 2);
   addFirst("Rafli", 22);
   delMiddle(3);
+  changeMiddle("Giantomo", 16, 2);
 
   printSingleLinkedList();
-  // Rafli, Seva, Syaikul
+  // Rafli, Giantomo, Syaikul
 
   return 0;
 }
@@ -76,21 +78,28 @@ void addFirst(string nama, int umur)
 
 void addMiddle(string nama, int umur, int posisi)
 {
-  newNode = new Mhs();
-  newNode->nama = nama;
-  newNode->umur = umur;
-
-  // Traversing
-  cur = head;
-  int i = 1;
-  while (i < posisi - 1)
+  if (posisi < 1 || posisi > readLength())
+    cout << "Posisi invalid! \n";
+  else if (posisi == 1)
+    cout << "Posisi bukan di tengah! \n";
+  else
   {
-    cur = cur->next;
-    i++;
-  }
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
 
-  newNode->next = cur->next;
-  cur->next = newNode;
+    // Traversing
+    cur = head;
+    int i = 1;
+    while (i < posisi - 1)
+    {
+      cur = cur->next;
+      i++;
+    }
+
+    newNode->next = cur->next;
+    cur->next = newNode;
+  }
 }
 
 void addLast(string nama, int umur)
@@ -108,6 +117,27 @@ void changeFirst(string nama, int umur)
 {
   head->nama = nama;
   head->umur = umur;
+}
+
+void changeMiddle(string nama, int umur, int posisi)
+{
+  if (posisi < 1 || posisi > readLength())
+    cout << "Posisi invalid! \n";
+  else if (posisi == 1 || posisi == readLength())
+    cout << "Posisi bukan di tengah! \n";
+  else
+  {
+    cur = head;
+    int i = 1;
+    while (i < posisi)
+    {
+      cur = cur->next;
+      i++;
+    }
+
+    cur->nama = nama;
+    cur->umur = umur;
+  }
 }
 
 void changeLast(string nama, int umur)
