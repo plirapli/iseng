@@ -30,6 +30,17 @@ void addFirst(string nama, int umur)
   head = newNode;
 };
 
+void addLast(string nama, int umur)
+{
+  newNode = new Mhs();
+  newNode->nama = nama;
+  newNode->umur = umur;
+
+  newNode->next = NULL;
+  tail->next = newNode;
+  tail = newNode;
+};
+
 void printSingleLinkedList()
 {
   cur = head;
@@ -45,9 +56,9 @@ void printSingleLinkedList()
 
 int main()
 {
-  createSingleLinkedList("Muhammad Rafli", 21);
+  createSingleLinkedList("Rafli", 21);
   addFirst("Seva", 19);
-  addFirst("Giantama", 21);
+  addLast("Farel", 18);
 
   printSingleLinkedList();
 
