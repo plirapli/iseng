@@ -9,7 +9,6 @@ struct Mhs
 
   Mhs *next;
 } * head, *tail, *cur, *newNode, *delNode;
-;
 
 void createSingleLinkedList(string nama, int umur); // Create first node
 void addFirst(string nama, int umur);               // Add node to first
@@ -24,9 +23,13 @@ int main()
   addFirst("Seva", 19);
   addLast("Farel", 18);
 
-  delFirst();
+  delFirst(); // Hapus Seva
+  delLast();  // Hapus Farel
+
+  addLast("Giantama", 21);
 
   printSingleLinkedList();
+  // Rafli, Giantama
 
   return 0;
 }
@@ -66,6 +69,20 @@ void delFirst()
 {
   delNode = head;
   head = head->next;
+  delete delNode;
+}
+
+void delLast()
+{
+  delNode = tail;
+
+  // Traversing
+  cur = head;
+  while (cur->next != tail)
+    cur = cur->next;
+
+  tail = cur;
+  tail->next = NULL;
   delete delNode;
 }
 
