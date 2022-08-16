@@ -11,11 +11,21 @@ struct Mhs
 } * head, *tail, *cur, *newNode, *delNode;
 
 void createSingleLinkedList(string nama, int umur); // Create first node
-void addFirst(string nama, int umur);               // Add node to first
-void addLast(string nama, int umur);                // Add node to last
-void delFirst();                                    // Delete first node
-void delLast();                                     // Delete last node
-void printSingleLinkedList();                       // Print nodes
+
+// Create
+void addFirst(string nama, int umur); // Add node to first
+void addLast(string nama, int umur);  // Add node to last
+
+// Delete
+void delFirst(); // Delete first node
+void delLast();  // Delete last node
+
+// Update
+void changeFirst(string nama, int umur); // Change first node
+void changeLast(string nama, int umur);  // Change last node
+
+// Read
+void printSingleLinkedList(); // Print nodes
 
 int main()
 {
@@ -30,6 +40,12 @@ int main()
 
   printSingleLinkedList();
   // Rafli, Giantama
+
+  changeFirst("Seva", 24);
+  changeLast("Syaikul", 17);
+
+  printSingleLinkedList();
+  // Seva, Syaikul
 
   return 0;
 }
@@ -65,6 +81,18 @@ void addLast(string nama, int umur)
   tail = newNode;
 }
 
+void changeFirst(string nama, int umur)
+{
+  head->nama = nama;
+  head->umur = umur;
+}
+
+void changeLast(string nama, int umur)
+{
+  tail->nama = nama;
+  tail->umur = umur;
+}
+
 void delFirst()
 {
   delNode = head;
@@ -93,9 +121,7 @@ void printSingleLinkedList()
 
   while (cur != NULL)
   {
-    cout << i << ". "
-         << "Nama: " << cur->nama << ", "
-         << cur->umur << "\n";
+    cout << i << ". " << cur->nama << ", " << cur->umur << "\n";
 
     cur = cur->next;
     i++;
