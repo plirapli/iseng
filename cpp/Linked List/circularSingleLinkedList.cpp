@@ -47,7 +47,7 @@ int main()
   addMiddle("Giantama", 18, 3);
   addFirst("Rafli", 22);
   delMiddle(4);
-  changeMiddle("Giantomo", 16, 2);
+  changeMiddle("Giantomo", 16, 5);
 
   print();
   // Rafli, Giantomo, Syaikul
@@ -209,11 +209,17 @@ void changeFirst(string nama, int umur)
   head->umur = umur;
 }
 
+void changeLast(string nama, int umur)
+{
+  tail->nama = nama;
+  tail->umur = umur;
+}
+
 void changeMiddle(string nama, int umur, int posisi)
 {
-  if (posisi < 1 || posisi > readLength())
+  if (posisi < 1)
     cout << "Posisi invalid! \n";
-  else if (posisi == 1 || posisi == readLength())
+  else if (posisi == 1)
     cout << "Posisi bukan di tengah! \n";
   else
   {
@@ -229,12 +235,6 @@ void changeMiddle(string nama, int umur, int posisi)
     cur->nama = nama;
     cur->umur = umur;
   }
-}
-
-void changeLast(string nama, int umur)
-{
-  tail->nama = nama;
-  tail->umur = umur;
 }
 
 void print()
