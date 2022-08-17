@@ -17,9 +17,9 @@ void addFirst(string nama, int umur); // Add node to first
 void addLast(string nama, int umur);  // Add node to last
 // void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
-// // Delete
-// void delFirst();            // Delete first node
-// void delLast();             // Delete last node
+// Delete
+void delFirst(); // Delete first node
+void delLast();  // Delete last node
 // void delMiddle(int posisi); // Delete nth node
 
 // // Update
@@ -36,12 +36,12 @@ int main()
   create("Rafli", 21);
   addFirst("Seva", 19);
   addLast("Farel", 18);
-  // delFirst();
-  // delLast();
-  // addLast("Giantama", 21);
+  delFirst();
+  delLast();
+  addLast("Giantama", 21);
 
   readNodes();
-  // Seva, Rafli, Farel
+  // Rafli, Giantama
 
   // changeFirst("Seva", 24);
   // changeLast("Syaikul", 17);
@@ -160,12 +160,18 @@ void addLast(string nama, int umur)
 //   tailNode->umur = umur;
 // }
 
-// void delFirst()
-// {
-//   delNode = headNode;
-//   headNode = headNode->next;
-//   delete delNode;
-// }
+void delFirst()
+{
+  if (headNode == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    delNode = headNode;        // Membuat duplikat node head
+    headNode = headNode->next; // Head pindah ke node kedua (head->next)
+    headNode->prev = NULL;     // Prev node head menunjuk NULL
+    delete delNode;            // Menghapus alamat memori node pertama
+  }
+}
 
 // void delMiddle(int posisi)
 // {
@@ -195,19 +201,18 @@ void addLast(string nama, int umur)
 //   }
 // }
 
-// void delLast()
-// {
-//   delNode = tailNode;
-
-//   // Traversing
-//   curNode = headNode;
-//   while (curNode->next != tailNode)
-//     curNode = curNode->next;
-
-//   tailNode = curNode;
-//   tailNode->next = NULL;
-//   delete delNode;
-// }
+void delLast()
+{
+  if (headNode == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    delNode = tailNode;        // Membuat duplikat node terakhir (tail)
+    tailNode = tailNode->prev; // Tail pindah ke node sebelumnya (tail->prev)
+    tailNode->next = NULL;     // Next node tail menunjuk NULL
+    delete delNode;            // Menghapus alamat memori node terakhir
+  }
+}
 
 void readNodes()
 {
