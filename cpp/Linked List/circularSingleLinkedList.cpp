@@ -11,8 +11,8 @@ struct Mhs
 } * head, *tail, *cur, *newNode, *delNode;
 
 // Create
-void create(string nama, int umur); // Create first node
-// void addFirst(string nama, int umur); // Add node to first
+void create(string nama, int umur);   // Create first node
+void addFirst(string nama, int umur); // Add node to first
 // void addLast(string nama, int umur);               // Add node to last
 // void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
@@ -33,14 +33,14 @@ int readLength(); // Return nodes length
 int main()
 {
   create("Rafli", 21);
-  // addFirst("Seva", 19);
+  addFirst("Seva", 19);
   // addLast("Farel", 18);
   // delFirst();
   // delLast();
   // addLast("Giantama", 21);
 
   print();
-  // Rafli
+  // Seva, Rafli
 
   // changeFirst("Seva", 24);
   // changeLast("Syaikul", 17);
@@ -66,20 +66,21 @@ void create(string nama, int umur)
   tail->next = head;
 }
 
-// void addFirst(string nama, int umur)
-// {
-//   if (head == NULL)
-//     cout << "Linked List belum dibuat! \n";
-//   else
-//   {
-//     newNode = new Mhs();
-//     newNode->nama = nama;
-//     newNode->umur = umur;
+void addFirst(string nama, int umur)
+{
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
 
-//     newNode->next = head;
-//     head = newNode;
-//   }
-// }
+    newNode->next = head;
+    tail->next = newNode;
+    head = newNode;
+  }
+}
 
 // void addLast(string nama, int umur)
 // {
