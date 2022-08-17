@@ -17,9 +17,9 @@ void addLast(string nama, int umur);               // Add node to last
 void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
 // Delete
-void delFirst(); // Delete first node
-void delLast();  // Delete last node
-// void delMiddle(int posisi); // Delete nth node
+void delFirst();            // Delete first node
+void delLast();             // Delete last node
+void delMiddle(int posisi); // Delete nth node
 
 // Update
 void changeFirst(string nama, int umur);              // Change first node
@@ -46,11 +46,13 @@ int main()
   changeLast("Syaikul", 17);
   addMiddle("Giantama", 18, 3);
   addFirst("Rafli", 22);
-  // delMiddle(3);
-  // changeMiddle("Giantomo", 16, 2);
+  delMiddle(4);
+  changeMiddle("Giantomo", 16, 2);
 
   print();
-  // Rafli, Seva, Syaikul, Giantama
+  // Rafli, Giantomo, Syaikul
+
+  cout << tail->nama;
 
   return 0;
 }
@@ -167,33 +169,39 @@ void delLast()
   }
 }
 
-// void delMiddle(int posisi)
-// {
-//   if (posisi < 1 || posisi > readLength())
-//     cout << "Posisi invalid! \n";
-//   else if (posisi == 1 || posisi == readLength())
-//     cout << "Posisi bukan di tengah! \n";
-//   else
-//   {
-//     Mhs *before;
+void delMiddle(int posisi)
+{
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    if (posisi < 1)
+      cout << "Posisi invalid! \n";
+    else if (posisi == 1)
+      cout << "Posisi bukan di tengah! \n";
+    else
+    {
+      // Traversing
+      cur = head;
+      int i = 1;
+      while (i < posisi - 1)
+      {
+        cur = cur->next;
+        i++;
+      }
 
-//     cur = head;
-//     int i = 1;
-//     while (i <= posisi)
-//     {
-//       if (i == posisi - 1)
-//         before = cur;
-//       if (i == posisi)
-//         delNode = cur;
+      delNode = cur->next;       // Membuat duplikat node posisi ke-n
+      cur->next = delNode->next; // Node ke-(n - 1) menunjuk node ke-(n + 1) (current)
 
-//       cur = cur->next;
-//       i++;
-//     }
+      /* Jika posisi ke-n = tail,
+         maka pindahkan tail ke node posisi ke-(n - 1) (current) */
+      if (posisi % readLength())
+        tail = cur;
 
-//     before->next = cur;
-//     delete delNode;
-//   }
-// }
+      delete delNode;
+    }
+  }
+}
 
 void changeFirst(string nama, int umur)
 {
