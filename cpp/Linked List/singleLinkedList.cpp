@@ -68,12 +68,33 @@ void createSingleLinkedList(string nama, int umur)
 
 void addFirst(string nama, int umur)
 {
-  newNode = new Mhs();
-  newNode->nama = nama;
-  newNode->umur = umur;
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
 
-  newNode->next = head;
-  head = newNode;
+    newNode->next = head;
+    head = newNode;
+  }
+}
+
+void addLast(string nama, int umur)
+{
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
+
+    newNode->next = NULL;
+    tail->next = newNode;
+    tail = newNode;
+  }
 }
 
 void addMiddle(string nama, int umur, int posisi)
@@ -102,17 +123,6 @@ void addMiddle(string nama, int umur, int posisi)
   }
 }
 
-void addLast(string nama, int umur)
-{
-  newNode = new Mhs();
-  newNode->nama = nama;
-  newNode->umur = umur;
-
-  newNode->next = NULL;
-  tail->next = newNode;
-  tail = newNode;
-}
-
 void changeFirst(string nama, int umur)
 {
   head->nama = nama;
@@ -127,6 +137,7 @@ void changeMiddle(string nama, int umur, int posisi)
     cout << "Posisi bukan di tengah! \n";
   else
   {
+    // Melakukan traversing sampai i < posisi
     cur = head;
     int i = 1;
     while (i < posisi)
@@ -148,9 +159,33 @@ void changeLast(string nama, int umur)
 
 void delFirst()
 {
-  delNode = head;
-  head = head->next;
-  delete delNode;
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    delNode = head;
+    head = head->next;
+    delete delNode;
+  }
+}
+
+void delLast()
+{
+  if (head == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    delNode = tail;
+
+    // Traversing
+    cur = head;
+    while (cur->next != tail)
+      cur = cur->next;
+
+    tail = cur;
+    tail->next = NULL;
+    delete delNode;
+  }
 }
 
 void delMiddle(int posisi)
@@ -181,20 +216,6 @@ void delMiddle(int posisi)
   }
 }
 
-void delLast()
-{
-  delNode = tail;
-
-  // Traversing
-  cur = head;
-  while (cur->next != tail)
-    cur = cur->next;
-
-  tail = cur;
-  tail->next = NULL;
-  delete delNode;
-}
-
 void printSingleLinkedList()
 {
   cout << "Jumlah data: " << readLength() << "\n";
@@ -212,8 +233,8 @@ void printSingleLinkedList()
       cur = cur->next;
       i++;
     }
-    cout << "\n";
   }
+  cout << "\n";
 }
 
 int readLength()
