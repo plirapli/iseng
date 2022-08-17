@@ -8,7 +8,7 @@ struct Mhs
   int umur;
 
   Mhs *next;
-} * head, *tail, *cur, *newNode, *delNode;
+} * headNode, *tailNode, *curNode, *newNode, *delNode;
 
 void createSingleLinkedList(string nama, int umur); // Create first node
 
@@ -58,12 +58,12 @@ int main()
 
 void createSingleLinkedList(string nama, int umur)
 {
-  head = new Mhs();
-  head->nama = nama;
-  head->umur = umur;
+  headNode = new Mhs();
+  headNode->nama = nama;
+  headNode->umur = umur;
 
-  head->next = NULL;
-  tail = head;
+  headNode->next = NULL;
+  tailNode = headNode;
 }
 
 void addFirst(string nama, int umur)
@@ -72,8 +72,8 @@ void addFirst(string nama, int umur)
   newNode->nama = nama;
   newNode->umur = umur;
 
-  newNode->next = head;
-  head = newNode;
+  newNode->next = headNode;
+  headNode = newNode;
 }
 
 void addMiddle(string nama, int umur, int posisi)
@@ -89,16 +89,16 @@ void addMiddle(string nama, int umur, int posisi)
     newNode->umur = umur;
 
     // Traversing
-    cur = head;
+    curNode = headNode;
     int i = 1;
     while (i < posisi - 1)
     {
-      cur = cur->next;
+      curNode = curNode->next;
       i++;
     }
 
-    newNode->next = cur->next;
-    cur->next = newNode;
+    newNode->next = curNode->next;
+    curNode->next = newNode;
   }
 }
 
@@ -109,14 +109,14 @@ void addLast(string nama, int umur)
   newNode->umur = umur;
 
   newNode->next = NULL;
-  tail->next = newNode;
-  tail = newNode;
+  tailNode->next = newNode;
+  tailNode = newNode;
 }
 
 void changeFirst(string nama, int umur)
 {
-  head->nama = nama;
-  head->umur = umur;
+  headNode->nama = nama;
+  headNode->umur = umur;
 }
 
 void changeMiddle(string nama, int umur, int posisi)
@@ -127,29 +127,29 @@ void changeMiddle(string nama, int umur, int posisi)
     cout << "Posisi bukan di tengah! \n";
   else
   {
-    cur = head;
+    curNode = headNode;
     int i = 1;
     while (i < posisi)
     {
-      cur = cur->next;
+      curNode = curNode->next;
       i++;
     }
 
-    cur->nama = nama;
-    cur->umur = umur;
+    curNode->nama = nama;
+    curNode->umur = umur;
   }
 }
 
 void changeLast(string nama, int umur)
 {
-  tail->nama = nama;
-  tail->umur = umur;
+  tailNode->nama = nama;
+  tailNode->umur = umur;
 }
 
 void delFirst()
 {
-  delNode = head;
-  head = head->next;
+  delNode = headNode;
+  headNode = headNode->next;
   delete delNode;
 }
 
@@ -163,35 +163,35 @@ void delMiddle(int posisi)
   {
     Mhs *before;
 
-    cur = head;
+    curNode = headNode;
     int i = 1;
     while (i <= posisi)
     {
       if (i == posisi - 1)
-        before = cur;
+        before = curNode;
       if (i == posisi)
-        delNode = cur;
+        delNode = curNode;
 
-      cur = cur->next;
+      curNode = curNode->next;
       i++;
     }
 
-    before->next = cur;
+    before->next = curNode;
     delete delNode;
   }
 }
 
 void delLast()
 {
-  delNode = tail;
+  delNode = tailNode;
 
   // Traversing
-  cur = head;
-  while (cur->next != tail)
-    cur = cur->next;
+  curNode = headNode;
+  while (curNode->next != tailNode)
+    curNode = curNode->next;
 
-  tail = cur;
-  tail->next = NULL;
+  tailNode = curNode;
+  tailNode->next = NULL;
   delete delNode;
 }
 
@@ -199,13 +199,13 @@ void printSingleLinkedList()
 {
   cout << "Jumlah data: " << readLength() << "\n";
 
-  cur = head;
+  curNode = headNode;
   int i = 1;
-  while (cur != NULL)
+  while (curNode != NULL)
   {
-    cout << i << ". " << cur->nama << ", " << cur->umur << "\n";
+    cout << i << ". " << curNode->nama << ", " << curNode->umur << "\n";
 
-    cur = cur->next;
+    curNode = curNode->next;
     i++;
   }
   cout << "\n";
@@ -213,11 +213,11 @@ void printSingleLinkedList()
 
 int readLength()
 {
-  cur = head;
+  curNode = headNode;
   int i = 0;
-  while (cur != NULL)
+  while (curNode != NULL)
   {
-    cur = cur->next;
+    curNode = curNode->next;
     i++;
   }
 
