@@ -203,16 +203,21 @@ void readNodes()
 {
   cout << "Jumlah data: " << readLength() << "\n";
 
-  curNode = headNode;
-  int i = 1;
-  while (curNode != NULL)
+  if (headNode == NULL)
+    cout << "Data masih kosong! \n";
+  else
   {
-    cout << i << ". " << curNode->nama << ", " << curNode->umur << "\n";
+    curNode = headNode;
+    int i = 1;
+    while (curNode != NULL)
+    {
+      cout << i << ". " << curNode->nama << ", " << curNode->umur << "\n";
 
-    curNode = curNode->next;
-    i++;
+      curNode = curNode->next;
+      i++;
+    }
+    cout << "\n";
   }
-  cout << "\n";
 }
 
 int readLength()

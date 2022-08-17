@@ -199,16 +199,21 @@ void printSingleLinkedList()
 {
   cout << "Jumlah data: " << readLength() << "\n";
 
-  cur = head;
-  int i = 1;
-  while (cur != NULL)
+  if (head == NULL)
+    cout << "Data masih kosong! \n";
+  else
   {
-    cout << i << ". " << cur->nama << ", " << cur->umur << "\n";
+    cur = head;
+    int i = 1;
+    while (cur != NULL)
+    {
+      cout << i << ". " << cur->nama << ", " << cur->umur << "\n";
 
-    cur = cur->next;
-    i++;
+      cur = cur->next;
+      i++;
+    }
+    cout << "\n";
   }
-  cout << "\n";
 }
 
 int readLength()
