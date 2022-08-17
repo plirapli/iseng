@@ -18,9 +18,9 @@ void addLast(string nama, int umur);               // Add node to last
 void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
 // Delete
-void delFirst(); // Delete first node
-void delLast();  // Delete last node
-// void delMiddle(int posisi); // Delete nth node
+void delFirst();            // Delete first node
+void delLast();             // Delete last node
+void delMiddle(int posisi); // Delete nth node
 
 // Update
 void changeFirst(string nama, int umur);              // Change first node
@@ -46,12 +46,12 @@ int main()
   changeFirst("Seva", 24);
   changeLast("Syaikul", 17);
   addMiddle("Giantama", 18, 2);
-  // addFirst("Rafli", 22);
-  // delMiddle(3);
-  // changeMiddle("Giantomo", 16, 2);
+  addFirst("Rafli", 22);
+  delMiddle(3);
+  changeMiddle("Giantomo", 16, 2);
 
   readNodes();
-  // Seva, Giantama, Syaikul
+  // Rafli, Giantomo, Syaikul
 
   return 0;
 }
@@ -107,9 +107,9 @@ void addMiddle(string nama, int umur, int posisi)
     cout << "Linked List belum dibuat! \n";
   else
   {
-    if (posisi < 1 || posisi > readLength())
+    if (posisi < 1 || posisi > readLength() + 1)
       cout << "Posisi invalid! \n";
-    else if (posisi == 1)
+    else if (posisi == 1 || posisi == readLength() + 1)
       cout << "Posisi bukan di tengah! \n";
     else
     {
@@ -165,33 +165,39 @@ void delLast()
   }
 }
 
-// void delMiddle(int posisi)
-// {
-//   if (posisi < 1 || posisi > readLength())
-//     cout << "Posisi invalid! \n";
-//   else if (posisi == 1 || posisi == readLength())
-//     cout << "Posisi bukan di tengah! \n";
-//   else
-//   {
-//     Mhs *before;
+void delMiddle(int posisi)
+{
+  if (headNode == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    if (posisi < 1 || posisi > readLength())
+      cout << "Posisi invalid! \n";
+    else if (posisi == 1 || posisi == readLength())
+      cout << "Posisi bukan di tengah! \n";
+    else
+    {
+      // Membuat variabel baru untuk menyimpan node posisi ke-n tambah 1
+      Mhs *afterNode;
 
-//     curNode = headNode;
-//     int i = 1;
-//     while (i <= posisi)
-//     {
-//       if (i == posisi - 1)
-//         before = curNode;
-//       if (i == posisi)
-//         delNode = curNode;
+      // Traversing sampai posisi ke-n kurang 1
+      curNode = headNode;
+      int i = 1;
+      while (i < posisi - 1)
+      {
+        curNode = curNode->next;
+        i++;
+      }
 
-//       curNode = curNode->next;
-//       i++;
-//     }
+      delNode = curNode->next;   // Node delete merupakan next dari node current
+      afterNode = delNode->next; // Node after merupakan next dari node delete
+      afterNode->prev = curNode; // Ubah prev node after menjadi nunjuk ke current
+      curNode->next = afterNode; // Ubah next node current menjadi nunjuk ke node after
 
-//     before->next = curNode;
-//     delete delNode;
-//   }
-// }
+      delete delNode; // Hapus node posisi ke-n
+    }
+  }
+}
 
 void changeFirst(string nama, int umur)
 {
