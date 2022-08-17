@@ -11,10 +11,9 @@ struct Mhs
   Mhs *next;
 } * headNode, *tailNode, *curNode, *newNode, *delNode;
 
-void createDoubleLinkedList(string nama, int umur); // Create first node
-
-// // Create
-// void addFirst(string nama, int umur);              // Add node to first
+// Create
+void create(string nama, int umur);   // Create first node
+void addFirst(string nama, int umur); // Add node to first
 // void addLast(string nama, int umur);               // Add node to last
 // void addMiddle(string nama, int umur, int posisi); // Add node to nth list
 
@@ -29,20 +28,20 @@ void createDoubleLinkedList(string nama, int umur); // Create first node
 // void changeMiddle(string nama, int umur, int posisi); // Change nth node
 
 // Read
-void printSingleLinkedList(); // Print nodes
-int readLength();             // Return nodes length
+void readNodes(); // Print nodes
+int readLength(); // Return nodes length
 
 int main()
 {
-  createSingleLinkedList("Rafli", 21);
-  // addFirst("Seva", 19);
+  create("Rafli", 21);
+  addFirst("Seva", 19);
   // addLast("Farel", 18);
   // delFirst();
   // delLast();
   // addLast("Giantama", 21);
 
-  // printSingleLinkedList();
-  // // Rafli, Giantama
+  readNodes();
+  // Seva, Rafli
 
   // changeFirst("Seva", 24);
   // changeLast("Syaikul", 17);
@@ -57,7 +56,7 @@ int main()
   return 0;
 }
 
-void createSingleLinkedList(string nama, int umur)
+void create(string nama, int umur)
 {
   headNode = new Mhs();
   headNode->nama = nama;
@@ -68,15 +67,17 @@ void createSingleLinkedList(string nama, int umur)
   tailNode = headNode;
 }
 
-// void addFirst(string nama, int umur)
-// {
-//   newNode = new Mhs();
-//   newNode->nama = nama;
-//   newNode->umur = umur;
+void addFirst(string nama, int umur)
+{
+  newNode = new Mhs();
+  newNode->nama = nama;
+  newNode->umur = umur;
 
-//   newNode->next = headNode;
-//   headNode = newNode;
-// }
+  newNode->next = headNode; // Next node baru menunjuk node pertama
+  newNode->prev = NULL;     // Prev node baru menunjuk ke NULL
+  headNode->prev = newNode; // Prev node pertama menunjuk ke node baru
+  headNode = newNode;       // Head pindah ke node baru
+}
 
 // void addMiddle(string nama, int umur, int posisi)
 // {
@@ -197,7 +198,7 @@ void createSingleLinkedList(string nama, int umur)
 //   delete delNode;
 // }
 
-void printSingleLinkedList()
+void readNodes()
 {
   cout << "Jumlah data: " << readLength() << "\n";
 
