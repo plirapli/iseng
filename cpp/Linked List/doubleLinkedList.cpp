@@ -69,26 +69,36 @@ void create(string nama, int umur)
 
 void addFirst(string nama, int umur)
 {
-  newNode = new Mhs();
-  newNode->nama = nama;
-  newNode->umur = umur;
+  if (headNode == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
 
-  newNode->next = headNode; // Next node baru menunjuk node pertama
-  newNode->prev = NULL;     // Prev node baru menunjuk NULL
-  headNode->prev = newNode; // Prev node pertama menunjuk node baru
-  headNode = newNode;       // Head pindah ke node baru
+    newNode->prev = NULL;     // Prev node baru menunjuk NULL
+    newNode->next = headNode; // Next node baru menunjuk node pertama
+    headNode->prev = newNode; // Prev node pertama menunjuk node baru
+    headNode = newNode;       // Head pindah ke node baru
+  }
 }
 
 void addLast(string nama, int umur)
 {
-  newNode = new Mhs();
-  newNode->nama = nama;
-  newNode->umur = umur;
+  if (headNode == NULL)
+    cout << "Linked List belum dibuat! \n";
+  else
+  {
+    newNode = new Mhs();
+    newNode->nama = nama;
+    newNode->umur = umur;
 
-  newNode->prev = tailNode; // Prev node baru menunjuk node terakhir
-  newNode->next = NULL;     // Next node baru menunjuk NULL
-  tailNode->next = newNode; // Next node terakhir menunjuk node baru
-  tailNode = newNode;       // Tail pindah ke node baru
+    newNode->prev = tailNode; // Prev node baru menunjuk node terakhir
+    newNode->next = NULL;     // Next node baru menunjuk NULL
+    tailNode->next = newNode; // Next node terakhir menunjuk node baru
+    tailNode = newNode;       // Tail pindah ke node baru
+  }
 }
 
 // void addMiddle(string nama, int umur, int posisi)
@@ -216,8 +226,8 @@ void readNodes()
       curNode = curNode->next;
       i++;
     }
-    cout << "\n";
   }
+  cout << "\n";
 }
 
 int readLength()
