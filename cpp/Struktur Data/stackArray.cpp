@@ -77,7 +77,7 @@ int peekArr(int posisi)
     cout << "Data masih kosong! \n";
     return -1;
   }
-  else if (posisi > maks)
+  else if (posisi < 1 || posisi > top)
   {
     cout << "Data tidak ditemukan! \n";
     return -1;

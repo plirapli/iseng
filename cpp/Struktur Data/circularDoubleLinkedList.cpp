@@ -49,9 +49,10 @@ int main()
   addFirst("Rafli", 22);
   delMiddle(4);
   changeMiddle("Giantomo", 16, 5);
+  changeMiddle("M Rafli", 23, 1);
 
   readNodes();
-  // Rafli, Giantomo, Syaikul
+  // M Rafli, Giantomo, Syaikul
 
   return 0;
 }
@@ -230,8 +231,6 @@ void changeMiddle(string nama, int umur, int posisi)
 {
   if (posisi < 1)
     cout << "Posisi invalid! \n";
-  else if (posisi == 1)
-    cout << "Posisi bukan di tengah! \n";
   else
   {
     curNode = headNode;

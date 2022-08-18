@@ -215,8 +215,6 @@ void changeMiddle(string nama, int umur, int posisi)
 {
   if (posisi < 1 || posisi > readLength())
     cout << "Posisi invalid! \n";
-  else if (posisi == 1 || posisi == readLength())
-    cout << "Posisi bukan di tengah! \n";
   else
   {
     curNode = headNode;

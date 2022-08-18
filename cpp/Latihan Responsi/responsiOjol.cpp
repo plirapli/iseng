@@ -80,12 +80,8 @@ int main()
 
       add(user, id);
 
-      cout << user[id].totalPesanan << " ";
-      cout << user[id].nama << "\n";
-
       fileName = replaceSpasi(user[id].nama) + ".txt";
-
-      ofstream myFile(fileName);
+      ofstream myFile(fileName, ios::app);
       if (myFile.is_open())
       {
         for (int i = 0; i < user[id].totalPesanan; i++)

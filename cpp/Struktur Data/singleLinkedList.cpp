@@ -123,40 +123,6 @@ void addMiddle(string nama, int umur, int posisi)
   }
 }
 
-void changeFirst(string nama, int umur)
-{
-  head->nama = nama;
-  head->umur = umur;
-}
-
-void changeMiddle(string nama, int umur, int posisi)
-{
-  if (posisi < 1 || posisi > readLength())
-    cout << "Posisi invalid! \n";
-  else if (posisi == 1 || posisi == readLength())
-    cout << "Posisi bukan di tengah! \n";
-  else
-  {
-    // Melakukan traversing sampai i < posisi
-    cur = head;
-    int i = 1;
-    while (i < posisi)
-    {
-      cur = cur->next;
-      i++;
-    }
-
-    cur->nama = nama;
-    cur->umur = umur;
-  }
-}
-
-void changeLast(string nama, int umur)
-{
-  tail->nama = nama;
-  tail->umur = umur;
-}
-
 void delFirst()
 {
   if (head == NULL)
@@ -213,6 +179,38 @@ void delMiddle(int posisi)
 
     before->next = cur;
     delete delNode;
+  }
+}
+
+void changeFirst(string nama, int umur)
+{
+  head->nama = nama;
+  head->umur = umur;
+}
+
+void changeLast(string nama, int umur)
+{
+  tail->nama = nama;
+  tail->umur = umur;
+}
+
+void changeMiddle(string nama, int umur, int posisi)
+{
+  if (posisi < 1 || posisi > readLength())
+    cout << "Posisi invalid! \n";
+  else
+  {
+    // Melakukan traversing sampai i < posisi
+    cur = head;
+    int i = 1;
+    while (i < posisi)
+    {
+      cur = cur->next;
+      i++;
+    }
+
+    cur->nama = nama;
+    cur->umur = umur;
   }
 }
 
