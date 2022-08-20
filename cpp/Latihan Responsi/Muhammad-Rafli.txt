@@ -1,2 +1,0 @@
-raflipergi 123 45000 12000 s y 12 48000
-raflipulang raf 123 56000 y s 14 56000
