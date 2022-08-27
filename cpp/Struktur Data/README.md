@@ -2,5 +2,6 @@
 
 - Linked List
 - Stack
+- Queue
 - Graph
 - Tree
