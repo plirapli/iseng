@@ -22,6 +22,7 @@ $mahasiswa = [
   <ul>
     <?php foreach ($mahasiswa as $mhs) : ?>
       <li>
+        <!-- Klik salah satu mahasiswa untuk melihat detail -->
         <a href="getDetail.php?nama=<?= $mhs["nama"]; ?>&nim=<?= $mhs["nim"]; ?>">
           <?= $mhs["nama"] ?>
         </a>
