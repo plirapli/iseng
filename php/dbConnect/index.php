@@ -2,11 +2,23 @@
 
 require 'functions.php';
 
+// Buat Read TB
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
+// Buat Create Data
 // Cek tombol submit pada form daftar dah ditekan/belum
 if (isset($_POST["submit"])) {
   if (tambah($_POST) > 0) {
+    header("Location: " . 'index.php');
+  } else {
+    echo "Failed";
+  }
+}
+
+// Buat Hapus Data
+// Cek apakah tombol "hapus" dah diklik/belum
+if (isset($_GET["id"])) {
+  if (hapus($_GET["id"]) > 0) {
     header("Location: " . 'index.php');
   } else {
     echo "Failed";
@@ -110,7 +122,7 @@ if (isset($_POST["submit"])) {
           <td><?= $mhs["jurusan"]; ?></td>
           <td>
             <a href="">Ubah</a>
-            <a href="">Hapus</a>
+            <a href="index.php?id=<?= $mhs["id"] ?>">Hapus</a>
           </td>
         </tr>
       <?php endforeach; ?>

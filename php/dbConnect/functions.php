@@ -24,15 +24,25 @@ function tambah($data)
 {
   global $connection;
 
-  $nim = $data["nim"];
-  $nama = $data["nama"];
-  $jurusan = $data["jurusan"];
+  $nim = htmlspecialchars($data["nim"]);
+  $nama = htmlspecialchars($data["nama"]);
+  $jurusan = htmlspecialchars($data["jurusan"]);
 
   // Query (INSERT DATA)
   $query = "INSERT INTO mahasiswa VALUES(
     '', '$nama', '$nim', '$jurusan'
   )";
 
+  mysqli_query($connection, $query);
+
+  return mysqli_affected_rows($connection);
+}
+
+function hapus($id)
+{
+  global $connection;
+
+  $query = "DELETE FROM mahasiswa WHERE id = $id";
   mysqli_query($connection, $query);
 
   return mysqli_affected_rows($connection);
