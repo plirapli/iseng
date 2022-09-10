@@ -19,3 +19,21 @@ function query($query)
   // Mereturn var rows
   return $rows;
 }
+
+function tambah($data)
+{
+  global $connection;
+
+  $nim = $data["nim"];
+  $nama = $data["nama"];
+  $jurusan = $data["jurusan"];
+
+  // Query (INSERT DATA)
+  $query = "INSERT INTO mahasiswa VALUES(
+    '', '$nama', '$nim', '$jurusan'
+  )";
+
+  mysqli_query($connection, $query);
+
+  return mysqli_affected_rows($connection);
+}
