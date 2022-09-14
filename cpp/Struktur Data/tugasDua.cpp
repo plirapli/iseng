@@ -57,7 +57,7 @@ int main()
         cin >> temp.harga;
 
         sisipBuah(temp);
-        cout << "\nBerhasil menambahkan data! \n\n";
+        cout << "\n[Berhasil menambahkan data!] ";
         getch();
       }
     }
@@ -90,11 +90,14 @@ int main()
       string inputHapusBuah;
       bacaMaju();
 
-      cin.ignore();
-      cout << "Masukkan nama buah yang ingin dihapus > ";
-      getline(cin, inputHapusBuah);
+      if (!isEmpty())
+      {
+        cin.ignore();
+        cout << "Masukkan nama buah yang ingin dihapus > ";
+        getline(cin, inputHapusBuah);
 
-      hapusBuah(inputHapusBuah);
+        hapusBuah(inputHapusBuah);
+      }
     }
 
     cout << "Kembali ke menu ? (y/n) > ";
@@ -156,7 +159,7 @@ void hapusBuah(string namaBuah)
     awal = hapus->next;
     delete hapus;
 
-    cout << "\nBerhasil menghapus " << namaBuah << "! \n";
+    cout << "\n[Berhasil menghapus " << namaBuah << "!] ";
     getch();
   }
   else
