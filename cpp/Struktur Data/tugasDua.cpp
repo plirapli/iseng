@@ -23,26 +23,32 @@ void bacaMaju();                     // Baca Node dari kiri
 void bacaMundur();                   // Baca Node dari kanan
 int readLength();                    // Return nodes length
 
+void pressAnyKey();
+
 int main()
 {
   IngfoBuah temp;
-  char loop = 'y', input;
+  bool loop = 1;
+  char input;
 
   do
   {
     system("cls");
     cout << "Data Nama Buah \n"
-         << "1. Input nama buah \n"
-         << "2. Lihat nama buah \n"
-         << "3. Hapus buah \n"
-         << "input : ";
+         << "[1] Input nama buah \n"
+         << "[2] Lihat nama buah \n"
+         << "[3] Hapus buah \n"
+         << "[...] Kembali \n"
+         << "Input > ";
     cin >> input;
 
     system("cls");
-    if (input == '1')
+    switch (input)
+    {
+    case '1':
     {
       int jml = 0;
-      cout << "Banyak data : ";
+      cout << "Banyak data > ";
       cin >> jml;
 
       for (int i = 0; i < jml; i++)
@@ -50,18 +56,20 @@ int main()
         system("cls");
 
         cin.ignore();
-        cout << "Nama buah   : ";
+        cout << "Nama buah > ";
         getline(cin, temp.nama);
 
-        cout << "Harga buah : ";
+        cout << "Harga buah > ";
         cin >> temp.harga;
 
         sisipBuah(temp);
-        cout << "\n[Berhasil menambahkan data!] ";
-        getch();
+        cout << "\nBerhasil menambahkan data! \n";
+        pressAnyKey();
       }
+      break;
     }
-    else if (input == '2')
+
+    case '2':
     {
       char inputTipe;
       cout << "[1] Baca Maju \n"
@@ -75,17 +83,21 @@ int main()
       {
       case '1':
         bacaMaju();
+        pressAnyKey();
         break;
 
       case '2':
         bacaMundur();
+        pressAnyKey();
         break;
 
       default:
         break;
       }
+      break;
     }
-    else
+
+    case '3':
     {
       string inputHapusBuah;
       bacaMaju();
@@ -98,11 +110,14 @@ int main()
 
         hapusBuah(inputHapusBuah);
       }
+      break;
     }
 
-    cout << "Kembali ke menu ? (y/n) > ";
-    cin >> loop;
-  } while (loop == 'y');
+    default:
+      loop = 0;
+      break;
+    }
+  } while (loop);
 }
 
 bool isEmpty() { return awal == NULL; }
@@ -152,15 +167,14 @@ void hapusBuah(string namaBuah)
   Node *hapus, *bantu;
 
   if (isEmpty())
-    cout << "List masih kosong";
+    cout << "List masih kosong \n";
   else if (awal->ingfoBuah.nama == namaBuah)
   {
     hapus = awal; // Hapus di awal
     awal = hapus->next;
     delete hapus;
 
-    cout << "\n[Berhasil menghapus " << namaBuah << "!] ";
-    getch();
+    cout << "\n[Berhasil menghapus " << namaBuah << "!] \n";
   }
   else
   {
@@ -182,11 +196,11 @@ void hapusBuah(string namaBuah)
       delete hapus;
 
       cout << "\nBerhasil menghapus " << namaBuah << "! \n";
-      getch();
     }
     else
       cout << "Node tidak ditemukan!\n";
   }
+  pressAnyKey();
 }
 
 int readLength()
@@ -261,4 +275,10 @@ void bacaMundur()
     }
   }
   cout << "\n";
+}
+
+void pressAnyKey()
+{
+  cout << "[Tekan tombol apa saja untuk melanjutkan.]";
+  getch();
 }
