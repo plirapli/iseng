@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar nav-brand">
+      <div class="container-fluid p-2 px-3">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img
+            src="assets/img/lfc-logo.svg"
+            alt="Logo"
+            width="24"
+            class="d-inline-block align-text-top"
+          />
+          <span class="ms-3 navbar-brand mb-0 h1 nav-brand-text">
+            Liverpool FC
+          </span>
+        </a>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg nav-bg-custom">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a
+              class="nav-link active nav-text nav-custom nav-home"
+              aria-current="page"
+              href="#"
+            >
+              <iconify-icon icon="bxs:home-alt-2"></iconify-icon>
+              Home
+            </a>
+            <a class="nav-link nav-text nav-custom" href="#">
+              <iconify-icon
+                icon="fluent:form-24-filled"
+                width="16"
+              ></iconify-icon>
+              Forms</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="content">
+        <article id="${article.id}" class="card-custom">
+          <h2 class="title-custom">Deskripsi</h2>
+          <img
+            class="featured-image card-img"
+            alt="Stadion Anfield"
+            src="assets/img/article/anfield.jpg"
+          />
+          <p class="my-4">
+            Liverpool didirikan pada tahun 1892 dan bergabung dengan Football
+            League pada tahun berikutnya. Klub ini telah bermain di Stadion
+            Anfield sejak pembentukannya yang terletak sekitar 4,8 km dari pusat
+            kota Liverpool.
+          </p>
+          <p>
+            Periode paling sukses dalam sejarah Liverpool adalah pada tahun
+            1970-an dan 1980-an ketika Bill Shankly dan Bob Paisley memimpin
+            klub dengan sebelas gelar liga dan tujuh piala Eropa.
+          </p>
+        </article>
+
+        <article id="${article.id}" class="card-custom">
+          <h2 class="title-custom">Prestasi</h2>
+          <img
+            class="featured-image card-img"
+            alt="Champion Wall"
+            src="assets/img/article/champion-wall.jpg"
+          />
+          <p class="my-4">
+            Liverpool adalah klub terbaik Inggris abad ke-20 menurut
+            International Federation of Football History and Statistics (IFFHS).
+            Untuk tingkat dunia, Liverpool berapa di urutan ke-7 sebegai klub
+            terbaik abad ke-21 setelah Barcelona, Manchester United, Arsenal,
+            Real Madrid, Inter Milan, dan Bayern München.
+          </p>
+          <section>
+            <h3>Kompetisi Domestik</h3>
+            <p>
+              Liverpool adalah klub dengan raihan total (57) Piala Kompetisi
+              Domestik. Total (19) Juara Liga Inggris dengan rincian (18) Divisi
+              Pertama Liga Inggris, (1) Liga Premier Inggris, (8) Piala FA, (9)
+              Piala Liga, (15) FA Community Shield, (4) Divisi kedua, (1)
+              Football League Super Cup, (1) Sheriff of London Charity Shield.
+            </p>
+          </section>
+          <section>
+            <h3>Kompetisi Eropa</h3>
+            <p>
+              Liverpool adalah klub dengan raihan total (13) Juara Kompetisi
+              Eropa, dengan rincian (6) Liga Champions UEFA, (3) Liga Eropa
+              UEFA, (4) Piala Super UEFA. (terbanyak dari klub inggris manapun)
+            </p>
+          </section>
+          <section>
+            <h3>Turnamen Dunia</h3>
+            <p>
+              Liverpool adalah klub dengan raihan total (1) Juara Piala Dunia,
+              dengan rincian (1) Piala Dunia Antarklub FIFA. (Liverpool pernah
+              tercatat 2 kali masuk final turnamen Piala Interkontinental tetapi
+              kalah di kedua final tersebut pada tahun 1981 oleh Flamengo dan
+              1984 oleh Independiente)
+            </p>
+          </section>
+        </article>
+      </div>
+    </main>
+    <!-- MAIN END -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  </body>
+</html>
