@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar nav-brand">
+      <div class="container-fluid p-2 px-3">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <img
+            src="assets/img/lfc-logo.svg"
+            alt="Logo"
+            width="24"
+            class="d-inline-block align-text-top"
+          />
+          <span class="ms-3 navbar-brand mb-0 h1 nav-brand-text">
+            Liverpool FC
+          </span>
+        </a>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg nav-bg-custom">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a
+              class="nav-link nav-text nav-custom nav-home"
+              aria-current="page"
+              href="/"
+            >
+              <iconify-icon icon="bxs:home-alt-2"></iconify-icon>
+              Home
+            </a>
+            <a class="nav-link active nav-text nav-custom" href="form.html">
+              <iconify-icon
+                icon="fluent:form-24-filled"
+                width="16"
+              ></iconify-icon>
+              Forms</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- input text, radio button, select option, check box, text area. -->
+    <div class="main">
+      <div class="card-custom">
+        <h2 class="form-title">Form Penambahan Pemain</h2>
+        <form action="success.html">
+          <!-- Input -->
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Nama Pemain</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Joko Widodo"
+            />
+          </div>
+
+          <!-- Text Area -->
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Deskripsi</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              placeholder="Deskripsi pemain"
+            ></textarea>
+          </div>
+
+          <!-- Radio -->
+          <div class="mb-3">
+            <label for="" class="form-label">Kelompok Umur</label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="jenisUmur"
+                id="u16"
+                value="u16"
+              />
+              <label class="form-check-label" for="u16">U16</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="jenisUmur"
+                id="u19"
+                value="u19"
+              />
+              <label class="form-check-label" for="u19">U19</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="jenisUmur"
+                id="u21"
+                value="u21"
+              />
+              <label class="form-check-label" for="u21">U21</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="jenisUmur"
+                id="senior"
+                value="senior"
+                checked
+                required
+              />
+              <label class="form-check-label" for="senior">Senior</label>
+            </div>
+          </div>
+
+          <!-- Select Option -->
+          <div class="mb-3">
+            <label for="" class="form-label">Posisi</label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              required
+            >
+              <option selected hidden value="">Posisi Pemain</option>
+              <option value="GK">Goalkeeper</option>
+              <option value="DF">Defender</option>
+              <option value="MD">Midfielder</option>
+              <option value="FW">Forward</option>
+            </select>
+          </div>
+
+          <!-- Checkbox -->
+          <div class="mb-3">
+            <label for="" class="form-label">Lainnya</label>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="homegrown"
+                id="homegrown"
+              />
+              <label class="form-check-label" for="homegrown">
+                Homegrown
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="transfer"
+                id="transferList"
+              />
+              <label class="form-check-label" for="transferList">
+                Transfer List
+              </label>
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button class="btn btn-custom" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  </body>
+</html>
