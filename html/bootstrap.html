@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg"
+            alt="Logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          Bootstrap
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav d-flex align-items-center">
+            <a class="nav-link active" aria-current="page" href="#">
+              <div class="text-bg-light p-2 rounded">Home</div>
+            </a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Pricing</a>
+            <div class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown link
+              </a>
+              <div class="dropdown-menu">
+                <div><a class="dropdown-item" href="#">Action</a></div>
+                <div><a class="dropdown-item" href="#">Another action</a></div>
+                <div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="d-flex me-auto" role="search">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-light" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container p-4">
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+          />
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kf  mNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
