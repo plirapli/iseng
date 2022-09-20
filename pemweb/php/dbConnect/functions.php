@@ -3,6 +3,7 @@
 // Konek ke DB
 $connection =  mysqli_connect('localhost', 'rafli', '123', 'latihan_php');
 
+// Select All Data
 function query($query)
 {
   global $connection;
@@ -20,6 +21,7 @@ function query($query)
   return $rows;
 }
 
+// Tambah Data
 function tambah($data)
 {
   global $connection;
@@ -38,6 +40,7 @@ function tambah($data)
   return mysqli_affected_rows($connection);
 }
 
+// Hapus Data
 function hapus($id)
 {
   global $connection;
