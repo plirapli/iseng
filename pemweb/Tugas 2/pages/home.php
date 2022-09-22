@@ -1,7 +1,7 @@
 <?php
 
 // Nama file form
-$prev_file_name = "index.php";
+$prev_file_name = "../index.php";
 
 // Cek apakah data dah ada/belum
 if (!isset($_POST["nama"])) {
@@ -52,7 +52,7 @@ if (!isset($_POST["nama"])) {
             <iconify-icon icon="bx:home-alt-2" width="18"></iconify-icon>
             Home
           </a>
-          <a class="nav-link nav-text nav-custom" href="form.html">
+          <a class="nav-link nav-text nav-custom" href="gatau.php">
             <iconify-icon icon="bx:math" width="18"></iconify-icon>
             Gatau
           </a>
@@ -69,7 +69,7 @@ if (!isset($_POST["nama"])) {
   </nav>
   <!-- NAVBAR END -->
 
-  <main class="main-container">
+  <main class="main-container main">
     <div class="d-flex flex-column align-items-center">
       <h2 class="welcome">
         Selamat Datang,
@@ -77,7 +77,7 @@ if (!isset($_POST["nama"])) {
           <?= $mhs["nama"] ?>
         </span>
       </h2>
-      <div class="mt-1 text-block-custom fs-4 px-3">
+      <div class="mt-2 text-block-custom welcome-block-custom fs-4 px-3">
         <?= $mhs["nim"]; ?>
       </div>
     </div>

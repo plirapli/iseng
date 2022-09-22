@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <div class="main-container">
+  <div class="main-container main">
     <div class="container-custom">
       <h3 class="mb-3 h-custom">Login</h3>
       <form action="./pages/home.php" method="POST">
@@ -19,7 +19,7 @@
           <label for="inputNama" class="form-label">Nama</label>
           <div class="form-custom">
             <iconify-icon icon="bi:person" width="24"></iconify-icon>
-            <input type="text" name="nama" id="inputNama" placeholder="Joko Widodo" required>
+            <input type="text" name="nama" id="inputNama" placeholder="Muhammad Rafli" required>
           </div>
         </div>
 

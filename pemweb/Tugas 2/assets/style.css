@@ -112,6 +112,10 @@ body {
 }
 /* Form End */
 
+.main {
+  padding: 4rem;
+}
+
 .main-container {
   flex-grow: 1;
   display: flex;
@@ -120,7 +124,6 @@ body {
 }
 
 .container-custom {
-  margin: 4rem;
   padding: 2rem;
   background: white;
   border: 0.25rem solid black;
@@ -131,6 +134,12 @@ body {
 .welcome {
   padding: 0 1.5rem 1rem;
   border-bottom: 3px solid black;
+}
+
+.welcome-block-custom {
+  border: 3px solid black;
+  border-radius: 0.375rem;
+  box-shadow: 0.25rem 0.25rem 0 0 rgba(0, 0, 0, 1);
 }
 
 @media (min-width: 992px) {
