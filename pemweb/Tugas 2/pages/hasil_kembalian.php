@@ -92,49 +92,54 @@ $total = [$lembar, $pecahan];
     <h3 class="mb-4 fw-bold">
       Hasil Kembalian &nbsp;💰
     </h3>
-    <div class="d-flex gap-5">
+    <div class="flex-card">
       <div class="container-custom me-0">
-        <div class="mb-1">
+        <div class="mb-1 d-flex align-items-center gap-2">
+          <iconify-icon icon="akar-icons:money" width="24"></iconify-icon>
           Uang
         </div>
         <h2 class="fw-bold">Rp <?= $uang; ?></h2>
       </div>
       <div class="container-custom me-0">
-        <div class="mb-1">
+        <div class="mb-1 d-flex align-items-center gap-2">
+          <iconify-icon icon="ic:outline-price-change" width="24"></iconify-icon>
           Harga
         </div>
         <h2 class="fw-bold">Rp <?= $harga; ?></h2>
       </div>
       <div class="container-custom me-0">
-        <div class="mb-1">
+        <div class="mb-1 d-flex align-items-center gap-2">
+          <iconify-icon icon="material-symbols:change-circle-outline-rounded" width="24"></iconify-icon>
           Kembalian
         </div>
         <h2 class="fw-bold">Rp <?= $uang - $harga; ?></h2>
       </div>
     </div>
-    <table class="mt-5 container-custom">
-      <thead>
-        <tr>
-          <th class="pt-3 pb-2 px-4 text-center">Pecahan</th>
-          <th class="pt-3 pb-2 px-4">Lembar</th>
-        </tr>
-      </thead>
-      <tbody">
-        <?php foreach ($total[0] as $key => $value) : ?>
+    <div class="mt-5 container-custom p-2 table-custom">
+      <table>
+        <thead>
           <tr>
-            <td class="px-4 pb-2 d-flex justify-content-between gap-3">
-              Rp
-              <span class="text-end">
-                <?= $total[1][$key] ?>
-              </span>
-            </td>
-            <td class="px-4 text-center">
-              <?= $total[0][$key] ?>
-            </td>
+            <th class="p-2 text-center">Pecahan</th>
+            <th class="p-2 px-4">Lembar</th>
           </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+        </thead>
+        <tbody">
+          <?php foreach ($total[0] as $key => $value) : ?>
+            <tr>
+              <td class="px-4 pb-2 pt-0 d-flex justify-content-between gap-3">
+                Rp
+                <span class="text-end">
+                  <?= $total[1][$key] ?>
+                </span>
+              </td>
+              <td class="px-4 pb-2 text-center">
+                <?= $total[0][$key] ?>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+          </tbody>
+      </table>
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

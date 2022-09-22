@@ -81,6 +81,11 @@ body {
   margin: 0.75rem 0.75rem 0.25rem;
   background-color: white;
   color: #fff;
+  border: 3px solid black;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 /* Navbar End */
 
@@ -113,7 +118,7 @@ body {
 /* Form End */
 
 .main {
-  padding: 4rem;
+  padding: 1.5rem;
 }
 
 .main-container {
@@ -131,6 +136,12 @@ body {
   box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 1);
 }
 
+.flex-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .welcome {
   padding: 0 1.5rem 1rem;
   border-bottom: 3px solid black;
@@ -142,8 +153,27 @@ body {
   box-shadow: 0.25rem 0.25rem 0 0 rgba(0, 0, 0, 1);
 }
 
+.table-custom {
+  margin-top: 2rem !important;
+  width: fit-content;
+}
+
 @media (min-width: 992px) {
   .nav-custom {
     justify-content: center;
+  }
+
+  .main {
+    padding: 4rem;
+  }
+
+  .flex-card {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+  }
+
+  .table-custom {
+    margin-top: 3rem !important;
   }
 }
