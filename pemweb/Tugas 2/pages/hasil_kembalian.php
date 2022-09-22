@@ -8,10 +8,12 @@ $pecahan = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100];
 $harga = $_GET["harga"];
 $uang = $_GET["uang"];
 
+$kembalian;
+
 
 function kembalian($harga, $uang)
 {
-  global $pecahan, $lembar;
+  global $pecahan, $lembar, $kembalian;
 
   $kembalian = $uang - $harga;
 
@@ -31,6 +33,7 @@ function kembalian($harga, $uang)
         $i--;
       }
     }
+    $kembalian = 0;
   }
 };
 
@@ -96,6 +99,7 @@ $total = [$lembar, $pecahan];
     </div>
   </nav>
   <!-- NAVBAR END -->
+
   <main class="main pt-2">
     <h3 class="mb-4 fw-bold">
       Hasil Kembalian &nbsp;💰
@@ -106,27 +110,33 @@ $total = [$lembar, $pecahan];
           <iconify-icon icon="akar-icons:money" width="24"></iconify-icon>
           Uang
         </div>
-        <h2 class="fw-bold">Rp <?= $uang; ?></h2>
+        <h3 class="fw-bold">Rp <?= $uang; ?></h3>
       </div>
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-2">
           <iconify-icon icon="ic:outline-price-change" width="24"></iconify-icon>
           Harga
         </div>
-        <h2 class="fw-bold">Rp <?= $harga; ?></h2>
+        <h3 class="fw-bold">Rp <?= $harga; ?></h2>
       </div>
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-2">
           <iconify-icon icon="material-symbols:change-circle-outline-rounded" width="24"></iconify-icon>
           <?php
-          if ($uang - $harga >= 0) {
+          if ($uang - $harga >= 0)
             echo "Kembalian";
-          } else {
+          else
             echo "Hutang";
-          }
           ?>
         </div>
-        <h2 class="fw-bold">Rp <?= $uang - $harga; ?></h2>
+        <h3 class="fw-bold">Rp <?= $uang - $harga; ?></h3>
+      </div>
+      <div class="container-custom me-0">
+        <div class="mb-1 d-flex align-items-center gap-2">
+          <iconify-icon icon="bx:donate-heart" width="24"></iconify-icon>
+          Donasi
+        </div>
+        <h3 class="fw-bold">Rp <?= $kembalian; ?></h3>
       </div>
     </div>
     <div class="mt-5 container-custom p-2 table-custom">
@@ -161,7 +171,9 @@ $total = [$lembar, $pecahan];
       </table>
     </div>
   </main>
-
+  <footer class="px-4 py-3 fw-bold text-center">
+    &copy; Copyright 2022 Muhammad Rafli
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
 </body>
