@@ -23,6 +23,14 @@ function kembalian($harga, $uang)
         $i--;
       }
     }
+  } else {
+    for ($i = 0; $i < count($pecahan); $i++) {
+      if ($kembalian + $pecahan[$i] <= 0) {
+        $kembalian += $pecahan[$i];
+        $lembar[$i]++;
+        $i--;
+      }
+    }
   }
 };
 
@@ -110,7 +118,13 @@ $total = [$lembar, $pecahan];
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-2">
           <iconify-icon icon="material-symbols:change-circle-outline-rounded" width="24"></iconify-icon>
-          Kembalian
+          <?php
+          if ($uang - $harga >= 0) {
+            echo "Kembalian";
+          } else {
+            echo "Hutang";
+          }
+          ?>
         </div>
         <h2 class="fw-bold">Rp <?= $uang - $harga; ?></h2>
       </div>
@@ -132,8 +146,14 @@ $total = [$lembar, $pecahan];
                   <?= $total[1][$key] ?>
                 </span>
               </td>
-              <td class="px-4 pb-2 text-center">
-                <?= $total[0][$key] ?>
+              <td class="px-4 pb-2 pt-0 text-center">
+                <?php
+                if ($total[0][$key]) {
+                  echo '<span class="fw-bold">' . $total[0][$key] . '</span>';
+                } else {
+                  echo $total[0][$key];
+                }
+                ?>
               </td>
             </tr>
           <?php endforeach; ?>
