@@ -1,45 +1,36 @@
 <?php
 
-// Buat nyimpen lembar pecahan
-$lembar = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-$pecahan = [100000, 50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100];
-
 // Hasil input user
-$harga = $_GET["harga"];
-$uang = $_GET["uang"];
+$angka_1 = $_GET["angka_pertama"];
+$angka_2 = $_GET["angka_kedua"];
 
-$kembalian;
-
-
-function kembalian($harga, $uang)
+function kpk($a, $b)
 {
-  global $pecahan, $lembar, $kembalian;
+  $kpk = 0;
 
-  $kembalian = $uang - $harga;
-
-  if ($kembalian >= 0) {
-    for ($i = 0; $i < count($pecahan); $i++) {
-      if ($kembalian - $pecahan[$i] >= 0) {
-        $kembalian -= $pecahan[$i];
-        $lembar[$i]++;
-        $i--;
-      }
-    }
-  } else {
-    for ($i = 0; $i < count($pecahan); $i++) {
-      if ($kembalian + $pecahan[$i] <= 0) {
-        $kembalian += $pecahan[$i];
-        $lembar[$i]++;
-        $i--;
-      }
-    }
-    $kembalian = 0;
+  for ($i = 1; $i <= $b; $i++) {
+    $kpk += $a;
+    if ($kpk % $b == 0)
+      break;
   }
-};
 
-kembalian($_GET["harga"], $_GET["uang"]);
+  return $kpk;
+}
 
-$total = [$lembar, $pecahan];
+function fpb($a, $b)
+{
+  $r = $a % $b;
+
+  while ($r != 0) {
+    $a = $b;
+    $b = $r;
+    $r = $a % $b;
+  }
+
+  return $b;
+}
+
+$total = [kpk($angka_1, $angka_2), fpb($angka_1, $angka_2)];
 
 ?>
 
@@ -87,11 +78,11 @@ $total = [$lembar, $pecahan];
             <iconify-icon icon="icon-park:form-one" width="18"></iconify-icon>
             Form
           </a>
-          <a class="nav-link nav-text nav-custom" href="kpk_dan_fpb.php">
+          <a class="nav-link active nav-text nav-custom" href="kpk_dan_fpb.php">
             <iconify-icon icon="bx:math" width="18"></iconify-icon>
             KPK dan FPB
           </a>
-          <a class="nav-link active nav-text nav-custom" href="kembalian.php">
+          <a class="nav-link nav-text nav-custom" href="kembalian.php">
             <iconify-icon icon="bx:money-withdraw" width="18"></iconify-icon>
             Kembalian
           </a>
@@ -106,73 +97,37 @@ $total = [$lembar, $pecahan];
 
   <main class="main pt-2">
     <h3 class="mb-4 fw-bold">
-      Hasil Kembalian &nbsp;💰
+      Hasil Perhitungan &nbsp;🧮
     </h3>
     <div class="flex-card">
       <div class="container-custom me-0">
-        <div class="mb-1 d-flex align-items-center gap-2">
-          <iconify-icon icon="akar-icons:money" width="24"></iconify-icon>
-          Uang
+        <div class="mb-1 d-flex align-items-center gap-1">
+          <iconify-icon icon="tabler:square-number-1" width="24"></iconify-icon>
+          Angka Ke-1
         </div>
-        <h3 class="fw-bold">Rp <?= $uang; ?></h3>
+        <h3 class="fw-bold"><?= $angka_1; ?></h3>
       </div>
       <div class="container-custom me-0">
-        <div class="mb-1 d-flex align-items-center gap-2">
-          <iconify-icon icon="ic:outline-price-change" width="24"></iconify-icon>
-          Harga
+        <div class="mb-1 d-flex align-items-center gap-1">
+          <iconify-icon icon="tabler:square-number-2" width="24"></iconify-icon>
+          Angka Ke-2
         </div>
-        <h3 class="fw-bold">Rp <?= $harga; ?></h2>
+        <h3 class="fw-bold"><?= $angka_2; ?></h2>
       </div>
       <div class="container-custom me-0">
-        <div class="mb-1 d-flex align-items-center gap-2">
-          <iconify-icon icon="material-symbols:change-circle-outline-rounded" width="24"></iconify-icon>
-          <?php
-          if ($uang - $harga >= 0)
-            echo "Kembalian";
-          else
-            echo "Hutang";
-          ?>
+        <div class="mb-1 d-flex align-items-center gap-1">
+          <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
+          KPK
         </div>
-        <h3 class="fw-bold">Rp <?= $uang - $harga; ?></h3>
+        <h3 class="fw-bold"><?= $total[0]; ?></h2>
       </div>
       <div class="container-custom me-0">
-        <div class="mb-1 d-flex align-items-center gap-2">
-          <iconify-icon icon="bx:donate-heart" width="24"></iconify-icon>
-          Donasi
+        <div class="mb-1 d-flex align-items-center gap-1">
+          <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
+          FPB
         </div>
-        <h3 class="fw-bold">Rp <?= $kembalian; ?></h3>
+        <h3 class="fw-bold"><?= $total[1]; ?></h2>
       </div>
-    </div>
-    <div class="mt-5 container-custom p-2 table-custom">
-      <table>
-        <thead>
-          <tr>
-            <th class="p-2 text-center">Pecahan</th>
-            <th class="p-2 px-4">Lembar</th>
-          </tr>
-        </thead>
-        <tbody">
-          <?php foreach ($total[0] as $key => $value) : ?>
-            <tr>
-              <td class="px-4 pb-2 pt-0 d-flex justify-content-between gap-3">
-                Rp
-                <span class="text-end">
-                  <?= $total[1][$key] ?>
-                </span>
-              </td>
-              <td class="px-4 pb-2 pt-0 text-center">
-                <?php
-                if ($total[0][$key]) {
-                  echo '<span class="fw-bold">' . $total[0][$key] . '</span>';
-                } else {
-                  echo $total[0][$key];
-                }
-                ?>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-          </tbody>
-      </table>
     </div>
   </main>
   <footer class="px-4 py-3 fw-bold text-center">

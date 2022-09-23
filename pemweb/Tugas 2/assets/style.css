@@ -121,6 +121,7 @@ body {
 .main {
   padding: 1.5rem;
   padding-bottom: 6rem;
+  padding-top: 0;
 }
 
 .main-container {
@@ -131,6 +132,7 @@ body {
 }
 
 .container-custom {
+  min-width: 8.766rem;
   padding: 2rem;
   background: white;
   border: 0.25rem solid black;
@@ -174,6 +176,7 @@ footer {
 
   .main {
     padding: 4rem;
+    padding-top: 0rem;
     padding-bottom: 6rem;
   }
 

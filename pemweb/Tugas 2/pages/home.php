@@ -52,9 +52,13 @@ if (!isset($_POST["nama"])) {
             <iconify-icon icon="bx:home-alt-2" width="18"></iconify-icon>
             Home
           </a>
-          <a class="nav-link nav-text nav-custom" href="gatau.php">
+          <a class="nav-link nav-text nav-custom" href="form.php">
+            <iconify-icon icon="icon-park:form-one" width="18"></iconify-icon>
+            Form
+          </a>
+          <a class="nav-link nav-text nav-custom" href="kpk_dan_fpb.php">
             <iconify-icon icon="bx:math" width="18"></iconify-icon>
-            Gatau
+            KPK dan FPB
           </a>
           <a class="nav-link nav-text nav-custom" href="kembalian.php">
             <iconify-icon icon="bx:money-withdraw" width="18"></iconify-icon>
