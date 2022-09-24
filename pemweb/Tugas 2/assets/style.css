@@ -112,7 +112,20 @@ body {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.form-custom.text-area {
+  margin-top: 0.5rem;
+  padding: 0.375rem;
+  border: 2px solid black;
+  border-radius: 0.375rem;
+}
+
 .form-custom > input {
+  border: 0;
+  outline: none;
+}
+
+.form-custom > textarea {
+  width: 100%;
   border: 0;
   outline: none;
 }

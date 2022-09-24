@@ -58,6 +58,28 @@
   </nav>
   <!-- NAVBAR END -->
 
+  <main class="main">
+    <div class="container-custom">
+      <h3 class="mb-3 h-custom">Form</h3>
+      <form action="hasil_kembalian.php" method="GET">
+        <div class="mb-3">
+          <label for="inputNama" class="form-label">Nama</label>
+          <div class="form-custom">
+            <input class="w-100" type="text" name="nama" id="inputNama" placeholder="Muhammad Rafli" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="inputDesc" class="form-label">Deskripsi Diri</label>
+          <div class="form-custom text-area">
+            <textarea id="inputDesc" placeholder="Deskripsikan diri anda ..." rows="3" name="desc"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-black w-100">Kirim</button>
+      </form>
+    </div>
+  </main>
+
   <footer class="px-4 py-3 fw-bold text-center">
     &copy; Copyright 2022 Muhammad Rafli
   </footer>
