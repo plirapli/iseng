@@ -1,25 +1,77 @@
 <?php
 
 // Hasil input user
-$angka_1 = $_GET["angka_pertama"];
-$angka_2 = $_GET["angka_kedua"];
+$a = $_GET["a"];
+$b = $_GET["b"];
+
+// Array buat nyimpen kelipatan dari angka a & b
+$kpk_arr_a = [];
+$kpk_arr_b = [];
+
+// Array buat nyimpen faktor dari angka a & b
+$fpb_arr_a = [];
+$fpb_arr_b = [];
+
+function minusCheck($num)
+{
+  if ($num < 0)
+    return $num *= -1;
+  return $num;
+}
+
+function multipleList($num, $kpk)
+{
+  $arr = [];
+  $newNum = minusCheck($num);
+
+  for ($i = $num; $i <= $kpk; $i += $newNum) {
+    array_push($arr, $i);
+  }
+  return $arr;
+}
+
+function factorList($num)
+{
+  $arr = [];
+  $newNum = minusCheck($num);
+
+  for ($i = 1; $i <= $newNum; $i++) {
+    if ($num % $i == 0)
+      array_push($arr, $i);
+  }
+  return $arr;
+}
 
 function kpk($a, $b)
 {
+  global $kpk_arr_a, $kpk_arr_b;
   $kpk = 0;
 
-  for ($i = 1; $i <= $b; $i++) {
-    $kpk += $a;
-    if ($kpk % $b == 0)
+  $first_num = minusCheck($a);
+  $second_num = minusCheck($b);
+
+  for ($i = 1; $i <= $second_num; $i++) {
+    $kpk += $first_num;
+    if ($kpk % $second_num == 0)
       break;
   }
+
+  $kpk_arr_a = multipleList($a, $kpk);
+  $kpk_arr_b = multipleList($b, $kpk);
+
+  if ($a < 0 && $b < 0)
+    return $kpk * -1;
 
   return $kpk;
 }
 
 function fpb($a, $b)
 {
+  global $fpb_arr_a, $fpb_arr_b;
   $r = $a % $b;
+
+  $fpb_arr_a = factorList($a);
+  $fpb_arr_b = factorList($b);
 
   while ($r != 0) {
     $a = $b;
@@ -27,10 +79,12 @@ function fpb($a, $b)
     $r = $a % $b;
   }
 
+
   return $b;
 }
 
-$total = [kpk($angka_1, $angka_2), fpb($angka_1, $angka_2)];
+$kpk = kpk($a, $b);
+$fpb = fpb($a, $b);
 
 ?>
 
@@ -105,36 +159,103 @@ $total = [kpk($angka_1, $angka_2), fpb($angka_1, $angka_2)];
           <iconify-icon icon="tabler:square-number-1" width="24"></iconify-icon>
           Angka Ke-1
         </div>
-        <h3 class="fw-bold"><?= $angka_1; ?></h3>
+        <h3 class="fw-bold"><?= $a; ?></h3>
       </div>
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-1">
           <iconify-icon icon="tabler:square-number-2" width="24"></iconify-icon>
           Angka Ke-2
         </div>
-        <h3 class="fw-bold"><?= $angka_2; ?></h2>
+        <h3 class="fw-bold"><?= $b; ?></h3>
       </div>
+    </div>
+    <div class="mt-5 flex-card">
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-1">
           <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
           KPK
         </div>
-        <h3 class="fw-bold"><?= $total[0]; ?></h2>
+        <h3 class="fw-bold"><?= $kpk; ?></h3>
+        <div>
+          <h6 class="fw-bol mb-1">Kelipatan :</h6>
+          <table>
+            <tr>
+              <td class="pe-1"><?= $a; ?></td>
+              <td>
+                =
+                <?php foreach ($kpk_arr_a as $arr_a) : ?>
+                  <?php if ($arr_a == $kpk) : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_a; ?></span>
+                  <?php else : ?>
+                    <?= $arr_a ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </td>
+            </tr>
+            <tr>
+              <td class="pe-1"><?= $b; ?></td>
+              <td>
+                =
+                <?php foreach ($kpk_arr_b as $arr_b) : ?>
+                  <?php if ($arr_b == $kpk) : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_b; ?></span>
+                  <?php else : ?>
+                    <?= $arr_b ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
       <div class="container-custom me-0">
         <div class="mb-1 d-flex align-items-center gap-1">
           <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
           FPB
         </div>
-        <h3 class="fw-bold"><?= $total[1]; ?></h2>
+        <h3 class="fw-bold"><?= $fpb; ?></h3>
+        <div>
+          <h6 class="fw-bold mb-1">Faktor :</h6>
+          <table>
+            <tr>
+              <td class="pe-1"><?= $a; ?></td>
+              <td>
+                =
+                <?php foreach ($fpb_arr_a as $arr_a) : ?>
+                  <?php if ($arr_a == $fpb) : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_a; ?></span>
+                  <?php else : ?>
+                    <?= $arr_a ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </td>
+            </tr>
+            <tr>
+              <td class="pe-1"><?= $b; ?></td>
+              <td>
+                =
+                <?php foreach ($fpb_arr_b as $arr_b) : ?>
+                  <?php if ($arr_b == $fpb) : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_b; ?></span>
+                  <?php else : ?>
+                    <?= $arr_b ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </main>
-  <footer class="px-4 py-3 fw-bold text-center">
-    &copy; Copyright 2022 Muhammad Rafli
-  </footer>
+  <footer class="px-4 py-3 fw-bold text-center"></footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  <script>
+    // Buat Tahun di footer doang
+    document.querySelector('footer').innerHTML =
+      '&copy; Copyright ' + new Date().getFullYear() + ' Muhammad Rafli';
+  </script>
 </body>
 
 </html>
