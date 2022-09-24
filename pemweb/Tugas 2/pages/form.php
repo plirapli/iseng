@@ -60,8 +60,8 @@
 
   <main class="main">
     <div class="container-custom">
-      <h3 class="mb-3 h-custom">Form</h3>
-      <form action="hasil_kembalian.php" method="GET">
+      <h3 class="mb-3 h-custom">Form 📝</h3>
+      <form action="aksi.php" method="POST">
         <div class="mb-3">
           <label for="inputNama" class="form-label">Nama</label>
           <div class="form-custom">
@@ -72,7 +72,49 @@
         <div class="mb-3">
           <label for="inputDesc" class="form-label">Deskripsi Diri</label>
           <div class="form-custom text-area">
-            <textarea id="inputDesc" placeholder="Deskripsikan diri anda ..." rows="3" name="desc"></textarea>
+            <textarea id="inputDesc" placeholder="Deskripsikan diri anda ..." rows="3" name="desc" required></textarea>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label mb-1">Tingkat Pendidikan</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pendidikan" id="sma" value="sma" checked>
+            <label class="form-check-label" for="sma">
+              SMA / Sederajat
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pendidikan" id="s1" value="s1">
+            <label class="form-check-label" for="s1">
+              D4 / S1
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pendidikan" id="s2" value="s2">
+            <label class="form-check-label" for="s2">
+              S2
+            </label>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label mb-1">Penghasilan per Bulan</label>
+          <select class="form-select" aria-label="Select Penghasilan" required>
+            <option selected hidden value="">Penghasilan</option>
+            <option value="1">Rp 5.000.000 - 10.000.000</option>
+            <option value="2">Rp 10.000.000 - 15.000.000</option>
+            <option value="3">Rp 15.000.000 - 20.000.000</option>
+            <option value="4">> Rp 20.000.000</option>
+          </select>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="t&c" value="true" id="setuju" />
+            <label class="form-check-label" for="setuju">
+              Saya menyetujui persyaratan dan kondisi yang ada.
+            </label>
           </div>
         </div>
         <button type="submit" class="btn btn-black w-100">Kirim</button>

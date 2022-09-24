@@ -12,6 +12,7 @@ $kpk_arr_b = [];
 $fpb_arr_a = [];
 $fpb_arr_b = [];
 
+// Buat ngubah minus ke plus doang
 function minusCheck($num)
 {
   if ($num < 0)
@@ -19,29 +20,38 @@ function minusCheck($num)
   return $num;
 }
 
+// Buat masukkin array isi kelipatan dari a & b
 function multipleList($num, $kpk)
 {
   $arr = [];
   $newNum = minusCheck($num);
 
-  for ($i = $num; $i <= $kpk; $i += $newNum) {
-    array_push($arr, $i);
+  // Ngecek apakah kpk < 0, kalo iya, kelipatannya dikurangin
+  // Kalo ga, kelipatannya ditambah
+  if ($kpk < 0) {
+    for ($i = $num; $i >= $kpk; $i += $num)
+      array_push($arr, $i);
+  } else {
+    for ($i = $num; $i <= $kpk; $i += $newNum) {
+      array_push($arr, $i);
+    }
   }
   return $arr;
 }
 
+// Buat masukkin array isi faktor dari a & b
 function factorList($num)
 {
   $arr = [];
-  $newNum = minusCheck($num);
 
-  for ($i = 1; $i <= $newNum; $i++) {
+  for ($i = 1; $i <= $num; $i++) {
     if ($num % $i == 0)
       array_push($arr, $i);
   }
   return $arr;
 }
 
+// Buat nyari kpk
 function kpk($a, $b)
 {
   global $kpk_arr_a, $kpk_arr_b;
@@ -50,35 +60,38 @@ function kpk($a, $b)
   $first_num = minusCheck($a);
   $second_num = minusCheck($b);
 
-  for ($i = 1; $i <= $second_num; $i++) {
+  for ($i = 0; $i < $second_num; $i++) {
     $kpk += $first_num;
     if ($kpk % $second_num == 0)
       break;
   }
 
+  if ($a < 0 && $b < 0)
+    $kpk *= -1;
+
   $kpk_arr_a = multipleList($a, $kpk);
   $kpk_arr_b = multipleList($b, $kpk);
-
-  if ($a < 0 && $b < 0)
-    return $kpk * -1;
 
   return $kpk;
 }
 
+// Buat nyari fpb
 function fpb($a, $b)
 {
   global $fpb_arr_a, $fpb_arr_b;
-  $r = $a % $b;
+
+  $a = minusCheck($a);
+  $b = minusCheck($b);
 
   $fpb_arr_a = factorList($a);
   $fpb_arr_b = factorList($b);
 
+  $r = $a % $b;
   while ($r != 0) {
     $a = $b;
     $b = $r;
     $r = $a % $b;
   }
-
 
   return $b;
 }
@@ -87,7 +100,6 @@ $kpk = kpk($a, $b);
 $fpb = fpb($a, $b);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -170,37 +182,37 @@ $fpb = fpb($a, $b);
       </div>
     </div>
     <div class="mt-5 flex-card">
-      <div class="container-custom me-0">
+      <div class="container-custom me-0 w-100">
         <div class="mb-1 d-flex align-items-center gap-1">
           <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
           KPK
         </div>
         <h3 class="fw-bold"><?= $kpk; ?></h3>
-        <div>
-          <h6 class="fw-bol mb-1">Kelipatan :</h6>
+        <div class="mt-3">
+          <h6 class="fw-bold mb-2">Kelipatan :</h6>
           <table>
-            <tr>
-              <td class="pe-1"><?= $a; ?></td>
-              <td>
-                =
+            <tr class="w-100 d-flex border border-3 rounded-1 border-dark">
+              <td class="p-2 bg-dark text-light border-end border-3 border-dark d-flex align-items-center">
+                <?= $a; ?>
+              </td>
+              <td class="p-2">
                 <?php foreach ($kpk_arr_a as $arr_a) : ?>
                   <?php if ($arr_a == $kpk) : ?>
                     <span class="fw-bold text-decoration-underline"><?= $arr_a; ?></span>
                   <?php else : ?>
-                    <?= $arr_a ?>
+                    <?= $arr_a . ", " ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </td>
             </tr>
-            <tr>
-              <td class="pe-1"><?= $b; ?></td>
-              <td>
-                =
+            <tr class="w-100 d-flex mt-3 border border-3 rounded-1 border-dark">
+              <td class="p-2 bg-dark text-light border-end border-3 border-dark d-flex align-items-center"><?= $b; ?></td>
+              <td class="p-2">
                 <?php foreach ($kpk_arr_b as $arr_b) : ?>
                   <?php if ($arr_b == $kpk) : ?>
                     <span class="fw-bold text-decoration-underline"><?= $arr_b; ?></span>
                   <?php else : ?>
-                    <?= $arr_b ?>
+                    <?= $arr_b . ", " ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </td>
@@ -208,37 +220,45 @@ $fpb = fpb($a, $b);
           </table>
         </div>
       </div>
-      <div class="container-custom me-0">
+      <div class="container-custom me-0 w-100">
         <div class="mb-1 d-flex align-items-center gap-1">
           <iconify-icon icon="fluent:math-symbols-16-regular" width="24"></iconify-icon>
           FPB
         </div>
         <h3 class="fw-bold"><?= $fpb; ?></h3>
-        <div>
-          <h6 class="fw-bold mb-1">Faktor :</h6>
+        <div class="mt-3">
+          <h6 class="fw-bold mb-2">Faktor :</h6>
           <table>
-            <tr>
-              <td class="pe-1"><?= $a; ?></td>
-              <td>
-                =
+            <tr class="w-100 d-flex border border-3 rounded-1 border-dark">
+              <td class="p-2 bg-dark text-light border-end border-3 border-dark d-flex align-items-center">
+                <?= $a; ?>
+              </td>
+              <td class="p-2">
                 <?php foreach ($fpb_arr_a as $arr_a) : ?>
+                  <!-- Buat tampilan doang sih -->
                   <?php if ($arr_a == $fpb) : ?>
-                    <span class="fw-bold text-decoration-underline"><?= $arr_a; ?></span>
-                  <?php else : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_a ?></span>
+                    <span>,</span>
+                  <?php elseif ($arr_a == minusCheck($a)) : ?>
                     <?= $arr_a ?>
+                  <?php else : ?>
+                    <?= $arr_a . ", " ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </td>
             </tr>
-            <tr>
-              <td class="pe-1"><?= $b; ?></td>
-              <td>
-                =
+            <tr class="w-100 d-flex mt-3 border border-3 rounded-1 border-dark">
+              <td class="p-2 bg-dark text-light border-end border-3 border-dark d-flex align-items-center"><?= $b; ?></td>
+              <td class="p-2">
                 <?php foreach ($fpb_arr_b as $arr_b) : ?>
+                  <!-- Buat tampilan doang sih -->
                   <?php if ($arr_b == $fpb) : ?>
-                    <span class="fw-bold text-decoration-underline"><?= $arr_b; ?></span>
-                  <?php else : ?>
+                    <span class="fw-bold text-decoration-underline"><?= $arr_b ?></span>
+                    <span>,</span>
+                  <?php elseif ($arr_b == minusCheck($b)) : ?>
                     <?= $arr_b ?>
+                  <?php else : ?>
+                    <?= $arr_b . ", " ?>
                   <?php endif; ?>
                 <?php endforeach; ?>
               </td>

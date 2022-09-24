@@ -129,12 +129,35 @@ body {
   border: 0;
   outline: none;
 }
+
+.form-select {
+  border: 0.125rem solid black;
+}
+
+.form-check-input:checked {
+  background-color: black;
+  border-color: #ececec;
+}
+
+.form-check-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.125rem rgba(58, 58, 58, 0.5);
+}
+
+.form-select:focus {
+  border-color: initial;
+  box-shadow: 0 0 0 0.125rem rgba(58, 58, 58, 0.5);
+}
 /* Form End */
 
 .main {
   padding: 1.5rem;
   padding-bottom: 6rem;
   padding-top: 0;
+}
+
+.main-pt {
+  padding-top: 1.5rem;
 }
 
 .main-container {
@@ -191,6 +214,10 @@ footer {
     padding: 4rem;
     padding-top: 0rem;
     padding-bottom: 6rem;
+  }
+
+  .main-pt {
+    padding-top: 3rem;
   }
 
   .flex-card {

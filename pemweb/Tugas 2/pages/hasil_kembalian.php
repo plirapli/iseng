@@ -105,7 +105,7 @@ $total = [$lembar, $pecahan];
 
   <main class="main pt-2">
     <h3 class="mb-4 fw-bold">
-      Hasil Kembalian &nbsp;💰
+      Hasil Kembalian / Hutang &nbsp;💰
     </h3>
     <div class="flex-card">
       <div class="container-custom me-0">

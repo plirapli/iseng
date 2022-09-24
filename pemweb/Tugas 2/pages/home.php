@@ -1,12 +1,11 @@
 <?php
 
-// Nama file form
-$prev_file_name = "../index.php";
-
-// Cek apakah data dah ada/belum
+// Cek apakah data dah ada/belum, kalo gada isi data default
 if (!isset($_POST["nama"])) {
-  header("Location: " . $prev_file_name);
-  exit;
+  $mhs = [
+    "nama" => "[Belom diisi]",
+    "nim" => "[NIM-nya juga]",
+  ];
 } else {
   $mhs = $_POST;
 }
