@@ -66,7 +66,7 @@
           <label for="inputAngkaPertama" class="form-label">Angka Pertama</label>
           <div class="form-custom">
             <span class="fw-bold">></span>
-            <input type="number" name="angka_pertama" id="inputAngkaPertama" placeholder="273" required aria-describedby="angkaPertamaHelp">
+            <input type="number" name="a" id="inputAngkaPertama" placeholder="273" required aria-describedby="angkaPertamaHelp">
           </div>
           <div id="angkaPertamaHelp" class="form-text">Masukkan angka pertama</div>
         </div>
@@ -75,7 +75,7 @@
           <label for="inputAngkaKedua" class="form-label">Angka Kedua</label>
           <div class="form-custom">
             <span class="fw-bold">></span>
-            <input type="number" name="angka_kedua" id="inputAngkaKedua" placeholder="468" required aria-describedby="angkaKeduaHelp">
+            <input type="number" name="b" id="inputAngkaKedua" placeholder="468" required aria-describedby="angkaKeduaHelp">
           </div>
           <div id="angkaKeduaHelp" class="form-text">Masukkan angka kedua</div>
         </div>
