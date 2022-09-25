@@ -50,7 +50,8 @@ $total = [$lembar, $pecahan];
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Hasil Kembalian</title>
+  <link rel="shortcut icon" href="../assets/favicon/money-withdraw.svg" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
@@ -105,7 +106,7 @@ $total = [$lembar, $pecahan];
 
   <main class="main pt-2">
     <h3 class="mb-4 fw-bold">
-      Hasil Kembalian / Hutang &nbsp;💰
+      Hasil Kembalian / Utang &nbsp;💰
     </h3>
     <div class="flex-card">
       <div class="container-custom me-0">
@@ -129,7 +130,7 @@ $total = [$lembar, $pecahan];
           if ($uang - $harga >= 0)
             echo "Kembalian";
           else
-            echo "Hutang";
+            echo "Utang";
           ?>
         </div>
         <h3 class="fw-bold">Rp <?= $uang - $harga; ?></h3>
