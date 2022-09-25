@@ -46,8 +46,6 @@ void sisipNode(Ingfo newIngfo)
     while (bantu->next != NULL && newIngfo > bantu->next->ingfo)
       bantu = bantu->next;
 
-    // 5, 20, 50, 99
-    //  10
     newNode->next = bantu->next; // Sisip di tengah atau di belakang
     bantu->next = newNode;
     newNode->prev = bantu;
