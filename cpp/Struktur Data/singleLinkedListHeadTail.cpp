@@ -88,7 +88,26 @@ void cetakDepan()
     cout << "Data masih kosong! \n";
   else
   {
-    Node *bantu;
+    Node *depan, *bantu;
+
+    // Biar kalo abis cetak mundur, urutannya dibalikin lagi
+    if (head->ingfo > head->next->ingfo)
+    {
+      depan = head;
+      head = tail;
+
+      do
+      {
+        bantu = depan;
+        while (bantu->next != tail)
+          bantu = bantu->next;
+
+        tail->next = bantu;
+        tail = bantu;
+      } while (tail != depan);
+
+      tail->next = NULL;
+    }
 
     // Looping sampe sebelum tail
     bantu = head->next;
@@ -110,21 +129,27 @@ void cetakMundur()
   else
   {
     Node *depan, *bantu;
-    depan = head;
-    head = tail;
 
-    do
+    // Kalo sebelumnya dah dibalik, gausah dibalik lagi urutannya
+    if (head->ingfo < head->next->ingfo)
     {
-      bantu = depan;
-      while (bantu->next != tail)
-        bantu = bantu->next;
+      depan = head;
+      head = tail;
 
-      tail->next = bantu;
-      tail = bantu;
-    } while (tail != depan);
+      do
+      {
+        bantu = depan;
+        while (bantu->next != tail)
+          bantu = bantu->next;
+
+        tail->next = bantu;
+        tail = bantu;
+      } while (tail != depan);
+
+      tail->next = NULL;
+    }
 
     // Cetak
-    tail->next = NULL;
     bantu = head->next;
     while (bantu != tail)
     {
@@ -151,6 +176,8 @@ int main()
 
   hapusNode(50);
   cetakMundur();
+  cetakMundur();
+  cetakDepan();
 
   return 0;
 }
