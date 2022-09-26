@@ -97,6 +97,7 @@ void cetakDepan()
   {
     Node *depan, *bantu;
 
+    // Biar kalo abis cetak mundur, urutannya dibalikin lagi
     if (head->Buah.harga > head->next->Buah.harga)
     {
       depan = head;
@@ -137,6 +138,7 @@ void cetakMundur()
   {
     Node *depan, *bantu;
 
+    // Kalo sebelumnya dah dibalik, gausah dibalik lagi urutannya
     if (head->Buah.harga < head->next->Buah.harga)
     {
       depan = head;
