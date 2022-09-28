@@ -41,7 +41,7 @@ void sisipNode(IngfoBuah newIngfo)
   while (newIngfo.harga > bantu->next->Buah.harga)
     bantu = bantu->next;
 
-  newNode->next = bantu->next; // Sisip di tengah atau di belakang
+  newNode->next = bantu->next; // Sisip di tengah
   bantu->next = newNode;
 }
 
@@ -157,6 +157,7 @@ void cetakMundur()
       tail->next = NULL;
     }
 
+    // Cuman nyetak doang
     bantu = head->next;
     while (bantu != tail)
     {
