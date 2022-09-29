@@ -35,99 +35,78 @@ if (isset($_GET["id"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <style>
-    table {
-      border-spacing: 0;
-      border: 2px solid black;
-    }
 
-    th,
-    td {
-      padding: 0.5rem;
-      margin: 0;
-      text-align: center;
-    }
-
-    td>button {
-      width: 100%;
-    }
   </style>
 </head>
 
 <body>
-  <form action="index.php" method="POST">
-    <table>
-      <tr>
-        <td colspan="2">
-          <p>Daftar Mahasiswa Baru</p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="nim">NIM</label>
-        </td>
-        <td>
-          <input type="text" name="nim" id="nim" required>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="nama">Nama</label>
-        </td>
-        <td>
-          <input type="text" name="nama" id="nama" required>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="nama">Jurusan</label>
-        </td>
-        <td>
-          <input type="text" name="jurusan" id="jurusan" required>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button type="submit" name="submit">Tambah</button>
-        </td>
-      </tr>
-  </form>
-  </table>
+  <div class="p-5 pb-0">
+    <h4 class="mb-3">Daftar Mahasiswa</h4>
+    <form action="index.php" method="POST">
+      <div class="mb-3">
+        <label for="inputNim" class="form-label">NIM</label>
+        <input type="number" class="form-control" id="inputNim" name="nim" placeholder="123210078">
+      </div>
+      <div class="mb-3">
+        <label for="inputNama" class="form-label">Nama</label>
+        <input type="text" class="form-control" id="inputNama" name="nama" placeholder="Muhammad Rafli">
+      </div>
+      <div class="mb-3">
+        <label for="inputAngkatan" class="form-label">Angkatan</label>
+        <input type="text" class="form-control" id="inputAngkatan" name="angkatan" placeholder="2021">
+      </div>
+      <div class="mb-3">
+        <label for="inputSks" class="form-label">SKS</label>
+        <input type="text" class="form-control" id="inoutSks" name="sks" placeholder="24">
+      </div>
+      <button type="submit" name="submit" class="btn btn-primary w-100">Tambah</button>
+    </form>
+  </div>
 
-  <br>
-
-  <table>
-    <thead>
-      <tr>
-        <td colspan="5">
-          <p>Daftar Mahasiswa</p>
-        </td>
-      </tr>
-      <tr>
-        <th>No.</th>
-        <th>NIM</th>
-        <th>Nama</th>
-        <th>Jurusan</th>
-        <th>Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php $no = 1; ?>
-      <?php foreach ($mahasiswa as $mhs) : ?>
+  <div class="p-5 pt-0 mt-4">
+    <h4>Daftar Mahasiswa</h4>
+    <table class="table">
+      <thead>
         <tr>
-          <td><?= $no++; ?>.</td>
-          <td><?= $mhs["nim"]; ?></td>
-          <td><?= $mhs["nama"]; ?></td>
-          <td><?= $mhs["jurusan"]; ?></td>
-          <td>
-            <a href="">Ubah</a>
-            <a href="index.php?id=<?= $mhs["id"] ?>">Hapus</a>
-          </td>
+          <th scope="col">#</th>
+          <th scope="col">NIM</th>
+          <th scope="col">Nama</th>
+          <th scope="col">Angaktan</th>
+          <th scope="col">SKS</th>
+          <th scope="col">Aksi</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <?php $no = 1; ?>
+        <?php foreach ($mahasiswa as $mhs) : ?>
+          <tr>
+            <th scope="row"><?= $no++; ?>.</th>
+            <td><?= $mhs["nim"]; ?></td>
+            <td><?= $mhs["nama"]; ?></td>
+            <td><?= $mhs["angkatan"]; ?></td>
+            <td><?= $mhs["sks"]; ?></td>
+            <td>
+              <a href="">Ubah</a>
+              <a href="index.php?id=<?= $mhs["id"] ?>">Hapus</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+        <!-- 
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,7 +1,15 @@
 <?php
 
 // Konek ke DB
-$connection =  mysqli_connect('localhost', 'rafli', '123', 'latihan_php');
+// $username = $_ENV["DATABASE_USERNAME"];
+// $passwd = $_ENV["DATABASE_PASSWORD"];
+// $db_name = $_ENV["DATABASE_NAME"];
+
+$username = "root";
+$passwd = "";
+$db_name = "test";
+
+$connection =  mysqli_connect('localhost', $username, $passwd, $db_name);
 
 // Select All Data
 function query($query)
@@ -28,11 +36,13 @@ function tambah($data)
 
   $nim = htmlspecialchars($data["nim"]);
   $nama = htmlspecialchars($data["nama"]);
-  $jurusan = htmlspecialchars($data["jurusan"]);
+  $angkatan = htmlspecialchars($data["angkatan"]);
+  $sks = htmlspecialchars($data["sks"]);
+  // $jurusan = htmlspecialchars($data["jurusan"]);
 
   // Query (INSERT DATA)
   $query = "INSERT INTO mahasiswa VALUES(
-    '', '$nama', '$nim', '$jurusan'
+    '', '$nim', '$nama', '$angkatan', '$sks'
   )";
 
   mysqli_query($connection, $query);
