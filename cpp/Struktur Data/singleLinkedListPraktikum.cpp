@@ -20,7 +20,7 @@ void init()
 
 void sisipNode(Ingfo newIngfo)
 {
-  Node *newNode, *cur;
+  Node *newNode, *bantu;
 
   newNode = new Node;
 
@@ -40,12 +40,12 @@ void sisipNode(Ingfo newIngfo)
   else
   {
     // Looping sampe posisi - 1
-    cur = awal;
-    while (cur->next != NULL && newNode->ingfo > cur->next->ingfo)
-      cur = cur->next;
+    bantu = awal;
+    while (bantu->next != NULL && newNode->ingfo > bantu->next->ingfo)
+      bantu = bantu->next;
 
-    newNode->next = cur->next; // Sisip di tengah atau di belakang
-    cur->next = newNode;
+    newNode->next = bantu->next; // Sisip di tengah atau di belakang
+    bantu->next = newNode;
 
     if (newIngfo > akhir->ingfo) // Jika akhir > data baru, maka akhir pindah ke data baru
       akhir = newNode;
@@ -54,7 +54,7 @@ void sisipNode(Ingfo newIngfo)
 
 void hapusNode(Ingfo delIngfo)
 {
-  Node *hapus, *cur;
+  Node *hapus, *bantu;
 
   if (isEmpty())
     cout << "List masih kosong";
@@ -67,20 +67,21 @@ void hapusNode(Ingfo delIngfo)
   else
   {
     // Looping sampai posisi - 1
-    cur = awal;
-    while (cur->next->next != NULL && delIngfo != cur->next->ingfo)
-      cur = cur->next;
+    bantu = awal;
+    while (bantu->next != NULL && delIngfo != bantu->next->ingfo)
+      bantu = bantu->next;
 
-    if (delIngfo == cur->next->ingfo)
+    if (delIngfo == bantu->next->ingfo)
     {
-      hapus = cur->next;
+      hapus = bantu->next;
       if (hapus == akhir) // Hapus di akhir
       {
-        akhir = cur;
+        akhir = bantu;
         akhir->next = NULL;
       }
       else
-        cur->next = hapus->next; // Hapus di tengah
+        bantu->next = hapus->next; // Hapus di tengah
+
       delete hapus;
     }
     else
@@ -107,17 +108,17 @@ void readForward()
 {
   cout << "Jumlah data: " << readLength() << "\n";
 
-  if (awal == NULL)
+  if (isEmpty())
     cout << "Data masih kosong! \n";
   else
   {
-    Node *cur;
+    Node *bantu;
 
-    cur = awal;
-    while (cur != NULL)
+    bantu = awal;
+    while (bantu != NULL)
     {
-      cout << cur->ingfo << ", ";
-      cur = cur->next;
+      cout << bantu->ingfo << ", ";
+      bantu = bantu->next;
     }
   }
   cout << "\n";

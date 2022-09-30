@@ -20,7 +20,7 @@ struct typenode
 int list, akhirlist, kosong, akhirkosong;
 
 // Operasi-operasi
-int listkosong();
+bool listkosong();
 void buatlist();
 void sisipnode(ingfoBuah ingfoBaru);
 void hapusnode(int ingfoHapus);
@@ -31,7 +31,7 @@ int main()
   ingfoBuah temp;
 
   buatlist();
-  cetaklist();
+  // cetaklist();
 
   cout << "Masukkan nama buah: ";
   cin >> temp.nama;
@@ -47,8 +47,9 @@ int main()
 void buatlist()
 {
   list = 0;
-  kosong = 5;
   akhirlist = 0;
+
+  kosong = 5;
   akhirkosong = 9;
 
   elemen[1].next = 7;
@@ -63,7 +64,7 @@ void buatlist()
   elemen[10].next = 9;
 }
 
-int listkosong() { return list == 0; }
+bool listkosong() { return list == 0; }
 
 void sisipnode(ingfoBuah ingfoBaru)
 {
