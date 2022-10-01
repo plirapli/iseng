@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	int iterasiMaks = 25, iterasiN = 0, indexHasil = 0;
+	int iterasiMaks = 25, indexHasil = 0;
 	double batasToleransi = 0.00001;
 	double x[iterasiMaks], fx[iterasiMaks], gx[iterasiMaks], error = 0;
 
