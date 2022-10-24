@@ -1,6 +1,5 @@
 /*Stack Menggunakan Record*/
 #include <iostream>
-#include <malloc.h>
 
 using std::cout;
 using std::endl;
