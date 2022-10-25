@@ -1,6 +1,5 @@
 /*Program Stack menggunakan pointer*/
 #include <iostream>
-#include <malloc.h>
 
 using std::cout;
 
@@ -8,33 +7,33 @@ typedef int typeinfo;
 struct typestack
 {
 	typeinfo info;
-	typestack *next, *kiri, *kanan;
+	typestack *kiri, *kanan;
 } * stackAwal, *stackAkhir;
 
-void buatstack();
-void push(typeinfo IB);
+void buat();
+void push(typeinfo newInfo);
 void pop();
-void cetakstack();
+void cetak();
 
 // Cek kondisi stack
 int isEmpty() { return stackAwal == NULL; }
 
 int main()
 {
-	buatstack();
+	buat();
 	push(25);
 	push(15);
 	push(20);
 	push(100);
-	cetakstack();
+	cetak();
 
-	cout << " \n\n";
+	cout << "\n";
 
 	pop();
-	cetakstack();
+	cetak();
 }
 
-void buatstack()
+void buat()
 {
 	typestack *NS;
 
@@ -45,12 +44,12 @@ void buatstack()
 	stackAkhir = NS;
 }
 
-void push(typeinfo IB)
+void push(typeinfo newInfo)
 {
 	typestack *NS;
 
 	NS = new typestack;
-	NS->info = IB;
+	NS->info = newInfo;
 	NS->kiri = NULL;
 	NS->kanan = NULL;
 
@@ -82,7 +81,7 @@ void pop()
 	}
 }
 
-void cetakstack()
+void cetak()
 {
 	typestack *bantu;
 

@@ -10,32 +10,32 @@ struct typestack
   typestack *next;
 } * stack, *awal;
 
-void buatstack();
+void buat();
 void push(typeinfo IB);
 void pop();
-void cetakstack();
+void cetak();
 
 // Cek kondisi stack
 int isEmpty() { return awal == NULL; }
 
 int main()
 {
-  buatstack();
+  buat();
   push(25);
   push(15);
   push(20);
   push(100);
-  cetakstack();
+  cetak();
 
   cout << "\n";
 
   pop();
-  cetakstack();
+  cetak();
 
   return 0;
 }
 
-void buatstack()
+void buat()
 {
   typestack *NS;
 
@@ -86,7 +86,7 @@ void pop()
   }
 }
 
-void cetakstack()
+void cetak()
 {
   typestack *bantu;
 
