@@ -15,8 +15,8 @@ if (!isset($_GET["id"])) {
 // Buat Edit Data
 // Cek tombol submit pada form edit dah diklik/belum
 if (isset($_POST["submit"])) {
-  if (edit($_GET['id'], $_POST) > 0) {
-    header("Location: " . 'index.php');
+  if (edit($_GET["id"], $_POST) > 0) {
+    header("Location: index.php");
   } else {
     echo "Failed";
   }
@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
 <body>
   <div class="p-5 pb-0">
     <h4 class="mb-3">Daftar Mahasiswa</h4>
-    <form action="index.php" method="POST">
+    <form method="POST">
       <div class="mb-3">
         <label for="inputNim" class="form-label">NIM</label>
         <input type="number" class="form-control" id="inputNim" name="nim" value=<?= $mahasiswa[0]["nim"] ?> placeholder="123210078">
@@ -55,8 +55,8 @@ if (isset($_POST["submit"])) {
         <label for="inputSks" class="form-label">SKS</label>
         <input type="text" class="form-control" id="inoutSks" name="sks" value=<?= $mahasiswa[0]["sks"] ?> placeholder="24">
       </div>
-      <button type="submit" name="submit" class="btn btn-primary w-100">Edit</button>
-      <a href="index.php" class="w-100 mt-2 btn btn-secondary">Kembali</a>
+      <button type="submit" name="submit" class="btn btn-primary w-100">Simpan</button>
+      <a href="index.php" class="w-100 mt-2 btn btn-light">Kembali</a>
     </form>
   </div>
 

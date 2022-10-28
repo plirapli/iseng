@@ -5,9 +5,9 @@
 // $passwd = $_ENV["DATABASE_PASSWORD"];
 // $db_name = $_ENV["DATABASE_NAME"];
 
-$username = "root";
-$passwd = "";
-$db_name = "test";
+$username = "rafli";
+$passwd = "123";
+$db_name = "praktikum_mhs";
 
 $connection =  mysqli_connect('localhost', $username, $passwd, $db_name);
 
@@ -89,7 +89,7 @@ function edit($id, $data)
   $angkatan = htmlspecialchars($data["angkatan"]);
   $sks = htmlspecialchars($data["sks"]);
 
-  $query = "UPDATE mahasiswa SET id=$id, nim = $nim, nama = $nama, angkatan = $angkatan, sks = $sks WHERE id = $id";
+  $query = "UPDATE mahasiswa SET nim = '$nim', nama = '$nama', angkatan = '$angkatan', sks = '$sks' WHERE id = $id";
   mysqli_query($connection, $query);
 
   return mysqli_affected_rows($connection);
