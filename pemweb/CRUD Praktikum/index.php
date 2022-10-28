@@ -1,8 +1,9 @@
 <?php
 
-if (isset($_GET["isGagal"])) {
-  $isi_pesan = "Username atau password yang anda masukkan salah!";
-  $pesan = $_GET["isGagal"] ? $isi_pesan : "";
+$pesan = "";
+
+if (isset($_GET["pesan"])) {
+  $pesan = "Username atau password yang anda masukkan salah!";
 }
 
 ?>
@@ -21,15 +22,15 @@ if (isset($_GET["isGagal"])) {
 
 <body class="">
   <div class="main-container main">
-    <div class="container-custom">
-      <p class="mb-2 text-danger"><?= isset($pesan) ? $pesan : "" ?></p>
+    <div class="container-custom login-container">
+      <p class="mb-2 text-danger"><?= $pesan ?></p>
       <h3 class="mb-3 h-custom">Login</h3>
       <form action="utils/auth.php" method="POST">
         <div class="mb-3">
           <label for="inputUsername" class="form-label">Username</label>
           <div class="form-custom">
             <iconify-icon icon="bx:user" width="24"></iconify-icon>
-            <input class="w-100" type="text" name="username" id="inputUsername" placeholder="Masukkan Username" required>
+            <input class="w-100" type="text" name="username" id="inputUsername" placeholder="Username" required>
           </div>
         </div>
 
@@ -37,7 +38,7 @@ if (isset($_GET["isGagal"])) {
           <label for="inputPwd" class="form-label">Password</label>
           <div class="form-custom">
             <iconify-icon icon="bx:key" width="24"></iconify-icon>
-            <input class="w-100" type="password" name="pwd" id="inputPwd" placeholder="Masukkan Password" required>
+            <input class="w-100" type="password" name="pwd" id="inputPwd" placeholder="Password" required>
           </div>
         </div>
         <button type="submit" class="btn btn-black w-100">Masuk</button>

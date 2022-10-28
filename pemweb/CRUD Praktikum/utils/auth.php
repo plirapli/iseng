@@ -36,5 +36,5 @@ for ($i = 0; $i < count($users); $i++) {
 }
 
 if ($is_found == 0) {
-  header("Location: ../index.php?isGagal=true");
+  header("Location: ../index.php?pesan=gagal");
 }
