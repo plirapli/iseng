@@ -60,3 +60,37 @@ function hapus($id)
 
   return mysqli_affected_rows($connection);
 }
+
+function bacaId($id)
+{
+  global $connection;
+
+  $query = "SELECT * FROM mahasiswa WHERE id = $id";
+  $result = mysqli_query($connection, $query);
+
+  // Memasukkan hasil query ke dalam var rows
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  // Mereturn var rows
+  return $rows;
+}
+
+
+// Edit Dta
+function edit($id, $data)
+{
+  global $connection;
+
+  $nim = htmlspecialchars($data["nim"]);
+  $nama = htmlspecialchars($data["nama"]);
+  $angkatan = htmlspecialchars($data["angkatan"]);
+  $sks = htmlspecialchars($data["sks"]);
+
+  $query = "UPDATE mahasiswa SET id=$id, nim = $nim, nama = $nama, angkatan = $angkatan, sks = $sks WHERE id = $id";
+  mysqli_query($connection, $query);
+
+  return mysqli_affected_rows($connection);
+}

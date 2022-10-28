@@ -89,19 +89,11 @@ if (isset($_GET["id"])) {
             <td><?= $mhs["angkatan"]; ?></td>
             <td><?= $mhs["sks"]; ?></td>
             <td>
-              <a href="">Ubah</a>
+              <a href="edit.php?id=<?= $mhs["id"] ?>">Ubah</a>
               <a href="index.php?id=<?= $mhs["id"] ?>">Hapus</a>
             </td>
           </tr>
         <?php endforeach; ?>
-        <!-- 
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-        </tr> -->
       </tbody>
     </table>
   </div>
