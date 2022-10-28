@@ -1,16 +1,16 @@
 <?php
 
 // Cek apakah data dah ada/belum, kalo gada isi data default
-require '../utils/query_lab.php';
+require '../utils/query_waktu.php';
 
 // Buat Read Table
-$laboratorium = selectAll();
+$waktu_praktikum = selectAll();
 
 // Buat Create Data
 // Cek tombol submit pada form daftar dah ditekan/belum
 if (isset($_POST["submit"])) {
   if (add($_POST) > 0) {
-    header("Location: lab.php");
+    header("Location: waktu.php");
   } else {
     echo "Failed";
   }
@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
 // Cek apakah tombol "hapus" dah diklik/belum
 if (isset($_GET["id"])) {
   if (delete($_GET["id"]) > 0) {
-    header("Location: lab.php");
+    header("Location: waktu.php");
   } else {
     echo "Failed";
   }
@@ -72,11 +72,11 @@ if (isset($_GET["id"])) {
             <iconify-icon icon="bx:home-alt-2" width="18"></iconify-icon>
             Home
           </a>
-          <a class="nav-link active nav-text nav-custom" href="lab.php">
+          <a class="nav-link nav-text nav-custom" href="lab.php">
             <iconify-icon icon="carbon:chemistry" width="18"></iconify-icon>
             Lab
           </a>
-          <a class="nav-link nav-text nav-custom" href="waktu.php">
+          <a class="nav-link active nav-text nav-custom" href="waktu.php">
             <iconify-icon icon="bx:time-five" width="18"></iconify-icon>
             Waktu
           </a>
@@ -93,26 +93,30 @@ if (isset($_GET["id"])) {
   <main class="mt-2 container">
     <div class="row gap-2 flex-col-reverse">
       <section class="col-lg">
-        <h2>Lab</h2>
+        <h2>Waktu Praktikum</h2>
         <table class="table">
           <thead>
             <tr>
               <th class="text-center" scope="col">No.</th>
-              <th scope="col">Nama Lab</th>
+              <th class="text-center" scope="col">Waktu</th>
               <th class="text-center" scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
             <?php $no = 1; ?>
-            <?php foreach ($laboratorium as $lab) : ?>
+            <?php foreach ($waktu_praktikum as $waktu) : ?>
               <tr>
                 <th class=" text-center" scope="row"><?= $no++; ?>.</th>
-                <td><?= $lab["nama"]; ?></td>
                 <td class="text-center">
-                  <!-- <a class="btn btn-dark pb-0 px-2" href="lab.php?id=<?= $lab["id"] ?>">
+                  <?= $waktu["mulai"]; ?>
+                  -
+                  <?= $waktu["selesai"]; ?>
+                </td>
+                <td class="text-center">
+                  <!-- <a class="btn btn-dark pb-0 px-2" href="lab.php?id=<?= $waktu["id"] ?>">
                     <iconify-icon icon="bx:pencil" width="24"></iconify-icon>
                   </a> -->
-                  <a class="btn btn-danger pb-0 px-2" href="lab.php?id=<?= $lab["id"] ?>">
+                  <a class="btn btn-danger pb-0 px-2" href="waktu.php?id=<?= $waktu["id"] ?>">
                     <iconify-icon icon="bx:trash" width="24"></iconify-icon>
                   </a>
                 </td>
@@ -121,17 +125,26 @@ if (isset($_GET["id"])) {
           </tbody>
         </table>
       </section>
-      <section class="col-lg container-custom">
-        <h3 class="mb-3 h-custom">Laboratorium</h3>
-        <form action="lab.php" method="POST">
-          <div class="mb-3">
-            <label for="inputLab" class="form-label">Nama Lab</label>
-            <div class="form-custom">
-              <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
-              <input class="w-100" type="text" name="nama" id="inputLab" placeholder="Masukkan nama lab" required>
+      <section class="col-lg-5 container-custom">
+        <h3 class="mb-3 h-custom">Waktu Praktikum</h3>
+        <form action="waktu.php" method="POST">
+          <div class="row">
+            <div class="mb-3 col">
+              <label for="inputMulai" class="form-label">Mulai</label>
+              <div class="form-custom">
+                <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
+                <input class="w-100" type="time" name="mulai" id="inputMulai" placeholder="Masukkan nama lab" required>
+              </div>
+            </div>
+            <div class="mb-3 col">
+              <label for="inputSelesai" class="form-label">Selesai</label>
+              <div class="form-custom">
+                <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
+                <input class="w-100" type="time" name="selesai" id="inputSelesai" placeholder="Masukkan nama lab" required>
+              </div>
             </div>
           </div>
-          <button type="submit" name="submit" class="btn btn-black w-100">Simpan</button>
+          <button type="submit" name="submit" class="btn btn-black w-100">Daftar</button>
         </form>
       </section>
     </div>
