@@ -44,7 +44,7 @@
         </a>
       </div>
       <div class="mt-3 row">
-        <a class="text-black col" href="">
+        <a class="text-black col" href="jadwal.php">
           <button class="w-100 btn btn-black">Jadwal Praktikum</button>
         </a>
       </div>

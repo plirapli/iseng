@@ -4,12 +4,12 @@
 require '../utils/query_lab.php';
 
 // Buat Read Table
-$laboratorium = selectAll();
+$laboratorium = select_all_lab();
 
 // Buat Create Data
 // Cek tombol submit pada form daftar dah ditekan/belum
 if (isset($_POST["submit"])) {
-  if (add($_POST) > 0) {
+  if (add_lab($_POST) > 0) {
     header("Location: lab.php");
   } else {
     echo "Failed";
@@ -19,7 +19,7 @@ if (isset($_POST["submit"])) {
 // Buat Hapus Data
 // Cek apakah tombol "hapus" dah diklik/belum
 if (isset($_GET["id"])) {
-  if (delete($_GET["id"]) > 0) {
+  if (delete_lab($_GET["id"]) > 0) {
     header("Location: lab.php");
   } else {
     echo "Failed";
@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
   <!-- NAVBAR END -->
 
   <main class="mt-2 container">
-    <div class="row gap-2 flex-col-reverse">
+    <div class="row gap-2">
       <section class="col-lg">
         <h2>Lab</h2>
         <table class="table">

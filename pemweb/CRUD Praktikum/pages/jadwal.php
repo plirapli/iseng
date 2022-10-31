@@ -1,30 +1,34 @@
 <?php
 
 // Cek apakah data dah ada/belum, kalo gada isi data default
+require '../utils/query_jadwal.php';
+require '../utils/query_lab.php';
 require '../utils/query_waktu.php';
 
 // Buat Read Table
-$waktu_praktikum = select_all_waktu();
+$daftar_jadwal = select_all_jadwal();
+$daftar_lab = select_all_lab();
+$daftar_waktu = select_all_waktu();
 
 // Buat Create Data
 // Cek tombol submit pada form daftar dah ditekan/belum
 if (isset($_POST["submit"])) {
-  if (add_waktu($_POST) > 0) {
-    header("Location: waktu.php");
+  if (add_jadwal($_POST) > 0) {
+    header("Location: jadwal.php");
   } else {
     echo "Failed";
   }
 }
 
-// Buat Hapus Data
-// Cek apakah tombol "hapus" dah diklik/belum
-if (isset($_GET["id"])) {
-  if (delete_waktu($_GET["id"]) > 0) {
-    header("Location: waktu.php");
-  } else {
-    echo "Failed";
-  }
-}
+// // Buat Hapus Data
+// // Cek apakah tombol "hapus" dah diklik/belum
+// if (isset($_GET["id"])) {
+//   if (delete($_GET["id"]) > 0) {
+//     header("Location: jadwal.php");
+//   } else {
+//     echo "Failed";
+//   }
+// }
 
 ?>
 
@@ -76,11 +80,11 @@ if (isset($_GET["id"])) {
             <iconify-icon icon="carbon:chemistry" width="18"></iconify-icon>
             Lab
           </a>
-          <a class="nav-link active nav-text nav-custom" href="waktu.php">
+          <a class="nav-link nav-text nav-custom" href="waktu.php">
             <iconify-icon icon="bx:time-five" width="18"></iconify-icon>
             Waktu
           </a>
-          <a class="nav-link nav-text nav-custom" href="jadwal.php">
+          <a class="nav-link active nav-text nav-custom" href="jadwal.php">
             <iconify-icon icon="bx:calendar" width="18"></iconify-icon>
             Jadwal
           </a>
@@ -91,32 +95,38 @@ if (isset($_GET["id"])) {
   <!-- NAVBAR END -->
 
   <main class="mt-2 container">
-    <div class="row gap-2 flex-col-reverse">
-      <section class="col-lg">
-        <h2>Waktu Praktikum</h2>
+    <div class="row gap-2">
+      <section class="col-xl">
+        <h2>Jadwal</h2>
         <table class="table">
           <thead>
             <tr>
               <th class="text-center" scope="col">No.</th>
+              <th class="text-center" scope="col">Mata Kuliah</th>
+              <th class="text-center" scope="col">Prodi</th>
+              <th class="text-center" scope="col">Lab</th>
               <th class="text-center" scope="col">Waktu</th>
               <th class="text-center" scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
             <?php $no = 1; ?>
-            <?php foreach ($waktu_praktikum as $waktu) : ?>
+            <?php foreach ($daftar_jadwal as $jadwal) : ?>
               <tr>
                 <th class=" text-center" scope="row"><?= $no++; ?>.</th>
+                <td class="text-center"><?= $jadwal["mata_kuliah"]; ?></td>
+                <td class="text-center"><?= $jadwal["program_studi"]; ?></td>
+                <td class="text-center"><?= $jadwal["nama_lab"]; ?></td>
                 <td class="text-center">
-                  <?= $waktu["mulai"]; ?>
+                  <?= $jadwal["waktu_mulai"]; ?>
                   -
-                  <?= $waktu["selesai"]; ?>
+                  <?= $jadwal["waktu_selesai"]; ?>
                 </td>
                 <td class="text-center">
-                  <!-- <a class="btn btn-dark pb-0 px-2" href="lab.php?id=<?= $waktu["id"] ?>">
+                  <a class="btn btn-dark pb-0 px-2" href="jadwal.php?id=<?= $jadwal["id"] ?>">
                     <iconify-icon icon="bx:pencil" width="24"></iconify-icon>
-                  </a> -->
-                  <a class="btn btn-danger pb-0 px-2" href="waktu.php?id=<?= $waktu["id"] ?>">
+                  </a>
+                  <a class="btn btn-danger pb-0 px-2" href="jadwal.php?id=<?= $jadwal["id"] ?>">
                     <iconify-icon icon="bx:trash" width="24"></iconify-icon>
                   </a>
                 </td>
@@ -125,26 +135,58 @@ if (isset($_GET["id"])) {
           </tbody>
         </table>
       </section>
-      <section class="col-lg-5 container-custom">
+      <section class="col-xl container-custom">
         <h3 class="mb-3 h-custom">Waktu Praktikum</h3>
-        <form action="waktu.php" method="POST">
+        <form method="POST">
           <div class="row">
-            <div class="mb-3 col">
-              <label for="inputMulai" class="form-label">Mulai</label>
-              <div class="form-custom">
-                <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
-                <input class="w-100" type="time" name="mulai" id="inputMulai" placeholder="Masukkan nama lab" required>
+            <div class="mb-3">
+              <label for="inputMk" class="form-label">Mata Kuliah</label>
+              <div class="d-flex">
+                <div class="form-custom me-4 w-100">
+                  <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
+                  <input class="w-100" type="text" name="nama" id="inputMk" placeholder="Masukkan mata kuliah" required>
+                </div>
+                <div class="mt-1 form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="prodi" value="IF" id="radio-if" checked>
+                  <label class="form-check-label" for="radio-if">
+                    IF
+                  </label>
+                </div>
+                <div class="mt-1 form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="prodi" value="SI" id="radio-si">
+                  <label class="form-check-label" for="radio-si">
+                    SI
+                  </label>
+                </div>
               </div>
             </div>
-            <div class="mb-3 col">
-              <label for="inputSelesai" class="form-label">Selesai</label>
-              <div class="form-custom">
-                <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
-                <input class="w-100" type="time" name="selesai" id="inputSelesai" placeholder="Masukkan nama lab" required>
-              </div>
+            <div class="mb-3">
+              <label class="form-label mb-1">Lab Praktikum</label>
+              <select class="form-select" name="lab" aria-label="Select Lab" required>
+                <option selected hidden value="">Pilih Lab</option>
+                <?php foreach ($daftar_lab as $lab) : ?>
+                  <option value='<?= $lab["id"] ?>'>
+                    <?= $lab["nama"] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label mb-1">Waktu Praktikum</label>
+              <select class="form-select" name="waktu" aria-label="Select Waktu" required>
+                <option selected hidden value="">Pilih Waktu</option>
+                <?php foreach ($daftar_waktu as $waktu) : ?>
+                  <option value='<?= $waktu["id"] ?>'>
+                    <?= $waktu["mulai"] ?> - <?= $waktu["selesai"] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
             </div>
           </div>
-          <button type="submit" name="submit" class="btn btn-black w-100">Daftar</button>
+          <div class="row w-100 m-0 gap-2 mt-3">
+            <button type="reset" name="reset" class="col-sm btn btn-outline-dark w-100">Reset</button>
+            <button type="submit" name="submit" class="col-sm btn btn-black w-100">Daftar</button>
+          </div>
         </form>
       </section>
     </div>

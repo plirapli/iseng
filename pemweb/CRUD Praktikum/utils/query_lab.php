@@ -3,7 +3,7 @@
 require 'connection.php';
 
 // Select All Data
-function selectAll()
+function select_all_lab()
 {
   global $connection;
 
@@ -21,7 +21,7 @@ function selectAll()
   return $rows;
 }
 
-function add($data)
+function add_lab($data)
 {
   global $connection;
 
@@ -34,7 +34,7 @@ function add($data)
   return mysqli_affected_rows($connection);
 }
 
-function delete($id)
+function delete_lab($id)
 {
   global $connection;
 

@@ -3,7 +3,7 @@
 require 'connection.php';
 
 // Select All Data
-function selectAll()
+function select_all_waktu()
 {
   global $connection;
 
@@ -21,7 +21,7 @@ function selectAll()
   return $rows;
 }
 
-function add($data)
+function add_waktu($data)
 {
   global $connection;
 
@@ -35,7 +35,7 @@ function add($data)
   return mysqli_affected_rows($connection);
 }
 
-function delete($id)
+function delete_waktu($id)
 {
   global $connection;
 
