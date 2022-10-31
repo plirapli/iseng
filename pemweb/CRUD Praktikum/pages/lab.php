@@ -1,6 +1,5 @@
 <?php
 
-// Cek apakah data dah ada/belum, kalo gada isi data default
 require '../utils/query_lab.php';
 
 // Buat Read Table

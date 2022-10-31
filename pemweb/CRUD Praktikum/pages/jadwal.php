@@ -1,6 +1,5 @@
 <?php
 
-// Cek apakah data dah ada/belum, kalo gada isi data default
 require '../utils/query_jadwal.php';
 require '../utils/query_lab.php';
 require '../utils/query_waktu.php';
@@ -20,15 +19,27 @@ if (isset($_POST["submit"])) {
   }
 }
 
-// // Buat Hapus Data
-// // Cek apakah tombol "hapus" dah diklik/belum
-// if (isset($_GET["id"])) {
-//   if (delete($_GET["id"]) > 0) {
-//     header("Location: jadwal.php");
-//   } else {
-//     echo "Failed";
-//   }
-// }
+// if(isset($))
+
+// Buat Edit Data
+// Cek apakah tombol "edit" dah diklik/belum
+if (isset($_POST["submit_edit"])) {
+  if (edit_jadwal($_POST) > 0) {
+    header("Location: jadwal.php");
+  } else {
+    echo "Failed";
+  }
+}
+
+// Buat Hapus Data
+// Cek apakah tombol "hapus" dah diklik/belum
+if (isset($_GET["id"])) {
+  if (delete_jadwal($_GET["id"]) > 0) {
+    header("Location: jadwal.php");
+  } else {
+    echo "Failed";
+  }
+}
 
 ?>
 
@@ -123,9 +134,9 @@ if (isset($_POST["submit"])) {
                   <?= $jadwal["waktu_selesai"]; ?>
                 </td>
                 <td class="text-center">
-                  <a class="btn btn-dark pb-0 px-2" href="jadwal.php?id=<?= $jadwal["id"] ?>">
+                  <button data-bs-toggle="modal" data-bs-target="#modal_<?= $jadwal["id"]; ?>" class="btn btn-dark pb-0 px-2">
                     <iconify-icon icon="bx:pencil" width="24"></iconify-icon>
-                  </a>
+                  </button>
                   <a class="btn btn-danger pb-0 px-2" href="jadwal.php?id=<?= $jadwal["id"] ?>">
                     <iconify-icon icon="bx:trash" width="24"></iconify-icon>
                   </a>
@@ -143,8 +154,8 @@ if (isset($_POST["submit"])) {
               <label for="inputMk" class="form-label">Mata Kuliah</label>
               <div class="d-flex">
                 <div class="form-custom me-4 w-100">
-                  <iconify-icon icon="carbon:chemistry" width="20"></iconify-icon>
-                  <input class="w-100" type="text" name="nama" id="inputMk" placeholder="Masukkan mata kuliah" required>
+                  <iconify-icon icon="akar-icons:book" width="20"></iconify-icon>
+                  <input class="w-100" type="text" name="matkul" id="inputMk" placeholder="Masukkan mata kuliah" required>
                 </div>
                 <div class="mt-1 form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="prodi" value="IF" id="radio-if" checked>
@@ -192,6 +203,73 @@ if (isset($_POST["submit"])) {
     </div>
   </main>
   <footer class="px-4 py-3 fw text-center"></footer>
+
+  <!-- Modal -->
+  <?php foreach ($daftar_jadwal as $jadwal) : ?>
+    <div class="modal fade" id="modal_<?= $jadwal["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jadwal</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form method="POST">
+            <div class="modal-body">
+              <div class="row">
+                <input type="hidden" name="id" value="<?= $jadwal["id"] ?>">
+                <div class="mb-3">
+                  <label for="inputMk" class="form-label">Mata Kuliah</label>
+                  <div class="d-flex">
+                    <div class="form-custom me-4 w-100">
+                      <iconify-icon icon="akar-icons:book" width="20"></iconify-icon>
+                      <input class="w-100" type="text" value="<?= $jadwal["mata_kuliah"] ?>" name="matkul" id="inputMk" placeholder="Masukkan mata kuliah" required>
+                    </div>
+                    <div class="mt-1 form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="prodi" value="IF" id="radio-if" <?= $jadwal["program_studi"] == "IF" ? "checked" : "" ?>>
+                      <label class="form-check-label" for="radio-if">
+                        IF
+                      </label>
+                    </div>
+                    <div class="mt-1 form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="prodi" value="SI" id="radio-si" <?= $jadwal["program_studi"] == "SI" ? "checked" : "" ?>>
+                      <label class="form-check-label" for="radio-si">
+                        SI
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label mb-1">Lab Praktikum</label>
+                  <select class="form-select" name="lab" aria-label="Select Lab" required>
+                    <?php foreach ($daftar_lab as $lab) : ?>
+                      <option value='<?= $lab["id"] ?>' <?= $jadwal["id_lab"] == $lab["id"] ? "selected" : "" ?>>
+                        <?= $lab["nama"] ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label mb-1">Waktu Praktikum</label>
+                  <select class="form-select" name="waktu" aria-label="Select Waktu" required>
+                    <option selected hidden value="">Pilih Waktu</option>
+                    <?php foreach ($daftar_waktu as $waktu) : ?>
+                      <option value='<?= $waktu["id"] ?>' <?= $jadwal["id_waktu"] == $waktu["id"] ? "selected" : "" ?>>
+                        <?= $waktu["mulai"] ?> - <?= $waktu["selesai"] ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="submit_edit" class="btn btn-black">Simpan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
