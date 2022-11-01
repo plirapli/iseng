@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const int maxArr = 50;
+
 struct Mahasiswa
 {
   int nim;
@@ -11,17 +13,18 @@ struct Mahasiswa
 
 struct typequeue
 {
-  Mahasiswa mhs;
-  typequeue *next;
-} * antrianDepan, *antrianBelakang;
+  int belakang;
+  Mahasiswa mhs[maxArr];
+} queue;
 
 void buat();
 void enqueue(Mahasiswa newInfo);
 void dequeue();
 void cetak();
 
-// Cek kondisi antrian
-bool isEmpty() { return antrianDepan == NULL; }
+// Cek kondisi queue
+bool isEmpty() { return queue.belakang == 0; }
+bool isFull() { return queue.belakang == maxArr; }
 
 // Misc
 void pressAnyKey()
@@ -98,62 +101,49 @@ int main()
   return 0;
 }
 
-void buat()
-{
-  antrianDepan = new typequeue;
-  antrianDepan = NULL;
-  antrianBelakang = antrianDepan;
-}
+void buat() { queue.belakang = 0; }
 
 void enqueue(Mahasiswa newInfo)
 {
-  typequeue *newNode;
-
-  newNode = new typequeue;
-  newNode->mhs = newInfo;
-
-  if (antrianDepan == NULL)
-    antrianDepan = newNode;
+  if (isFull())
+    cout << "Queue Overflow! \n";
   else
-    antrianBelakang->next = newNode;
-
-  antrianBelakang = newNode;
-  antrianBelakang->next = NULL;
+  {
+    queue.belakang++;
+    queue.mhs[queue.belakang] = newInfo;
+  }
 }
 
 void dequeue()
 {
-  typequeue *hapus;
-
   if (isEmpty())
-    cout << "Queue masih kosong !";
+    cout << "Queue Underflow! \n";
   else
   {
-    hapus = antrianDepan;
+    Mahasiswa infoDequeue;
+    int i;
+
+    infoDequeue = queue.mhs[1];
 
     // Menampilkan Data yang mau dihapus
     cout << "Data yang akan dihapus: \n"
-         << "[" << hapus->mhs.nim << "] " << hapus->mhs.nama << "\n";
+         << "[" << infoDequeue.nim << "] " << infoDequeue.nama << "\n";
     pressAnyKey();
     cout << "\n\n";
 
-    antrianDepan = hapus->next;
-    delete hapus;
+    for (i = 1; i < queue.belakang; i++)
+      queue.mhs[i] = queue.mhs[i + 1];
+    queue.belakang--;
   }
 }
 
 void cetak()
 {
-  typequeue *bantu;
   int i = 1;
-
-  bantu = antrianDepan;
-  do
+  while (i <= queue.belakang)
   {
-    cout << i << ". [" << bantu->mhs.nim << "] "
-         << bantu->mhs.nama << "\n";
-    bantu = bantu->next;
+    cout << i << ". [" << queue.mhs[i].nim << "] "
+         << queue.mhs[i].nama << "\n";
     i++;
-  } while (bantu != NULL);
-  cout << "\n";
+  }
 }
