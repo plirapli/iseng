@@ -1,6 +1,13 @@
 <?php
 
-require '../utils/query_waktu.php';
+session_start();
+
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php?pesan=belum_login");
+  exit;
+}
+
+require 'utils/query_waktu.php';
 
 // Buat Read Table
 $waktu_praktikum = select_all_waktu();
@@ -34,10 +41,10 @@ if (isset($_GET["id"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Waktu</title>
   <link rel="shortcut icon" href="../assets/favicon/home.svg" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../assets/style.css" />
+  <link rel="stylesheet" href="./assets/style.css" />
 </head>
 
 <body>
@@ -52,7 +59,7 @@ if (isset($_GET["id"])) {
           </span>
         </span>
       </a>
-      <a class="nav-link text-white-50 d-flex align-items" href="../index.php">
+      <a class="nav-link text-white-50 d-flex align-items" href="login.php">
         <iconify-icon icon="heroicons-solid:logout" width="24"></iconify-icon>
         <span class="ms-2">Keluar</span>
       </a>
@@ -67,7 +74,7 @@ if (isset($_GET["id"])) {
       </div>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link nav-text nav-custom nav-home" aria-current="page" href="home.php">
+          <a class="nav-link nav-text nav-custom nav-home" aria-current="page" href="index.php">
             <iconify-icon icon="bx:home-alt-2" width="18"></iconify-icon>
             Home
           </a>

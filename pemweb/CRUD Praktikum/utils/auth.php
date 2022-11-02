@@ -1,40 +1,22 @@
 <?php
 
+session_start();
 require 'connection.php';
 
+$username = $_POST["username"];
+$password = $_POST["password"];
+
 // Query Data dari TB user (SELECT ALL)
-$query = "SELECT * FROM user";
+$query = "SELECT * FROM user WHERE `username` = '$username' AND `password` = '$password'";
 $result = mysqli_query($connection, $query);
 
-// Memasukkan hasil query ke dalam var rows
-$users = [];
-while ($user = mysqli_fetch_assoc($result)) {
-  $users[] = $user;
+
+// Cek Username
+if (mysqli_num_rows($result) === 1) {
+  $_SESSION["login"] = true;
+  header("Location: ../index.php");
+  exit;
 }
 
-$is_found = 0;
-
-function check($usn, $pwd)
-{
-  $in_usn = $_POST["username"];
-  $in_pwd = $_POST["pwd"];
-
-  return $in_usn == $usn && $in_pwd == $pwd ? 1 : 0;
-}
-
-for ($i = 0; $i < count($users); $i++) {
-  global $is_found;
-
-  $username = $users[$i]["username"];
-  $password = $users[$i]["password"];
-
-  if (check($username, $password) == 1) {
-    header("Location: ../pages/home.php");
-    $is_found = 1;
-    break;
-  }
-}
-
-if ($is_found == 0) {
-  header("Location: ../index.php?pesan=gagal");
-}
+header("Location: ../login.php?pesan=input_salah");
+exit;

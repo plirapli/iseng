@@ -188,11 +188,29 @@ main {
   width: fit-content;
 }
 
+.msg-box {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.msg-box.danger {
+  color: red;
+  background: rgba(255, 0, 0, 0.07);
+  border: 2px solid red;
+}
+
+.msg-box.success {
+  color: green;
+  background: rgba(0, 255, 0, 0.07);
+  border: 2px solid green;
+}
+
 /* Login */
 .login-container {
   width: 25rem;
 }
-/* Login */
+/* Login end */
 
 footer {
   width: 100%;
