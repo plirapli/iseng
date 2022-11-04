@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2022 at 10:26 PM
+-- Generation Time: Nov 04, 2022 at 07:19 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `jadwal` (
   `id` int(11) NOT NULL,
-  `mata_kuliah` varchar(50) NOT NULL,
+  `mata_kuliah` varchar(128) NOT NULL,
   `program_studi` varchar(2) NOT NULL,
   `id_lab` int(11) NOT NULL,
   `id_waktu` int(11) NOT NULL
@@ -40,9 +40,7 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`id`, `mata_kuliah`, `program_studi`, `id_lab`, `id_waktu`) VALUES
-(2, 'Pemrograman Web', 'IF', 1, 6),
-(3, 'Algo', 'IF', 5, 3),
-(5, 'Manajemen Basis Data', 'SI', 5, 6),
+(3, 'Algo', 'IF', 5, 1),
 (6, 'Implementasi Basis Data', 'IF', 1, 1);
 
 -- --------------------------------------------------------
@@ -53,7 +51,7 @@ INSERT INTO `jadwal` (`id`, `mata_kuliah`, `program_studi`, `id_lab`, `id_waktu`
 
 CREATE TABLE `lab` (
   `id` int(11) NOT NULL,
-  `nama` varchar(20) NOT NULL
+  `nama` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -64,7 +62,9 @@ INSERT INTO `lab` (`id`, `nama`) VALUES
 (1, 'Lab Basis Data'),
 (5, 'Lab Multimedia'),
 (7, 'Lab Komputasi'),
-(8, 'Lab Jaringan');
+(8, 'Lab Jaringan'),
+(10, 'Lab Geoinformatika'),
+(13, 'Lab Internet of Things (IoT)');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ INSERT INTO `lab` (`id`, `nama`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`) VALUES
-(1, 'rafli', '123');
+(1, 'rafli', '12345678');
 
 -- --------------------------------------------------------
 
@@ -103,8 +103,9 @@ CREATE TABLE `waktu` (
 
 INSERT INTO `waktu` (`id`, `mulai`, `selesai`) VALUES
 (1, '08:00:00', '10:00:00'),
-(3, '23:07:00', '13:11:00'),
-(6, '10:30:00', '00:30:00');
+(8, '10:30:00', '12:30:00'),
+(9, '13:00:00', '15:00:00'),
+(10, '15:30:00', '17:00:00');
 
 --
 -- Indexes for dumped tables
@@ -150,19 +151,19 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `lab`
 --
 ALTER TABLE `lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `waktu`
 --
 ALTER TABLE `waktu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

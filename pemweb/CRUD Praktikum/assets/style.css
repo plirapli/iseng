@@ -192,6 +192,8 @@ main {
   margin-bottom: 1rem;
   padding: 0.75rem;
   border-radius: 0.25rem;
+  background: rgba(0, 0, 0, 0.07);
+  border: 2px solid black;
 }
 
 .msg-box.danger {

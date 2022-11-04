@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION["login"])) {
-  header("Location: login.php?pesan=belum_login");
+  header("Location: index.php?pesan=belum_login");
   exit;
 }
 
@@ -35,7 +35,7 @@ if (isset($_GET["id"])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
   <meta charset="UTF-8">
@@ -51,7 +51,7 @@ if (isset($_GET["id"])) {
   <!-- NAVBAR -->
   <nav class="navbar nav-brand">
     <div class="container-fluid p-2 px-3">
-      <a class="navbar-brand d-flex align-items-center" href="/">
+      <a class="navbar-brand d-flex align-items-center" href="home.php">
         <span class="navbar-brand mb-0 h1 nav-brand-text">
           Praktikum IF
           <span class="text-block-custom">
@@ -59,7 +59,7 @@ if (isset($_GET["id"])) {
           </span>
         </span>
       </a>
-      <a class="nav-link text-white-50 d-flex align-items" href="login.php">
+      <a class="nav-link text-white-50 d-flex align-items" href="./utils/logout.php">
         <iconify-icon icon="heroicons-solid:logout" width="24"></iconify-icon>
         <span class="ms-2">Keluar</span>
       </a>
@@ -74,7 +74,7 @@ if (isset($_GET["id"])) {
       </div>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link nav-text nav-custom nav-home" aria-current="page" href="index.php">
+          <a class="nav-link nav-text nav-custom nav-home" aria-current="page" href="home.php">
             <iconify-icon icon="bx:home-alt-2" width="18"></iconify-icon>
             Home
           </a>
@@ -119,9 +119,6 @@ if (isset($_GET["id"])) {
                   <?= $waktu["selesai"]; ?>
                 </td>
                 <td class="text-center">
-                  <!-- <a class="btn btn-dark pb-0 px-2" href="lab.php?id=<?= $waktu["id"] ?>">
-                    <iconify-icon icon="bx:pencil" width="24"></iconify-icon>
-                  </a> -->
                   <a class="btn btn-danger pb-0 px-2" href="waktu.php?id=<?= $waktu["id"] ?>">
                     <iconify-icon icon="bx:trash" width="24"></iconify-icon>
                   </a>

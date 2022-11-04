@@ -3,5 +3,5 @@
 session_start();
 session_destroy();
 
-header("Location: ../login.php?pesan=logout");
+header("Location: ../index.php?pesan=logout");
 exit;

@@ -18,5 +18,5 @@ if (mysqli_num_rows($result) === 1) {
   exit;
 }
 
-header("Location: ../login.php?pesan=input_salah");
+header("Location: ../index.php?pesan=input_salah");
 exit;
