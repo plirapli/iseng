@@ -1,13 +1,14 @@
 #include <iostream>
-
 using namespace std;
 
+// Menyimpan data buah
 struct buah
 {
   string nama;
   int harga;
 } databuah[100];
 
+// Fungsi Lihat Buah
 void outputBuah(int jml)
 {
   system("cls");
@@ -19,6 +20,7 @@ void outputBuah(int jml)
          << "Harga buah : " << databuah[i].harga << "\n\n";
 }
 
+// Fungsi Cari Buah
 int searching(int jml, string input)
 {
   for (int i = 0; i < jml; i++)
@@ -42,6 +44,7 @@ int main()
          << "input : ";
     cin >> input;
 
+    // Menu Input Buah
     if (input == '1')
     {
       system("cls");
@@ -60,10 +63,12 @@ int main()
         cout << "\n";
       }
     }
+
+    // Menu Lihat Buah
     else if (input == '2')
-    {
       outputBuah(jml);
-    }
+
+    // Menu BeliBuah
     else
     {
       string inputNama;
@@ -75,8 +80,9 @@ int main()
       cout << "Pilih Nama Buah: ";
       getline(cin, inputNama);
 
-      index = searching(jml, inputNama);
+      index = searching(jml, inputNama); // Mencari buah yang ingin dibeli
 
+      // Jika buah ditemukan, maka masukkan jumlah buah yg ingin dibeli
       if (index != -1)
       {
         cout << "Masukkan jumlah: ";

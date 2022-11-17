@@ -17,10 +17,10 @@ struct typequeue
   Mahasiswa mhs[maxArr];
 } queue;
 
-void buat();
-void enqueue(Mahasiswa newInfo);
-void dequeue();
-void cetak();
+void buat();                     // Untuk menginisiasi antrian
+void enqueue(Mahasiswa newInfo); // Menambah antrian
+void dequeue();                  // Menghapus antrian
+void cetak();                    // Mencetak antrian
 
 // Cek kondisi queue
 bool isEmpty() { return queue.belakang == 0; }
@@ -109,8 +109,8 @@ void enqueue(Mahasiswa newInfo)
     cout << "Queue Overflow! \n";
   else
   {
-    queue.belakang++;
-    queue.mhs[queue.belakang] = newInfo;
+    queue.belakang++;                    // Menambah antrian
+    queue.mhs[queue.belakang] = newInfo; // Memasukkan data ke antrian paling belakang
   }
 }
 

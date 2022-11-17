@@ -15,10 +15,10 @@ struct typequeue
   typequeue *next;
 } * antrianDepan, *antrianBelakang;
 
-void buat();
-void enqueue(Mahasiswa newInfo);
-void dequeue();
-void cetak();
+void buat();                     // Untuk menginisiasi antrian
+void enqueue(Mahasiswa newInfo); // Menambah antrian
+void dequeue();                  // Menghapus antrian
+void cetak();                    // Mencetak antrian
 
 // Cek kondisi antrian
 bool isEmpty() { return antrianDepan == NULL; }
@@ -109,15 +109,17 @@ void enqueue(Mahasiswa newInfo)
 {
   typequeue *newNode;
 
+  // Membuat node baru
   newNode = new typequeue;
   newNode->mhs = newInfo;
 
+  // Kalo antrian depan gaada, node baru jadi antrian depan
   if (antrianDepan == NULL)
     antrianDepan = newNode;
-  else
+  else // Kalo antrian depan ada, node baru ditaro di antrian paling belakang
     antrianBelakang->next = newNode;
 
-  antrianBelakang = newNode;
+  antrianBelakang = newNode; // Node baru jadi antrian paling belakang
   antrianBelakang->next = NULL;
 }
 
@@ -137,8 +139,8 @@ void dequeue()
     pressAnyKey();
     cout << "\n\n";
 
-    antrianDepan = hapus->next;
-    delete hapus;
+    antrianDepan = hapus->next; // antrian paling depan pindah ke belakangnya
+    delete hapus;               // menghapus antrian paling depan
   }
 }
 

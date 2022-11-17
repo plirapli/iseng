@@ -22,9 +22,11 @@ void create()
   head = new Node;
   tail = new Node;
 
+  // Mendeklarasikan kepala
   head->Buah.harga = -2147483647;
   head->next = tail;
 
+  // Mendeklarasikan ekor
   tail->Buah.harga = 2147483647;
   tail->next = NULL;
 }
@@ -33,6 +35,7 @@ void sisipNode(IngfoBuah newIngfo)
 {
   Node *newNode, *bantu;
 
+  // Bikin node baru
   newNode = new Node;
   newNode->Buah = newIngfo;
 
@@ -41,7 +44,7 @@ void sisipNode(IngfoBuah newIngfo)
   while (newIngfo.harga > bantu->next->Buah.harga)
     bantu = bantu->next;
 
-  newNode->next = bantu->next; // Sisip di tengah
+  newNode->next = bantu->next; // Sisip
   bantu->next = newNode;
 }
 
