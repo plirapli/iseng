@@ -1,0 +1,14 @@
+html 
+  body
+    h1 Daftar Produk:
+    table 
+      tr 
+        td ID
+        td Nama
+        td Harga
+      each product in results
+        tr 
+          td #{product.ProductID} 
+          td 
+            a(href=`${product.ProductID}`) #{product.ProductName}
+          td $#{product.UnitPrice}

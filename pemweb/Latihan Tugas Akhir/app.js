@@ -1,7 +1,8 @@
 // Import Modul
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const connection = require('./config/database');
 const app = express();
 const port = process.env.PORT || '3001';
 
@@ -9,15 +10,42 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 
 // Untuk keperluan upload data dari form
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.json({ message: "ok" });
+app.get('/', (req, res) => {
+  // buat query sql
+  const command = 'SELECT * FROM categories';
+
+  // Querying
+  connection.query(command, (err, results, field) => {
+    // Error handling
+    if (err) {
+      return res.status(500).json({ message: 'Ada kesalahan', error: err });
+    }
+
+    // jika request berhasil
+    // res.status(200).json({ data: results });
+    res.render('kategori', { results });
+  });
+});
+
+app.get('/:category', (req, res) => {
+  // buat query sql
+  const category = req.params.category;
+  const command = `SELECT * FROM products WHERE CategoryID = ${category}`;
+
+  // Querying
+  connection.query(command, (err, results, field) => {
+    // Error handling
+    if (err) {
+      return res.status(500).json({ message: 'Ada kesalahan', error: err });
+    }
+
+    // jika request berhasil
+    // res.status(200).json({ data: results });
+    res.render('produk', { results });
+  });
 });
 
 app.get('/contoh-2/:num1/:num2', function (req, res) {
