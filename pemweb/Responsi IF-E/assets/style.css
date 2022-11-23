@@ -1,0 +1,17 @@
+.bg-biru {
+  background: #64aeeb;
+}
+
+.text-biru {
+  color: #64aeeb;
+}
+
+.btn-biru {
+  background: #64aeeb;
+  border-color: #64aeeb;
+}
+
+.btn-biru:hover {
+  background: #386488;
+  border-color: #386488;
+}
