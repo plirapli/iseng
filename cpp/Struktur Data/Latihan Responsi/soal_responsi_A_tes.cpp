@@ -5,7 +5,7 @@ struct pendaftar
 {
   string nama, nomor, alamat;
   pendaftar *next;
-} * antrianDepan, *antrianBelakang;
+} * queueAwal, *queueAkhir;
 
 struct sembako
 {
@@ -16,14 +16,14 @@ struct sembako
 char loop = 'y';
 
 void buatstack();
-bool stackkosong();
+bool stackkosong() { return stackBawah == NULL; }
 void push(sembako IB);
 void pop();
 void cetakstack();
 int jumlahstack();
 
 void buatqueue();
-bool queuekosong();
+bool queuekosong() { return queueAwal == NULL; }
 void enqueue(pendaftar IB);
 void dequeue();
 void cetakqueue();
@@ -54,7 +54,7 @@ int main()
     {
       sembako temp;
 
-      cout << "Tambah Sembako \n";
+      cout << "Tambah Sembako: \n";
 
       cin.ignore();
       cout << "Merk > ";
@@ -68,7 +68,7 @@ int main()
     {
       pendaftar temp;
 
-      cout << "Pendaftaran Sembako \n";
+      cout << "Pendaftaran Antrian Sembako: \n";
 
       cin.ignore();
       cout << "Nama > ";
@@ -76,8 +76,8 @@ int main()
 
       cout << "Nomor > ";
       cin >> temp.nomor;
-      cin.ignore();
 
+      cin.ignore();
       cout << "Alamat > ";
       getline(cin, temp.alamat);
 
@@ -109,7 +109,7 @@ int main()
 
     if (loop == 'y' || loop == 'Y')
     {
-      printf("Kembali ke menu? (y/n) ");
+      printf("\nKembali ke menu? (y/n) > ");
       cin >> loop;
     }
   }
@@ -122,8 +122,6 @@ void buatstack()
   stackAtas = NULL;
   stackBawah = stackAtas;
 }
-
-bool stackkosong() { return stackBawah == NULL; }
 
 void push(sembako IB)
 {
@@ -145,24 +143,26 @@ void push(sembako IB)
     stackAtas->atas = NS;
     NS->bawah = stackAtas;
     stackAtas = NS;
+    cout << "Berhasil ditambahkan! \n";
   }
 }
 
 void pop()
 {
-  sembako *hapus;
-
   if (stackkosong())
-    cout << "Stack kosong! \n";
+  {
+    cout << "Sembako masih kosong! \n";
+  }
   else
   {
+    sembako *hapus;
     hapus = stackAtas;
 
     cout << "Sembako: " << hapus->merk << "\n";
 
     stackAtas = stackAtas->bawah;
     stackAtas->atas = NULL;
-    delete hapus;
+    free(hapus);
   }
 }
 
@@ -170,18 +170,17 @@ void cetakstack()
 {
   if (stackkosong())
   {
-    cout << "Sembako belum ada! \n";
+    cout << "Sembako masih kosong! \n";
   }
   else
   {
     sembako *bantu;
     int no = 1;
 
-    cout << "Dari tumpukan paling bawah: \n";
     bantu = stackBawah;
     while (bantu != NULL)
     {
-      cout << no++ << ". " << bantu->merk << '\n';
+      cout << no++ << ". " << bantu->merk << "\n";
       bantu = bantu->atas;
     }
   }
@@ -195,8 +194,8 @@ int jumlahstack()
   bantu = stackBawah;
   while (bantu != NULL)
   {
-    bantu = bantu->atas;
     jml++;
+    bantu = bantu->atas;
   }
 
   return jml;
@@ -204,43 +203,44 @@ int jumlahstack()
 
 void buatqueue()
 {
-  antrianDepan = NULL;
-  antrianBelakang = antrianDepan;
+  queueAwal = NULL;
+  queueAkhir = queueAwal;
 }
-
-bool queuekosong() { return antrianDepan == NULL; }
 
 void enqueue(pendaftar IB)
 {
-  pendaftar *NB;
+  pendaftar *NQ;
 
-  NB = new pendaftar;
-  *NB = IB;
-  NB->next = NULL;
+  NQ = new pendaftar;
+  *NQ = IB;
+  NQ->next = NULL;
 
   if (queuekosong())
-    antrianDepan = NB;
+  {
+    queueAwal = NQ;
+  }
   else
-    antrianBelakang->next = NB;
+  {
+    queueAkhir->next = NQ;
+  }
 
-  // Nandain antrian belakang
-  antrianBelakang = NB;
+  queueAkhir = NQ;
 }
 
 void dequeue()
 {
-  pendaftar *hapus;
-
   if (queuekosong())
-    cout << "Pendaftar masih kosong! \n";
+  {
+    cout << "Antrian masih kosong! \n";
+  }
   else
   {
-    hapus = antrianDepan;
+    pendaftar *hapus;
+    hapus = queueAwal;
 
-    // Menampilkan Data yang mau dihapus
     cout << "Nama: " << hapus->nama << "\n";
 
-    antrianDepan = hapus->next;
+    queueAwal = queueAwal->next;
     free(hapus);
   }
 }
@@ -249,21 +249,21 @@ void cetakqueue()
 {
   if (queuekosong())
   {
-    cout << "Pendaftar masih kosong! \n";
+    cout << "Antrian masih kosong! \n";
   }
   else
   {
     pendaftar *bantu;
     int no = 1;
 
-    bantu = antrianDepan;
-    do
+    bantu = queueAwal;
+    while (bantu != NULL)
     {
-      cout << no++ << ". "
-           << bantu->nama << ", "
-           << bantu->alamat << ", "
-           << bantu->nomor << "\n";
+      cout << no++ << ". \n"
+           << "Nama: " << bantu->nama << "\n"
+           << "No. : " << bantu->nomor << "\n"
+           << "Alamat : " << bantu->alamat << "\n\n";
       bantu = bantu->next;
-    } while (bantu != NULL);
+    }
   }
 }
