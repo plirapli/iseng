@@ -1,6 +1,9 @@
 html 
   body
     h1 Daftar Produk:
+    a(href='/') Kembali
+    br
+    br
     table 
       tr 
         td ID
@@ -10,5 +13,5 @@ html
         tr 
           td #{product.ProductID} 
           td 
-            a(href=`${product.ProductID}`) #{product.ProductName}
+            a(href=`/produk/${product.ProductID}`) #{product.ProductName}
           td $#{product.UnitPrice}

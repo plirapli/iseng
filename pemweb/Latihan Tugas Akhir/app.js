@@ -23,17 +23,33 @@ app.get('/', (req, res) => {
     if (err) {
       return res.status(500).json({ message: 'Ada kesalahan', error: err });
     }
-
     // jika request berhasil
-    // res.status(200).json({ data: results });
     res.render('kategori', { results });
   });
 });
 
-app.get('/:category', (req, res) => {
+app.get('/kategori/:category', (req, res) => {
   // buat query sql
   const category = req.params.category;
   const command = `SELECT * FROM products WHERE CategoryID = ${category}`;
+
+  // Query
+  connection.query(command, (err, results, field) => {
+    // Error handling
+    if (err) {
+      return res.status(500).json({ message: 'Ada kesalahan', error: err });
+    }
+    res.render('produk', { results });
+  });
+});
+
+app.get('/produk/:productId', (req, res) => {
+  // buat query sql
+  const product = req.params.productId;
+  const command = `SELECT * FROM products p 
+                   INNER JOIN categories c ON p.CategoryID = c.CategoryID 
+                   INNER JOIN suppliers s ON p.SupplierID = s.SupplierID
+                   WHERE ProductID = ${product}`;
 
   // Querying
   connection.query(command, (err, results, field) => {
@@ -43,8 +59,7 @@ app.get('/:category', (req, res) => {
     }
 
     // jika request berhasil
-    // res.status(200).json({ data: results });
-    res.render('produk', { results });
+    res.render('produk_detail', { product: results[0] });
   });
 });
 

@@ -1,0 +1,47 @@
+html 
+  body
+    h1 Daftar Produk:
+    a(href=`/kategori/${product.CategoryID}`) Kembali
+    br
+    br
+    table 
+      tr 
+        td Product ID
+        td :
+        td #{product.ProductID} 
+      tr 
+        td Product Name
+        td :
+        td #{product.ProductName} 
+      tr 
+        td Supplier
+        td :
+        td #{product.CompanyName} 
+      tr 
+        td Category
+        td :
+        td #{product.CategoryName}
+      tr 
+        td Qty per Unit
+        td :
+        td #{product.QuantityPerUnit}
+      tr 
+        td Unit Price
+        td :
+        td #{product.UnitPrice}
+      tr 
+        td Units in Stock
+        td :
+        td #{product.UnitsInStock}
+      tr 
+        td Units on Order
+        td :
+        td #{product.UnitsOnOrder}
+      tr 
+        td ReorderLevel
+        td :
+        td #{product.ReorderLevel}
+      tr 
+        td Discontinued
+        td :
+        td #{product.Discontinued ? 'Yes' : 'No'}
