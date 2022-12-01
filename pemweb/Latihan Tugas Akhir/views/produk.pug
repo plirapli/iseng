@@ -1,17 +1,25 @@
 html 
   body
     h1 Daftar Produk:
-    a(href='/') Kembali
-    br
-    br
     table 
-      tr 
-        td ID
-        td Nama
-        td Harga
-      each product in results
-        tr 
-          td #{product.ProductID} 
-          td 
-            a(href=`/produk/${product.ProductID}`) #{product.ProductName}
-          td $#{product.UnitPrice}
+      thead 
+        tr
+          td(colspan="2")
+            a(href='/') Kembali
+            br
+            br
+          td
+            a(href='/shopping-cart') Cart
+            br
+            br
+        tr
+          th ID
+          th Nama
+          th Harga
+      tbody 
+        each product in results
+          tr 
+            td #{product.ProductID} 
+            td 
+              a(href=`/produk/${product.ProductID}`) #{product.ProductName}
+            td $#{product.UnitPrice}

@@ -1,6 +1,9 @@
 html 
   body
     h1 Kategori:
+    a(href='/shopping-cart') Cart
+    br
+    br
     each category in results
       a(href=`kategori/${category.CategoryID}`) #{category.CategoryName}
       br

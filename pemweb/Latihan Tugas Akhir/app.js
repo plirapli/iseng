@@ -1,21 +1,42 @@
 // Import Modul
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const sessions = require('express-session');
 const connection = require('./config/database');
+
+// Init express app
 const app = express();
 const port = process.env.PORT || '3001';
+
+// Set session expire
+const maxAge =
+  //session middleware
+  app.use(
+    sessions({
+      secret: '1234567890',
+      saveUninitialized: false,
+      resave: false,
+      cookie: {
+        secure: false,
+        expires: false,
+        maxAge: 24 * 60 * 60 * 1000,
+      },
+    })
+  );
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 
 // Untuk keperluan upload data dari form
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+/* ROUTES */
 app.get('/', (req, res) => {
   // buat query sql
   const command = 'SELECT * FROM categories';
+  console.log(req.session);
 
   // Querying
   connection.query(command, (err, results, field) => {
@@ -63,18 +84,23 @@ app.get('/produk/:productId', (req, res) => {
   });
 });
 
-app.get('/contoh-2/:num1/:num2', function (req, res) {
-  const num1 = parseInt(req.params.num1);
-  const num2 = parseInt(req.params.num2);
-  const hasil = num1 + num2;
+const Carts = [];
 
-  res.render('contoh_2', { num1, num2, hasil });
+// memproses form
+app.post('/proses-cart', (req, res) => {
+  Carts.push(req.body);
+
+  req.session.cart = JSON.stringify(Carts);
+  res.redirect('/');
 });
 
-// menanpilkan contoh form
-app.get('/contoh-form', (req, res) => {
-  res.render('contoh_form');
+app.get('/shopping-cart', (req, res) => {
+  const sessionCart = req.session.cart;
+  const shoppingCart = JSON.parse(sessionCart);
+
+  res.render('cart', { shoppingCart });
 });
+/* END ROUTES */
 
 // memproses form
 app.post('/proses-form', (req, res) => {

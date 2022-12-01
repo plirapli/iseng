@@ -1,0 +1,8 @@
+html 
+  body
+    h1 Keranjang:
+    a(href='/') kembali
+    br
+    br
+    each cart in shoppingCart
+      p #{cart.productID}, #{cart.qty}
