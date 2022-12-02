@@ -1,8 +1,28 @@
 html 
   body
     h1 Keranjang:
-    a(href='/') kembali
+    a(href='/') Kembali
     br
     br
-    each cart in shoppingCart
-      p #{cart.productID}, #{cart.qty}
+    table 
+      thead
+        tr
+          th ID
+          th Nama
+          th Jumlah
+          th Harga
+          th Subtotal
+      tbody 
+        each cart in shoppingCart
+          tr
+            td #{cart.productID}
+            td #{cart.productName}
+            td #{cart.qty}
+            td $#{cart.unitPrice}
+            td $#{cart.qty * cart.unitPrice}
+        tr
+          td &nbsp;
+        tr
+          td(colspan="4" style="font-weight: bold") Total
+          td $#{total}
+            

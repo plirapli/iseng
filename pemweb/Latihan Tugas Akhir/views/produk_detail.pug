@@ -2,7 +2,6 @@ html
   body
     h1 Daftar Produk:
     a(href=`/kategori/${product.CategoryID}`) Kembali
-    a(href=`/`, style="margin-left: 2rem") Cart
     br
     br
     form(action="/proses-cart", method="POST")
@@ -20,7 +19,13 @@ html
         tr 
           td Product Name
           td :
-          td #{product.ProductName} 
+          td
+            input(
+              name="productName", 
+              value=`${product.ProductName}`,
+              readonly,
+              style="border: none; outline: none; width: 2rem"
+            ) 
         tr 
           td Supplier
           td :
@@ -36,7 +41,13 @@ html
         tr 
           td Unit Price
           td :
-          td #{product.UnitPrice}
+          td $
+            input(
+              name="unitPrice", 
+              value=`${product.UnitPrice}`,
+              readonly,
+              style="border: none; outline: none; width: 2rem"
+            ) 
         tr 
           td Units in Stock
           td :

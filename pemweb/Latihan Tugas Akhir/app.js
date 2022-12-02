@@ -10,20 +10,20 @@ const app = express();
 const port = process.env.PORT || '3001';
 
 // Set session expire
-const maxAge =
-  //session middleware
-  app.use(
-    sessions({
-      secret: '1234567890',
-      saveUninitialized: false,
-      resave: false,
-      cookie: {
-        secure: false,
-        expires: false,
-        maxAge: 24 * 60 * 60 * 1000,
-      },
-    })
-  );
+// const maxAge =
+//session middleware
+app.use(
+  sessions({
+    secret: '1234567890',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+      secure: false,
+      expires: false,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -36,7 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
   // buat query sql
   const command = 'SELECT * FROM categories';
-  console.log(req.session);
 
   // Querying
   connection.query(command, (err, results, field) => {
@@ -91,28 +90,21 @@ app.post('/proses-cart', (req, res) => {
   Carts.push(req.body);
 
   req.session.cart = JSON.stringify(Carts);
-  res.redirect('/');
+  res.render('success_cart');
 });
 
 app.get('/shopping-cart', (req, res) => {
-  const sessionCart = req.session.cart;
+  const sessionCart = req.session.cart || '[]';
   const shoppingCart = JSON.parse(sessionCart);
+  let totalCost = 0;
 
-  res.render('cart', { shoppingCart });
+  shoppingCart.map((cart) => {
+    totalCost += cart.unitPrice * cart.qty;
+  });
+
+  res.render('cart', { shoppingCart, total: totalCost });
 });
 /* END ROUTES */
-
-// memproses form
-app.post('/proses-form', (req, res) => {
-  console.log(req.body);
-
-  // kirim data form ke UI
-  res.render('proses_form', {
-    nama: req.body.nama,
-    alamat: req.body.alamat,
-    kota: req.body.kota,
-  });
-});
 
 app.listen(port, () => {
   console.log('Server jalan di port ' + port);
