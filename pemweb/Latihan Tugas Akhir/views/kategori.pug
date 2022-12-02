@@ -1,9 +1,13 @@
 html 
   body
-    h1 Kategori:
+    h1 Selamat Datang:
     a(href='/shopping-cart') Cart
     br
     br
-    each category in results
-      a(href=`kategori/${category.CategoryID}`) #{category.CategoryName}
-      br
+    table
+      tr
+        th(style="text-align: left;") Daftar Kategori:
+      each category in results
+        tr
+          td
+            a(href=`kategori/${category.CategoryID}`) #{category.CategoryName}
