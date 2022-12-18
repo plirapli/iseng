@@ -1,6 +1,6 @@
 <?php
-echo "<b>UAS</b> <a href='uts.php'>UTS</a> <br><br>";
-echo "UAS 2021-2022 <br>";
+echo "<a href='uas.php'>UAS</a> <b>UTS</b> <br><br>";
+echo "UTS 2021-2022 <br>";
 
 $connect = new mysqli('localhost', 'root', '', 'nwind');
 
@@ -16,7 +16,7 @@ while ($row = $query_1->fetch_assoc()) {
 }
 echo "<br>";
 
-$sql_2 = "SELECT * FROM customers WHERE ContactName LIKE 'R%'";
+$sql_2 = "SELECT * FROM customers WHERE ContactName LIKE 'L%'";
 $query_2 = $connect->query($sql_2);
 
 echo "2. Tuliskanlah kode program PHP sesingkat mungkin untuk membuat web yang akan menampilkan daftar pelanggan dari database NWIND yang ContactName-nya diawali dengan huruf “R”! <br><br>";
