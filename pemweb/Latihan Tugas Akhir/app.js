@@ -1,7 +1,6 @@
 // Import Modul
 require('dotenv').config();
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const sessions = require('express-session');
 const connection = require('./config/database');
 
