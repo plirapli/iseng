@@ -1,6 +1,8 @@
 <?php
-echo "<b>UAS</b> <a href='uts.php'>UTS</a>" .
-  "<h2>UAS 2021-2022</h2>";
+echo "<b>UAS 2021/2021</b> <br>" .
+  "<a href='uas_22_23_no_1.php'>UAS 2022/2023</a> <br>" .
+  "<a href='uts_21_22.php'>UTS 2021/2022</a>";
+echo "<h2>UAS 2021/2022</h2>";
 
 $connect = new mysqli('localhost', 'root', '', 'nwind');
 
