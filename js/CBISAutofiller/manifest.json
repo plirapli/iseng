@@ -1,0 +1,13 @@
+{
+  "name": "CBIS Autofiller",
+  "description": "Autofill CBIS.",
+  "version": "0.1",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["http://fti.upnyk.ac.id/"],
+      "js": ["app.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
