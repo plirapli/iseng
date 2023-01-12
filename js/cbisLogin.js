@@ -10,16 +10,22 @@ if (
   const captcha = document.querySelector("input[name='fcaptcha']");
   const form = document.querySelector('form');
 
+  // Dapetin nim sama pin dari local storage
   const nim = localStorage.getItem(NIM);
   let pin = localStorage.getItem(PIN);
-  if (!pin) pin = 0;
+
+  let pinVal;
+  if (pin < 10) pinVal = '000' + pin;
+  else if (pin < 100) pinVal = '00' + pin;
+  else if (pin < 1000) pinVal = '0' + pin;
 
   if (nimEl) {
     pin++;
 
+    // Ngubah value form
     nimEl.value = nim;
     captcha.value = 1;
-    pinEl.value = pin;
+    pinEl.value = pinVal;
 
     if (typeof Storage !== undefined) localStorage.setItem(PIN, pin);
     form.submit();
