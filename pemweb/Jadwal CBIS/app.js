@@ -20,21 +20,26 @@ for (const cell of cells) {
   const jurusan = cell.querySelector('td:nth-child(2)').textContent;
   const kode = cell.querySelector('td:nth-child(3)').textContent;
   const nama = cell.querySelector('td:nth-child(4)').textContent;
+  const sks = cell.querySelector('td:nth-child(5)').textContent;
   const kelas = cell.querySelector('td:nth-child(6)').textContent;
   const hari = cell.querySelector('td:nth-child(8)').textContent;
   const jam = cell.querySelector('td:nth-child(9)').textContent;
-  const dosen = cell.querySelector('td:nth-child(10)').textContent;
+  const ruangan = cell.querySelector('td:nth-child(10)').textContent;
+  const dosen = cell.querySelector('td:nth-child(11)').textContent;
   const condition =
-    selectedMK.some((mk) => mk === kode) && jurusan === 'INFORMATIKA';
+    selectedMK.some((mk) => mk === kode) &&
+    jurusan === 'INFORMATIKA' &&
+    kelas !== 'IF-H';
 
   if (condition) {
     const element = `
       <tr class="cell">
         <td>${kode}</td>
-        <td>${nama}</td>
+        <td>${sks} - ${nama}</td>
         <td>${kelas}</td>
         <td>${hari}</td>
         <td>${jam}</td>
+        <td>${ruangan}</td>
         <td>${dosen}</td>
       </tr>
     `;
@@ -49,6 +54,7 @@ tableHead.innerHTML = `
     <th>Kls</th>
     <th>Hari</th>
     <th>Jam</th>
+    <th>Ruangan</th>
     <th>Pasangan</th>
   </tr>
 `;
