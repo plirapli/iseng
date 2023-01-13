@@ -20,14 +20,13 @@ if (
   else if (pin < 1000) pinVal = '0' + pin;
 
   if (nimEl) {
-    pin++;
-
     // Ngubah value form
     nimEl.value = nim;
     captcha.value = 1;
     pinEl.value = pinVal;
 
     if (typeof Storage !== undefined) localStorage.setItem(PIN, pin);
+    pin++;
     form.submit();
   }
 }
