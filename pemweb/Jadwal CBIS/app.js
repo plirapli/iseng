@@ -10,52 +10,81 @@ const selectedMK = [
   '123210321',
   '100210082',
 ];
+const condition = (kode) => {
+  return selectedMK.some((mk) => mk === kode);
+};
 
-const tableBody = document.querySelector('table tbody');
-const tableHead = document.querySelector('table thead');
-const cells = [...document.querySelectorAll('.cell')];
-let filteredCellsEl = '';
+const table = document.querySelector('table');
+const tableBody = document.querySelectorAll('table tbody')[0];
+const tableUjianBody = document.querySelectorAll('table tbody')[1];
+const cells = [...tableBody.querySelectorAll('.cell')];
+const cellsUjian = [...tableUjianBody.querySelectorAll('.cell')];
 
-for (const cell of cells) {
-  const jurusan = cell.querySelector('td:nth-child(2)').textContent;
-  const kode = cell.querySelector('td:nth-child(3)').textContent;
-  const nama = cell.querySelector('td:nth-child(4)').textContent;
-  const sks = cell.querySelector('td:nth-child(5)').textContent;
-  const kelas = cell.querySelector('td:nth-child(6)').textContent;
-  const hari = cell.querySelector('td:nth-child(8)').textContent;
-  const jam = cell.querySelector('td:nth-child(9)').textContent;
-  const ruangan = cell.querySelector('td:nth-child(10)').textContent;
-  const dosen = cell.querySelector('td:nth-child(11)').textContent;
-  const condition =
-    selectedMK.some((mk) => mk === kode) &&
-    jurusan === 'INFORMATIKA' &&
-    kelas !== 'IF-H';
+let filteredCellsEl = '',
+  filteredCellsUjianEl = '';
 
-  if (condition) {
-    const element = `
-      <tr class="cell">
-        <td>${kode}</td>
-        <td>${sks} - ${nama}</td>
-        <td>${kelas}</td>
-        <td>${hari}</td>
-        <td>${jam}</td>
-        <td>${ruangan}</td>
-        <td>${dosen}</td>
-      </tr>
-    `;
-    filteredCellsEl += element;
+if (cells.length) {
+  table.style.width = '100%';
+
+  for (const cell of cells) {
+    const [, jurusan, kode, nama, sks, kelas, , hari, jam, ruangan, dosen] =
+      Array.from(
+        cell.querySelectorAll('td'),
+        (cellText) => cellText.textContent
+      );
+
+    if (condition(kode) && jurusan === 'INFORMATIKA' && kelas !== 'IF-H') {
+      const element = `
+        <tr class="cell">
+          <td style='padding: 0.5rem;'>${kode}</td>
+          <td style='padding: 0.5rem;'>${sks} - ${nama}</td>
+          <td style='padding: 0.5rem;'>${kelas}</td>
+          <td style='padding: 0.5rem;'>${hari}</td>
+          <td style='padding: 0.5rem;'>${jam}</td>
+          <td style='padding: 0.5rem;'>${ruangan}</td>
+          <td style='padding: 0.5rem;'>${dosen}</td>
+        </tr>`;
+      filteredCellsEl += element;
+    }
   }
-}
 
-tableHead.innerHTML = `
-  <tr class="header hijau">
-    <th>Kode MK</th>
-    <th>Nama MK</th>
-    <th>Kls</th>
-    <th>Hari</th>
-    <th>Jam</th>
-    <th>Ruangan</th>
-    <th>Pasangan</th>
-  </tr>
-`;
-tableBody.innerHTML = filteredCellsEl;
+  for (const cell of cellsUjian) {
+    let [, kode, nama, sks, kelas, ...info] = Array.from(
+      cell.querySelectorAll('td'),
+      (cellText) => cellText.textContent
+    );
+
+    kode = kode.split(' ')[0];
+
+    if (condition(kode) && kelas !== 'IF-H') {
+      const element = `
+        <tr class="cell">
+          <td style='padding: 0.5rem'>${kode}</td>
+          <td style='padding: 0.5rem'>${sks} - ${nama}</td>
+          <td style='padding: 0.5rem'>${kelas}</td>
+        </tr>`;
+      filteredCellsUjianEl += element;
+    }
+  }
+
+  const tableHead = `
+    <tr class="header hijau">
+      <th style="padding: 0.5rem">Kode MK</th>
+      <th style="padding: 0.5rem">SKS - Nama MK</th>
+      <th style="padding: 0.5rem">Kls</th>
+      <th style="padding: 0.5rem">Hari</th>
+      <th style="padding: 0.5rem">Jam</th>
+      <th style="padding: 0.5rem">Ruangan</th>
+      <th style="padding: 0.5rem">Pasangan</th>
+    </tr>`;
+
+  const tableUjianHead = `
+    <tr class="header hijau">
+      <th>KODE MK</th>
+      <th>SKS - NAMA MK</th>
+      <th>KELAS</th>
+    </tr>`;
+
+  tableBody.innerHTML = tableHead + filteredCellsEl;
+  tableUjianBody.innerHTML = tableUjianHead + filteredCellsUjianEl;
+}
