@@ -1,5 +1,10 @@
-const body = document.querySelector('body');
+const table = document.querySelector('table');
+const domParser = (text) => {
+  const parser = new DOMParser();
+  return parser.parseFromString(text, 'text/html');
+};
 
+// Fetch jadwal
 fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -28,8 +33,7 @@ fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
     };
 
     // Convert the HTML string into a document object
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(data, 'text/html');
+    const doc = domParser(data);
 
     // Table
     const tableBody = doc.querySelectorAll('table tbody')[0];
@@ -52,13 +56,14 @@ fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
         if (condition(kode) && jurusan === 'INFORMATIKA' && kelas !== 'IF-H') {
           const element = `
             <tr class="cell">
-              <td style='padding: 0.5rem;'>${kode}</td>
-              <td style='padding: 0.5rem;'>${sks} - ${nama}</td>
-              <td style='padding: 0.5rem;'>${kelas}</td>
-              <td style='padding: 0.5rem;'>${hari}</td>
-              <td style='padding: 0.5rem;'>${jam}</td>
-              <td style='padding: 0.5rem;'>${ruangan}</td>
-              <td style='padding: 0.5rem;'>${dosen}</td>
+              <td class="text-center">${kode}</td>
+              <td class="text-center">${sks}</td>
+              <td>${nama}</td>
+              <td class="text-center">${kelas}</td>
+              <td class="text-center">${hari}</td>
+              <td class="text-center">${jam}</td>
+              <td class="text-center">${ruangan}</td>
+              <td>${dosen}</td>
             </tr>`;
           filteredCellsEl += element;
         }
@@ -84,14 +89,15 @@ fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
       }
 
       const tableHead = `
-        <tr class="header hijau">
-          <th style="padding: 0.5rem">Kode MK</th>
-          <th style="padding: 0.5rem">SKS - Nama MK</th>
-          <th style="padding: 0.5rem">Kls</th>
-          <th style="padding: 0.5rem">Hari</th>
-          <th style="padding: 0.5rem">Jam</th>
-          <th style="padding: 0.5rem">Ruangan</th>
-          <th style="padding: 0.5rem">Pasangan</th>
+        <tr>
+          <th class="text-center">Kode MK</th>
+          <th class="text-center">SKS</th>
+          <th>Nama MK</th>
+          <th class="text-center">Kelas</th>
+          <th class="text-center">Hari</th>
+          <th class="text-center">Jam</th>
+          <th class="text-center">Ruangan</th>
+          <th>Pasangan</th=>
         </tr>`;
 
       const tableUjianHead = `
@@ -103,12 +109,37 @@ fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
 
       tableBody.innerHTML = tableHead + filteredCellsEl;
       tableUjianBody.innerHTML = tableUjianHead + filteredCellsUjianEl;
-      let table = `
-        <table class="table table-striped>
+      let tableEl = `
+        <table class="table table-striped">
           ${tableBody.innerHTML}
         </table>
       `;
 
-      body.innerHTML = table;
+      table.innerHTML = tableEl;
     }
   });
+
+// // Fetch login
+// fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/login.html', {
+//   headers: {
+//     Accept: 'text/html',
+//     'Content-type': 'application/x-www-form-urlencoded',
+//   },
+//   body: 'user_id=123210078&pwd0=15sepuluh&fcaptcha=1&submit1=Login',
+//   method: 'POST',
+// })
+//   .then((res) => res.text())
+//   .then((data) => {
+//     const doc = domParser(data);
+//     const session = doc.querySelector('frame').src.split('/')[4];
+//     const url = `http://127.0.0.1:8080/http://fti.upnyk.ac.id/session/${session}/transkrip.html`;
+//     console.log(url);
+
+//     fetch(url, {
+//       headers: { Accept: 'text/html' },
+//       method: 'GET',
+//       mode: 'cors',
+//     })
+//       .then((res) => res.text())
+//       .then((data) => console.log(data));
+//   });
