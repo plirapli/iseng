@@ -20,5 +20,36 @@
     ></script>
     <script src="app.js" defer></script>
   </head>
-  <body class="p-4"></body>
+  <body class="p-4">
+    <h4 class="mb-3">Jadwal</h4>
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="searchInput"
+        placeholder="Cari Jadwal"
+      />
+    </div>
+    <div class="mb-3 d-flex gap-3">
+      <select class="form-select" aria-label="Select Kelas">
+        <option selected hidden aria-hidden="true">Kelas</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <select class="form-select" aria-label="Select Hari">
+        <option selected hidden aria-hidden="true">Hari</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <select class="form-select" aria-label="Select Dosen">
+        <option selected hidden aria-hidden="true">Dosen</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <table class="table table-striped"></table>
+  </body>
 </html>
