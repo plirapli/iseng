@@ -1,11 +1,10 @@
+import { proxy } from './config/config.js';
+import { domParser } from './utils/utils.js';
+
 const table = document.querySelector('table');
-const domParser = (text) => {
-  const parser = new DOMParser();
-  return parser.parseFromString(text, 'text/html');
-};
 
 // Fetch jadwal
-fetch('http://127.0.0.1:8080/http://fti.upnyk.ac.id/carijadwal.html', {
+fetch(proxy + 'http://fti.upnyk.ac.id/carijadwal.html', {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     Accept: 'text/html',
