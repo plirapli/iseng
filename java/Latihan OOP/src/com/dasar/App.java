@@ -1,3 +1,5 @@
+package com.dasar;
+
 class Mahasiswa {
   // Data Member
   String nama, NIM;
@@ -41,7 +43,7 @@ class Dosen {
   }
 }
 
-public class Dasar {
+public class App {
   public static void main(String[] args) throws Exception {
     Mahasiswa mhs1 = new Mahasiswa("Rafli", "123210078");
 
