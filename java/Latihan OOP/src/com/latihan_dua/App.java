@@ -3,13 +3,12 @@ package com.latihan_dua;
 class Player {
   private String name;
   private int level;
+  private int baseHealth, baseDamage;
+  private int incrementHealth, incrementDamage;
+  private int totalDamage;
+  private Boolean isAlive;
 
-  private int baseHealth;
-  private int baseDamage;
-
-  private int incrementHealth;
-  private int incrementDamage;
-
+  // Object member
   private Armor armor;
   private Weapon weapon;
 
@@ -22,14 +21,74 @@ class Player {
 
     this.incrementHealth = 20;
     this.incrementDamage = 5;
+
+    this.isAlive = true;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public int getHealth() {
+    return this.maxHealth() - this.totalDamage;
   }
 
   public void display() {
     System.out.println("Player: " + this.name);
     System.out.println("Level: " + this.level);
-    System.out.println("Max Health: " + this.maxHealth());
-    System.out.println("Damage: " + this.getTotalDamage());
+    System.out.println("Health: " + this.getHealth() + "/" + this.maxHealth());
+    System.out.println("Damage: " + this.getDamage());
+    System.out.println("Alive: " + this.isAlive);
     System.out.println();
+  }
+
+  public void attack(Player opponent) {
+    // Hitung damage
+    int damage = this.getDamage();
+
+    // Print event
+    System.out.println(
+        this.name + " is attacking " + opponent.getName() + "! (" + damage + " dps)");
+
+    // Opponent defend
+    opponent.defend(damage);
+
+    this.levelUp(); // Leveling up
+  }
+
+  public void defend(int damageTaken) {
+    int armorDefense = this.armor.getArmorDefense();
+
+    if (damageTaken > armorDefense) {
+      damageTaken -= armorDefense;
+    } else {
+      damageTaken = 0;
+    }
+
+    System.out.println(this.name + " Defense: " + this.armor.getArmorDefense());
+    System.out.println("Damage Taken: " + damageTaken + "\n");
+
+    this.totalDamage += damageTaken;
+
+    // Check is alive
+    if (this.getHealth() <= 0) {
+      this.isAlive = false;
+      this.totalDamage = this.maxHealth();
+    }
+
+    this.display();
+  }
+
+  private void levelUp() {
+    this.level++;
+  }
+
+  private int maxHealth() {
+    return this.baseHealth + this.level * this.incrementHealth + this.armor.getAddHealth();
+  }
+
+  private int getDamage() {
+    return this.baseDamage + this.level * this.incrementDamage + this.weapon.getWeaponDamage();
   }
 
   public void setArmor(Armor armor) {
@@ -39,24 +98,11 @@ class Player {
   public void setWeapon(Weapon weapon) {
     this.weapon = weapon;
   }
-
-  public void levelUp() {
-    this.level++;
-  }
-
-  public int maxHealth() {
-    return this.baseHealth + this.level * this.incrementHealth + this.armor.getAddHealth();
-  }
-
-  public int getTotalDamage() {
-    return this.baseDamage + this.level * this.incrementDamage + this.weapon.getWeaponDamage();
-  }
 }
 
 class Armor {
   private String name;
-  private int defense;
-  private int health;
+  private int defense, health;
 
   public Armor(String name, int defense, int health) {
     this.name = name;
@@ -66,6 +112,10 @@ class Armor {
 
   public int getAddHealth() {
     return this.defense * 10 + this.health;
+  }
+
+  public int getArmorDefense() {
+    return this.defense * 2;
   }
 }
 
@@ -101,10 +151,14 @@ public class App {
     player2.setArmor(armor2);
     player2.display();
 
-    player1.levelUp();
-    player1.display();
+    // player1.levelUp();
+    // player1.display();
 
-    player2.levelUp();
-    player2.display();
+    // player2.levelUp();
+    // player2.display();
+
+    player1.attack(player2);
+    player2.attack(player1);
+    player2.attack(player1);
   }
 }
