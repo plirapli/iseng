@@ -151,12 +151,6 @@ public class App {
     player2.setArmor(armor2);
     player2.display();
 
-    // player1.levelUp();
-    // player1.display();
-
-    // player2.levelUp();
-    // player2.display();
-
     player1.attack(player2);
     player2.attack(player1);
     player2.attack(player1);
