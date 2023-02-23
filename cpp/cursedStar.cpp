@@ -4,22 +4,22 @@ using namespace std;
 
 int main()
 {
-	int jmlBarisKolom;
-	cout << "Masukkan jumlah kolom dan baris: ";
-	cin >> jmlBarisKolom;
+	// int jmlBarisKolom;
+	// cout << "Masukkan jumlah kolom dan baris: ";
+	// cin >> jmlBarisKolom;
 
-	// * half py left align (standard)
-	for (int baris = 0; baris < jmlBarisKolom; baris++)
-	{
-		for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
-		{
-			if (kolom <= baris)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * half py left align (standard)
+	// for (int baris = 0; baris < jmlBarisKolom; baris++)
+	// {
+	// 	for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
+	// 	{
+	// 		if (kolom <= baris)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
 	// cout << "\n";
 
@@ -38,18 +38,18 @@ int main()
 
 	// cout << "\n";
 
-	// * inverted half py left align
-	for (int baris = 0; baris < jmlBarisKolom; baris++)
-	{
-		for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
-		{
-			if (kolom < jmlBarisKolom - baris)
-				cout << "* ";
-			else
-				cout << "  ";
-		}
-		cout << "\n";
-	}
+	// // * inverted half py left align
+	// for (int baris = 0; baris < jmlBarisKolom; baris++)
+	// {
+	// 	for (int kolom = 0; kolom < jmlBarisKolom; kolom++)
+	// 	{
+	// 		if (kolom < jmlBarisKolom - baris)
+	// 			cout << "* ";
+	// 		else
+	// 			cout << "  ";
+	// 	}
+	// 	cout << "\n";
+	// }
 
 	// cout << "\n";
 
@@ -128,18 +128,18 @@ int main()
 
 	// cout << "\n";
 
-	// // * triangle
-	// for (int i = 0; i < 5; i++)
-	// {
-	// 	for (int j = 0; j < 10; j++)
-	// 	{
-	// 		if (j < 4 - i || j > 4 + i)
-	// 			cout << "  ";
-	// 		else
-	// 			cout << "* ";
-	// 	}
-	// 	cout << "\n";
-	// }
+	// * triangle
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (j < 4 - i || j > 4 + i)
+				cout << "  ";
+			else
+				cout << "* ";
+		}
+		cout << "\n";
+	}
 
 	// cout << "\n";
 
