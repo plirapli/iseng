@@ -1,4 +1,4 @@
-package com.pertemuan_2;
+package com.pertemuan_2.inherit_encap_poly;
 
 public class Receptionist extends Karyawan {
   Receptionist() {

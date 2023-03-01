@@ -1,4 +1,4 @@
-package com.pertemuan_2;
+package com.pertemuan_2.inherit_encap_poly;
 
 class Manager extends Karyawan {
   Manager() {
