@@ -1,4 +1,4 @@
-package com.bab_5_6.objek_gui;
+package com.bab_5_6.objek_gui_layout;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class ObjekGUI {
+public class ObjekGUILayout {
   public static void main(String[] args) {
     new GUI();
   }
@@ -43,9 +43,10 @@ class GUI extends JFrame {
 
   public GUI() {
     // Inisiasi windows/frame
-    setTitle("Mencoba Kombinasi Komponen GUI");
+    setTitle("Login GUI");
     setDefaultCloseOperation(3);
-    setSize(350, 200);
+    setSize(350, 225);
+    setLocationRelativeTo(null);
 
     // Bikin radio group
     ButtonGroup genderGButtonGroup = new ButtonGroup();
@@ -87,8 +88,9 @@ class GUI extends JFrame {
     hobbyLabel.setBounds(10, 85, 120, 20);
     sepakBolaComboBox.setBounds(130, 85, 100, 20);
     basketComboBox.setBounds(230, 85, 150, 20);
+    babiComboBox.setBounds(130, 110, 150, 20);
 
-    saveBtn.setBounds(100, 130, 120, 20);
+    saveBtn.setBounds(100, 150, 120, 20);
     setVisible(true);
   }
 }
