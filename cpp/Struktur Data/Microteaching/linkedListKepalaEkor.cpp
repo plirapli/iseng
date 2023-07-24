@@ -12,8 +12,8 @@ void create()
   kepala = new Node;
   ekor = new Node;
 
-  kepala->info = -2147483647;
-  ekor->info = 2147483647;
+  kepala->info = -9999;
+  ekor->info = 9999;
   kepala->next = ekor;
 }
 
@@ -36,9 +36,9 @@ void sisipNode(int infoBaru)
 
 void cetak()
 {
-  Node *depan, *bantu;
+  Node *bantu;
 
-  // Looping sampe sebelum node terakhir
+  // Looping sampe node terakhir
   bantu = kepala->next;
   while (bantu != ekor)
   {
@@ -51,11 +51,11 @@ void cetak()
 int main()
 {
   create();
-
   sisipNode(5);
   sisipNode(9);
   sisipNode(12);
   sisipNode(4);
-
   cetak();
+
+  return 0;
 }
