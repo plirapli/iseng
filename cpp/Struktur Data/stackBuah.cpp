@@ -9,10 +9,10 @@ struct buah
 	int harga;
 };
 
-struct typestack
+struct Stack
 {
 	buah infoBuah;
-	typestack *kiri, *kanan;
+	Stack *kiri, *kanan;
 } * stackAwal, *stackAkhir;
 
 void buat();
@@ -94,9 +94,9 @@ int main()
 
 void buat()
 {
-	typestack *NS;
+	Stack *NS;
 
-	NS = new typestack;
+	NS = new Stack;
 	NS = NULL;
 
 	stackAwal = NS;
@@ -105,9 +105,9 @@ void buat()
 
 void push(buah newInfo)
 {
-	typestack *NS;
+	Stack *NS;
 
-	NS = new typestack;
+	NS = new Stack;
 	NS->infoBuah = newInfo;
 	NS->kiri = NULL;
 	NS->kanan = NULL;
@@ -127,7 +127,7 @@ void push(buah newInfo)
 
 void pop()
 {
-	typestack *hapus;
+	Stack *hapus;
 
 	if (isEmpty())
 		cout << "Stack kosong! \n";
@@ -142,7 +142,7 @@ void pop()
 
 void cetak()
 {
-	typestack *bantu;
+	Stack *bantu;
 
 	bantu = stackAwal;
 	while (bantu != NULL)

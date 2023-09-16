@@ -4,10 +4,10 @@
 using std::cout;
 
 typedef int typeinfo;
-struct typestack
+struct Stack
 {
 	typeinfo info;
-	typestack *kiri, *kanan;
+	Stack *kiri, *kanan;
 } * stackAwal, *stackAkhir;
 
 void buat();
@@ -35,9 +35,9 @@ int main()
 
 void buat()
 {
-	typestack *NS;
+	Stack *NS;
 
-	NS = new typestack;
+	NS = new Stack;
 	NS = NULL;
 
 	stackAwal = NS;
@@ -46,9 +46,9 @@ void buat()
 
 void push(typeinfo newInfo)
 {
-	typestack *NS;
+	Stack *NS;
 
-	NS = new typestack;
+	NS = new Stack;
 	NS->info = newInfo;
 	NS->kiri = NULL;
 	NS->kanan = NULL;
@@ -68,7 +68,7 @@ void push(typeinfo newInfo)
 
 void pop()
 {
-	typestack *hapus;
+	Stack *hapus;
 
 	if (isEmpty())
 		cout << "Stack kosong! \n";
@@ -83,7 +83,7 @@ void pop()
 
 void cetak()
 {
-	typestack *bantu;
+	Stack *bantu;
 
 	bantu = stackAwal;
 	while (bantu != NULL)
