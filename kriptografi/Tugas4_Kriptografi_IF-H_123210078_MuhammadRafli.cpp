@@ -82,43 +82,21 @@ void caesar()
   int choice, key;
   string text;
 
-  cout << "Caesar Cipher \n"
-       << "1: Enkripsi, 2: Dekripsi, 0: Keluar \n"
-       << "Pilih Menu > ";
-  cin >> choice;
+  cout << "Caesar Cipher \n";
+  cout << "Masukkan teks: ";
+  cin.ignore();
+  getline(cin, text);
+  cout << "Masukkan key: ";
+  cin >> key;
+  cout << endl;
 
-  switch (choice)
-  {
-  case 0:
-    break;
-  case 1:
-  {
-    cout << "Masukkan teks yang akan dienkripsi: ";
-    cin.ignore();
-    getline(cin, text);
-    cout << "Masukkan key: ";
-    cin >> key;
+  string encrypted_text = caesar_encrypt(text, key);
+  string decrypted_text = caesar_decrypt(encrypted_text, key);
 
-    string encrypted_text = caesar_encrypt(text, key);
-    cout << "Teks yang dienkripsi: " << encrypted_text << endl;
-    break;
-  }
-  case 2:
-  {
-    cout << "Masukkan teks yang akan didekripsi: ";
-    cin.ignore();
-    getline(cin, text);
-    cout << "Masukkan key: ";
-    cin >> key;
-
-    string decrypted_text = caesar_decrypt(text, key);
-    cout << "Teks yang didekripsi: " << decrypted_text << endl;
-    break;
-  }
-  default:
-    cout << "Pilihan tidak valid. Silakan pilih 1, 2, atau 0." << endl;
-    break;
-  }
+  cout << "Cipher Text dari \"" << text << "\": "
+       << encrypted_text << endl;
+  cout << "Plain Text dari  \"" << encrypted_text << "\": "
+       << decrypted_text << endl;
 }
 
 void railFence()
@@ -226,6 +204,7 @@ void super()
        << caesarPlainText << endl;
 }
 
+// CAESAR CIPHER
 string caesar_encrypt(string text, int key)
 {
   string encrypted_text = "";
@@ -234,18 +213,25 @@ string caesar_encrypt(string text, int key)
     if (isalpha(c))
     {
       char base = (islower(c)) ? 'a' : 'A';
-      c = (c - base + key) % 26 + base;
+      int standarized_c = c - base; // Distandarisasi dulu dari ASCII jadi alphabet
+
+      key = key < 0 ? ((key % 26) + 26) % 26 : key; // ngecek key-nya minus apa ga
+
+      int result = (standarized_c + key) % 26; // lakuin operasi caesar cipher
+      c = result + base;                       // Ubah dari alphabet ke ASCII
     }
-    encrypted_text += c;
+    encrypted_text += c; // huruf hasil enkripsi di push nyampe bentuk teks
   }
   return encrypted_text;
 }
 
 string caesar_decrypt(string text, int key)
 {
+  key %= 26;
   return caesar_encrypt(text, 26 - key); // Decrypting is just encrypting with the reverse shift
 }
 
+// RAIL FENCE CIPHER
 string rail_fence_encrypt(const string &plaintext, int rails)
 {
   vector<string> fence(rails);
@@ -320,34 +306,43 @@ string rail_fence_decrypt(const string &ciphertext, int rails)
   return decrypted_text;
 }
 
+// VIGENERE CIPHER
 string vigenere_generate_key(string text, string keyword)
 {
   string key;
   int textLength = text.size();
   int i = 0, j = 0;
 
+  // Looping sampe plainteksnya abis
   while (key.size() != textLength)
   {
+    // kalo keynya udah abis, diulangin lagi dari awal
     if (i == keyword.size())
       i = 0;
 
+    // kalo plainteksnya huruf, masukkin keynya
     if (isalpha(text[j]))
     {
       key.push_back(keyword[i]);
       i++;
     }
+    // kalo bukan, keynya diconvert ke spasi
     else
       key.push_back(' ');
     j++;
   }
+  cout << "Plain : " << text << "\n";
+  cout << "Key   : " << key << "\n\n";
   return key;
 }
 
+// buat ngecek uppercase atau bukan
 bool isUppercase(int asciiChar)
 {
   return asciiChar >= 65 && asciiChar <= 90;
 }
 
+// buat ngecek lowercase atau bukan
 bool isLowercase(int asciiChar)
 {
   return asciiChar >= 97 && asciiChar <= 122;
@@ -362,19 +357,25 @@ string vigenere_encrypt(string text, string key)
   {
     if (isalpha(text[i]))
     {
+      // Huruf di plainteks sama key dikonversi ke ASCII
       int textInAscii = (int)text[i];
       int keyInAscii = (int)key[i];
 
+      // kalo plainteks lowercase
       if (isLowercase(textInAscii))
         asciiText = 97;
+      // kalo plainteks uppercase
       else if (isUppercase(textInAscii))
         asciiText = 65;
 
+      // kalo key lowercase
       if (isLowercase(keyInAscii))
         asciiKey = 97;
+      // kalo key uppercase
       else if (isUppercase(keyInAscii))
         asciiKey = 65;
 
+      // nyetarain antara uppercase sama lowercase di plainteks dan key
       textInAscii -= asciiText;
       keyInAscii -= asciiKey;
 
@@ -395,7 +396,7 @@ string vigenere_decrypt(string cipherText, string key)
 
   for (int i = 0; i < cipherText.size(); i++)
   {
-    if (cipherText[i] != ' ')
+    if (isalpha(cipherText[i]))
     {
       int textInAscii = (int)cipherText[i];
       int keyInAscii = (int)key[i];
@@ -423,7 +424,7 @@ string vigenere_decrypt(string cipherText, string key)
         plainText.push_back(plainText[i]);
     }
     else
-      plainText.push_back(' ');
+      plainText.push_back(cipherText[i]);
   }
 
   return plainText;
