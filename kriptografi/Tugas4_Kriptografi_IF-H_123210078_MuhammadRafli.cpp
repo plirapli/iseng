@@ -116,7 +116,7 @@ void railFence()
   case 1:
   {
     cout << "Masukkan teks yang akan dienkripsi: ";
-    cin.ignore(); // Clear the newline character from the buffer
+    cin.ignore();
     getline(cin, text);
     cout << "Masukkan jumlah rail: ";
     cin >> rails;
@@ -128,7 +128,7 @@ void railFence()
   case 2:
   {
     cout << "Masukkan teks yang akan didekripsi: ";
-    cin.ignore(); // Clear the newline character from the buffer
+    cin.ignore();
     getline(cin, text);
     cout << "Masukkan jumlah rail: ";
     cin >> rails;
