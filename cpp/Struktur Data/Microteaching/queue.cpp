@@ -6,7 +6,7 @@ struct QueueNode
 {
   int info;
   QueueNode *next;
-} *headNode, *tailNode, *curNode, *newNode, *delNode;
+} *nodeDepan, *nodeBelakang, *curNode, *newNode, *delNode;
 
 // CRUD
 void create(int infoBaru);  // Membuat data (init)
@@ -29,39 +29,38 @@ int main()
 
 void create(int infoBaru)
 {
-  headNode = new QueueNode();
-  headNode->info = infoBaru;
+  nodeDepan = new QueueNode();
+  nodeDepan->info = infoBaru;
 
-  headNode->next = NULL;
-  tailNode = headNode;
+  nodeDepan->next = NULL;
+  nodeBelakang = nodeDepan;
 }
 
 void enqueue(int infoBaru)
 {
-  if (headNode == NULL)
+  if (nodeDepan == NULL)
     create(infoBaru);
   else
   {
     newNode = new QueueNode();
     newNode->info = infoBaru;
 
-    newNode->next = NULL;     // Next node baru menunjuk NULL
-    tailNode->next = newNode; // Next node terakhir menunjuk node baru
-    tailNode = newNode;       // Tail pindah ke node baru
+    newNode->next = NULL;         // Next node baru menunjuk NULL
+    nodeBelakang->next = newNode; // Next node terakhir menunjuk node baru
+    nodeBelakang = newNode;       // Tail pindah ke node baru
   }
 }
 
 void dequeue()
 {
-  delNode = headNode;        // Membuat duplikat node terakhir (tail)
-  headNode = headNode->next; // Head pindah ke next node (tail->prev)
-  delete delNode;            // Menghapus alamat memori node terakhir
+  delNode = nodeDepan;         // Membuat duplikat node terakhir (tail)
+  nodeDepan = nodeDepan->next; // Head pindah ke next node (tail->prev)
+  delete delNode;              // Menghapus alamat memori node terakhir
 }
 
 void display()
 {
-  int i = 1;
-  curNode = headNode;
+  curNode = nodeDepan;
   cout << "---- Antrian Depan ---- \n";
   while (curNode != NULL)
   {
