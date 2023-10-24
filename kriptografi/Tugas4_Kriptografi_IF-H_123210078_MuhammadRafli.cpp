@@ -331,7 +331,7 @@ string vigenere_generate_key(string text, string keyword)
     if (i == keyword.size())
       i = 0;
 
-    if (text[j] != ' ')
+    if (isalpha(text[j]))
     {
       key.push_back(keyword[i]);
       i++;
