@@ -34,44 +34,39 @@ int main()
   // IF-H
 
   char pilih;
-  bool repeat = 1;
 
-  while (repeat)
+  cout << "Jenis Enkripsi: \n"
+       << "[1] Caesar Cipher \n"
+       << "[2] Vigenere Cipher \n"
+       << "[3] Rail Fence Cipher \n"
+       << "[4] Super Enkripsi \n"
+       << "[Lainnya] Keluar \n"
+       << "Pilih > ";
+  cin >> pilih;
+  cout << endl;
+
+  switch (pilih)
   {
-    cout << "Jenis Enkripsi: \n"
-         << "[1] Caesar Cipher \n"
-         << "[2] Rail Fence Cipher \n"
-         << "[3] Vigenere Cipher \n"
-         << "[4] Super Enkripsi \n"
-         << "[Lainnya] Keluar \n"
-         << "Pilih > ";
-    cin >> pilih;
+  case '1':
+    caesar();
     cout << endl;
+    break;
 
-    switch (pilih)
-    {
-    case '1':
-      caesar();
-      cout << endl;
-      break;
+  case '2':
+    vigenere();
+    cout << endl;
+    break;
+  case '3':
+    railFence();
+    cout << endl;
+    break;
+  case '4':
+    super();
+    cout << endl;
+    break;
 
-    case '2':
-      railFence();
-      cout << endl;
-      break;
-    case '3':
-      vigenere();
-      cout << endl;
-      break;
-    case '4':
-      super();
-      cout << endl;
-      break;
-
-    default:
-      repeat = 0;
-      break;
-    }
+  default:
+    break;
   }
 
   return 0;
@@ -94,9 +89,9 @@ void caesar()
   string decrypted_text = caesar_decrypt(encrypted_text, key);
 
   cout << "Cipher Text dari \"" << text << "\": "
-       << encrypted_text << endl;
+       << encrypted_text << "\n\n";
   cout << "Plain Text dari  \"" << encrypted_text << "\": "
-       << decrypted_text << endl;
+       << decrypted_text << "\n";
 }
 
 void railFence()
@@ -157,14 +152,20 @@ void vigenere()
   cout << endl;
 
   key = vigenere_generate_key(text, keyword);
-  cipherText = vigenere_encrypt(text, key);
-  plainText = vigenere_decrypt(cipherText, key);
 
-  cout << "Cipher Text dari \"" << text << "\": "
-       << cipherText << endl;
+  if (key != ".")
+  {
+    cipherText = vigenere_encrypt(text, key);
+    plainText = vigenere_decrypt(cipherText, key);
 
-  cout << "Plain Text dari \"" << cipherText << "\" : "
-       << plainText << endl;
+    cout << "Cipher Text dari \"" << text << "\": "
+         << cipherText << "\n\n";
+
+    cout << "Plain Text dari \"" << cipherText << "\" : "
+         << plainText << "\n";
+  }
+  else
+    cout << "Key tidak valid. \n";
 }
 
 void super()
@@ -309,9 +310,21 @@ string rail_fence_decrypt(const string &ciphertext, int rails)
 // VIGENERE CIPHER
 string vigenere_generate_key(string text, string keyword)
 {
+  bool isValid = true;
   string key;
   int textLength = text.size();
   int i = 0, j = 0;
+
+  for (i = 0; i < keyword.size(); i++)
+  {
+    if (!isalpha(keyword[i]))
+    {
+      isValid = false;
+      break;
+    }
+  }
+  if (!isValid)
+    return ".";
 
   // Looping sampe plainteksnya abis
   while (key.size() != textLength)
@@ -331,8 +344,6 @@ string vigenere_generate_key(string text, string keyword)
       key.push_back(' ');
     j++;
   }
-  cout << "Plain : " << text << "\n";
-  cout << "Key   : " << key << "\n\n";
   return key;
 }
 
