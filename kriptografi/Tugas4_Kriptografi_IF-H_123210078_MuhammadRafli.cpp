@@ -9,6 +9,7 @@ using namespace std;
 void caesar();
 string caesar_decrypt(string text, int key);
 string caesar_encrypt(string text, int key);
+bool isKeyValid(string key);
 
 // Rail Fence Cipher
 void railFence();
@@ -74,24 +75,33 @@ int main()
 
 void caesar()
 {
-  int choice, key;
-  string text;
+  bool isValid;
+  string text, key;
 
   cout << "Caesar Cipher \n";
   cout << "Masukkan teks: ";
   cin.ignore();
   getline(cin, text);
   cout << "Masukkan key: ";
-  cin >> key;
+  getline(cin, key);
   cout << endl;
 
-  string encrypted_text = caesar_encrypt(text, key);
-  string decrypted_text = caesar_decrypt(encrypted_text, key);
+  isValid = isKeyValid(key);
+  if (isValid)
+  {
+    int validKey = stoi(key);
+    string encrypted_text = caesar_encrypt(text, validKey);
+    string decrypted_text = caesar_decrypt(encrypted_text, validKey);
 
-  cout << "Cipher Text dari \"" << text << "\": "
-       << encrypted_text << "\n\n";
-  cout << "Plain Text dari  \"" << encrypted_text << "\": "
-       << decrypted_text << "\n";
+    cout << "Cipher Text dari \"" << text << "\": "
+         << encrypted_text << "\n\n";
+    cout << "Plain Text dari  \"" << encrypted_text << "\": "
+         << decrypted_text << "\n";
+  }
+  else
+  {
+    cout << "Key tidak valid." << endl;
+  }
 }
 
 void railFence()
@@ -148,20 +158,20 @@ void vigenere()
   cin.ignore();
   getline(cin, text);
   cout << "Masukkan kata kunci: ";
-  cin >> keyword;
+  getline(cin, keyword);
   cout << endl;
 
   key = vigenere_generate_key(text, keyword);
 
-  if (key != ".")
+  if (key != "-1")
   {
     cipherText = vigenere_encrypt(text, key);
     plainText = vigenere_decrypt(cipherText, key);
 
-    cout << "Cipher Text dari \"" << text << "\": "
+    cout << "Cipher Text: \n"
          << cipherText << "\n\n";
 
-    cout << "Plain Text dari \"" << cipherText << "\" : "
+    cout << "Plain Text: \n"
          << plainText << "\n";
   }
   else
@@ -230,6 +240,23 @@ string caesar_decrypt(string text, int key)
 {
   key %= 26;
   return caesar_encrypt(text, 26 - key); // Decrypting is just encrypting with the reverse shift
+}
+
+// buat ngecek key valid apa engga
+bool isKeyValid(string key)
+{
+  bool isValid = true;
+  // ngecek key valid apa engga
+  for (int i = 0; i < key.size(); i++)
+  {
+    int keyInAscii = (int)key[i];
+    if (!(keyInAscii >= 48 && keyInAscii <= 57))
+    {
+      isValid = false;
+      break;
+    }
+  }
+  return isValid;
 }
 
 // RAIL FENCE CIPHER
@@ -315,6 +342,7 @@ string vigenere_generate_key(string text, string keyword)
   int textLength = text.size();
   int i = 0, j = 0;
 
+  // Buat ngecek valid atau engga
   for (i = 0; i < keyword.size(); i++)
   {
     if (!isalpha(keyword[i]))
@@ -324,7 +352,7 @@ string vigenere_generate_key(string text, string keyword)
     }
   }
   if (!isValid)
-    return ".";
+    return "-1";
 
   // Looping sampe plainteksnya abis
   while (key.size() != textLength)
@@ -333,7 +361,7 @@ string vigenere_generate_key(string text, string keyword)
     if (i == keyword.size())
       i = 0;
 
-    // kalo plainteksnya huruf, masukkin keynya
+    // kalo plainteks-nya huruf, masukkin keynya
     if (isalpha(text[j]))
     {
       key.push_back(keyword[i]);
