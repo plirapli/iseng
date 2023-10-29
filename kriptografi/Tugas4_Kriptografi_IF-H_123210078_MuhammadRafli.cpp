@@ -247,6 +247,9 @@ bool isKeyValid(string key)
 {
   bool isValid = true;
   // ngecek key valid apa engga
+  if (key.size() > 1 && (int)key[0] == 48)
+    isValid = false;
+
   for (int i = 0; i < key.size(); i++)
   {
     int keyInAscii = (int)key[i];
