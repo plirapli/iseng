@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <bits/stdc++.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,20 +8,23 @@ using namespace std;
 void caesar();
 string caesar_decrypt(string text, int key);
 string caesar_encrypt(string text, int key);
-bool isKeyValid(string key);
-
-// Rail Fence Cipher
-void railFence();
-string rail_fence_decrypt(const string &ciphertext, int rails);
-string rail_fence_encrypt(const string &plaintext, int rails);
+bool caesar_isKeyValid(string key);
 
 // Vigenere Cipher
 void vigenere();
 string vigenere_generate_key(string text, string keyword);
 string vigenere_encrypt(string text, string key);
 string vigenere_decrypt(string cipherText, string key);
+bool vigenere_isKeyValid(string keyword);
 bool isLowercase(int asciiChar);
 bool isUppercase(int asciiChar);
+
+// Affine Cipher
+void affine();
+string affine_encrypt(string text, int shiftKey, int coprime);
+string affine_decrypt(string text, int shiftKey, int coprime);
+bool affine_isKeyValid(string key);
+bool isCoprime(int key);
 
 // Super Enkripsi
 void super();
@@ -39,7 +41,7 @@ int main()
   cout << "Jenis Enkripsi: \n"
        << "[1] Caesar Cipher \n"
        << "[2] Vigenere Cipher \n"
-       << "[3] Rail Fence Cipher \n"
+       << "[3] Affine Cipher \n"
        << "[4] Super Enkripsi \n"
        << "[Lainnya] Keluar \n"
        << "Pilih > ";
@@ -58,7 +60,7 @@ int main()
     cout << endl;
     break;
   case '3':
-    railFence();
+    affine();
     cout << endl;
     break;
   case '4':
@@ -75,7 +77,6 @@ int main()
 
 void caesar()
 {
-  bool isValid;
   string text, key;
 
   cout << "Caesar Cipher \n";
@@ -86,65 +87,20 @@ void caesar()
   getline(cin, key);
   cout << endl;
 
-  isValid = isKeyValid(key);
-  if (isValid)
+  if (caesar_isKeyValid(key))
   {
     int validKey = stoi(key);
     string encrypted_text = caesar_encrypt(text, validKey);
     string decrypted_text = caesar_decrypt(encrypted_text, validKey);
 
-    cout << "Cipher Text dari \"" << text << "\": "
+    cout << "Cipher Text: \n"
          << encrypted_text << "\n\n";
-    cout << "Plain Text dari  \"" << encrypted_text << "\": "
+    cout << "Plain Text: \n"
          << decrypted_text << "\n";
   }
   else
   {
     cout << "Key tidak valid." << endl;
-  }
-}
-
-void railFence()
-{
-  int choice, rails;
-  string text;
-
-  cout << "Rail Fence Cipher \n"
-       << "1: Enkripsi, 2: Dekripsi, 0: Keluar \n"
-       << "Pilih Menu > ";
-  cin >> choice;
-
-  switch (choice)
-  {
-  case 0:
-    break;
-  case 1:
-  {
-    cout << "Masukkan teks yang akan dienkripsi: ";
-    cin.ignore();
-    getline(cin, text);
-    cout << "Masukkan jumlah rail: ";
-    cin >> rails;
-
-    string encrypted_text = rail_fence_encrypt(text, rails);
-    cout << "Teks yang dienkripsi: " << encrypted_text << endl;
-    break;
-  }
-  case 2:
-  {
-    cout << "Masukkan teks yang akan didekripsi: ";
-    cin.ignore();
-    getline(cin, text);
-    cout << "Masukkan jumlah rail: ";
-    cin >> rails;
-
-    string decrypted_text = rail_fence_decrypt(text, rails);
-    cout << "Teks yang didekripsi: " << decrypted_text << endl;
-    break;
-  }
-  default:
-    cout << "Pilihan tidak valid. Silakan pilih 1, 2, atau 0." << endl;
-    break;
   }
 }
 
@@ -161,10 +117,9 @@ void vigenere()
   getline(cin, keyword);
   cout << endl;
 
-  key = vigenere_generate_key(text, keyword);
-
-  if (key != "-1")
+  if (vigenere_isKeyValid(keyword))
   {
+    key = vigenere_generate_key(text, keyword);
     cipherText = vigenere_encrypt(text, key);
     plainText = vigenere_decrypt(cipherText, key);
 
@@ -178,41 +133,112 @@ void vigenere()
     cout << "Key tidak valid. \n";
 }
 
-void super()
+void affine()
 {
-  int caesarKey, railfenceRails;
-  string text;
-  string vigenereKeyword, vigenereKey;
-  string caesarCipherText, railfenceCipherText, vigenreCipherText;
-  string caesarPlainText, railfencePlainText, vigenerePlainText;
+  bool isShiftKeyNum, isCoprimeNum;
+  string inputText, inputCoprime, inputShiftKey;
 
-  cout << "Super Cipher (Caesar + Rail Fence + Vigenere) \n";
+  cout << "Affine Cipher \n";
   cout << "Masukkan teks: ";
   cin.ignore();
-  getline(cin, text);
-  cout << "Masukkan kunci untuk caesar: ";
-  cin >> caesarKey;
-  cout << "Masukkan jumlah rail: ";
-  cin >> railfenceRails;
-  cout << "Masukkan kata kunci untuk vigenere: ";
-  cin >> vigenereKeyword;
+  getline(cin, inputText);
+  cout << "Masukkan jumlah pergeseran: ";
+  getline(cin, inputShiftKey);
+  cout << "Masukkan bilangan yg relatif prima dengan 26: ";
+  getline(cin, inputCoprime);
   cout << endl;
 
-  // Proses enkripsi
-  caesarCipherText = caesar_encrypt(text, caesarKey);
-  railfenceCipherText = rail_fence_encrypt(caesarCipherText, railfenceRails);
-  vigenereKey = vigenere_generate_key(railfenceCipherText, vigenereKeyword);
-  vigenreCipherText = vigenere_encrypt(railfenceCipherText, vigenereKey);
+  isShiftKeyNum = affine_isKeyValid(inputShiftKey);
+  isCoprimeNum = affine_isKeyValid(inputCoprime);
 
-  // Proses dekripsi
-  vigenerePlainText = vigenere_decrypt(vigenreCipherText, vigenereKey);
-  railfencePlainText = rail_fence_decrypt(vigenerePlainText, railfenceRails);
-  caesarPlainText = caesar_decrypt(railfencePlainText, caesarKey);
+  if (isShiftKeyNum && isCoprimeNum)
+  {
+    if (isCoprime(stoi(inputCoprime)))
+    {
+      int shiftKey = stoi(inputShiftKey);
+      int coprime = stoi(inputCoprime);
+      string cipherText = affine_encrypt(inputText, shiftKey, coprime);
+      string plainText = affine_decrypt(inputText, shiftKey, coprime);
 
-  cout << "Cipher Text dari \"" << text << "\": "
-       << vigenreCipherText << endl;
-  cout << "Plain Text dari \"" << vigenreCipherText << "\" : "
-       << caesarPlainText << endl;
+      cout << "Cipher Text: \n"
+           << cipherText << "\n\n";
+      cout << "Plain Text: \n"
+           << plainText << "\n";
+    }
+    else
+      cout << "Bilangan " << inputCoprime << " tidak relatif prima dengan 26";
+  }
+  else
+    cout << "Kunci tidak valid";
+}
+
+void super()
+{
+  bool isAllkeyValid;
+  string caesar_inputKey, affine_inputShiftKey, affine_inputCoprime;
+  string inputText;
+  string vigenere_inputKeyword;
+
+  cout << "Super Cipher (Caesar + Vigenere + Affine) \n";
+  cout << "Masukkan teks: ";
+  cin.ignore();
+  getline(cin, inputText);
+
+  cout << "Caesar: \n";
+  cout << "Masukkan key: ";
+  getline(cin, caesar_inputKey);
+  cout << endl;
+
+  cout << "Vigenere: \n";
+  cout << "Masukkan keyword: ";
+  getline(cin, vigenere_inputKeyword);
+  cout << endl;
+
+  cout << "Affine: \n";
+  cout << "Masukkan jumlah pergeseran: ";
+  getline(cin, affine_inputShiftKey);
+  cout << "Masukkan bilangan yg relatif prima dengan 26: ";
+  getline(cin, affine_inputCoprime);
+  cout << endl;
+
+  isAllkeyValid =
+      caesar_isKeyValid(caesar_inputKey) &&
+      vigenere_isKeyValid(vigenere_inputKeyword) &&
+      affine_isKeyValid(affine_inputShiftKey) &&
+      affine_isKeyValid(affine_inputCoprime);
+
+  // Ngecek key valid apa engga
+  if (isAllkeyValid)
+  {
+    if (isCoprime(stoi(affine_inputCoprime)))
+    {
+      int caesar_key = stoi(caesar_inputKey);
+      int affine_shifKKey = stoi(affine_inputShiftKey);
+      int affine_coprime = stoi(affine_inputCoprime);
+      string vigenere_keyword = vigenere_generate_key(inputText, vigenere_inputKeyword);
+
+      // Proses enkripsi dengan algoritma super enkripsi
+      string caesar_cipherText = caesar_encrypt(inputText, caesar_key);
+      string vigenere_cipherText = vigenere_encrypt(caesar_cipherText, vigenere_keyword);
+      string affine_cipherText = affine_encrypt(vigenere_cipherText, affine_shifKKey, affine_coprime);
+
+      // Proses dekripsi
+      string affine_plainText = affine_decrypt(affine_cipherText, affine_shifKKey, affine_coprime);
+      string vigenere_plainText = vigenere_decrypt(affine_plainText, vigenere_keyword);
+      string caesar_plainText = caesar_decrypt(vigenere_plainText, caesar_key);
+
+      // Menampilkan hasil
+      cout << "Cipher Text: \n"
+           << affine_cipherText << "\n\n";
+
+      cout << "Plain Text: \n"
+           << caesar_plainText << "\n";
+    }
+    else
+      cout << "Bilangan " << affine_inputCoprime << " tidak relatif prima dengan 26";
+  }
+  else
+    cout << "Key tidak valid." << endl;
 }
 
 // CAESAR CIPHER
@@ -243,7 +269,86 @@ string caesar_decrypt(string text, int key)
 }
 
 // buat ngecek key valid apa engga
-bool isKeyValid(string key)
+bool caesar_isKeyValid(string key)
+{
+  bool isValid = true;
+  // ngecek digit pertama 0 apa engga
+  if (key.size() > 1 && ((int)key[0] == 48 || (int)key[0] == 45))
+    isValid = false;
+
+  // ngecek key huruf apa engga
+  for (int i = 0; i < key.size(); i++)
+  {
+    int keyInAscii = (int)key[i];
+    if (!(keyInAscii >= 48 && keyInAscii <= 57))
+    {
+      isValid = false;
+      break;
+    }
+  }
+  return isValid;
+}
+
+// AFFINE CIPHER
+string affine_encrypt(string text, int shiftKey, int coprime)
+{
+  string encrypted_text = "";
+
+  for (int i = 0; i < text.length(); i++)
+  {
+    if (isalpha(text[i]))
+    {
+      char huruf = text[i];
+      char base = (islower(huruf)) ? 'a' : 'A'; // nentuin huruf besar apa kecil
+
+      // Distandarisasi dulu dari ASCII jadi angke ke berapa di alphabet
+      int standarized_huruf = huruf - base;
+
+      shiftKey = shiftKey < 0 ? ((shiftKey % 26) + 26) % 26 : shiftKey; // ngecek key-nya minus apa ga
+      int result = (coprime * standarized_huruf + shiftKey) % 26;       // operasi affine cipher
+      text[i] = result + base;                                          // ubah dari alphabet ke ASCII
+    }
+    encrypted_text += text[i]; // huruf hasil enkripsi di push nyampe bentuk teks
+  }
+  return encrypted_text;
+}
+
+string affine_decrypt(string text, int shiftKey, int coprime)
+{
+  string decrypted_text = "";
+  int coprime_inv = 0;
+
+  // Nyari multiplicative inverse antara coprime dengan 26
+  for (int i = 0; i < 26; i++)
+  {
+    // Cek apakah (a * i) % 26 == 1,
+    // Kalo iya, itu hasilnya
+    if (((coprime * i) % 26) == 1)
+      coprime_inv = i;
+  }
+  for (int i = 0; i < text.length(); i++)
+  {
+    if (isalpha(text[i]))
+    {
+      char huruf = text[i];
+      char base = (islower(huruf)) ? 'a' : 'A'; // nentuin huruf besar apa kecil
+
+      // Distandarisasi dulu dari ASCII jadi angke ke berapa di alphabet
+      int standarized_huruf = huruf - base;
+
+      // Operasi affine cipher
+      int result = (coprime_inv * (standarized_huruf - shiftKey));
+      result = ((result % 26) + 26) % 26;
+
+      text[i] = result + base; // ubah dari alphabet ke ASCII
+    }
+    decrypted_text += text[i]; // huruf hasil enkripsi di push nyampe bentuk teks
+  }
+  return decrypted_text;
+}
+
+// buat ngecek key valid apa engga
+bool affine_isKeyValid(string key)
 {
   bool isValid = true;
   // ngecek key valid apa engga
@@ -262,91 +367,43 @@ bool isKeyValid(string key)
   return isValid;
 }
 
-// RAIL FENCE CIPHER
-string rail_fence_encrypt(const string &plaintext, int rails)
+bool isCoprime(int key)
 {
-  vector<string> fence(rails);
-  int rail = 0;
-  bool down = false;
-
-  for (char c : plaintext)
-  {
-    fence[rail] += c;
-
-    if (rail == 0 || rail == rails - 1)
-    {
-      down = !down;
-    }
-
-    rail += down ? 1 : -1;
-  }
-
-  string encrypted_text;
-  for (const string &rail_text : fence)
-  {
-    encrypted_text += rail_text;
-  }
-
-  return encrypted_text;
-}
-
-string rail_fence_decrypt(const string &ciphertext, int rails)
-{
-  vector<string> fence(rails);
-  vector<int> rail_lengths(rails, 0);
-
-  int rail = 0;
-  bool down = false;
-
-  for (size_t i = 0; i < ciphertext.length(); i++)
-  {
-    rail_lengths[rail]++;
-
-    if (rail == 0 || rail == rails - 1)
-    {
-      down = !down;
-    }
-
-    rail += down ? 1 : -1;
-  }
-
-  int pos = 0;
-  for (int i = 0; i < rails; i++)
-  {
-    fence[i] = ciphertext.substr(pos, rail_lengths[i]);
-    pos += rail_lengths[i];
-  }
-
-  string decrypted_text;
-  rail = 0;
-  down = false;
-
-  for (size_t i = 0; i < ciphertext.length(); i++)
-  {
-    decrypted_text += fence[rail][0];
-    fence[rail].erase(0, 1);
-
-    if (rail == 0 || rail == rails - 1)
-    {
-      down = !down;
-    }
-
-    rail += down ? 1 : -1;
-  }
-
-  return decrypted_text;
+  return __gcd(26, key) == 1;
 }
 
 // VIGENERE CIPHER
 string vigenere_generate_key(string text, string keyword)
 {
-  bool isValid = true;
   string key;
-  int textLength = text.size();
   int i = 0, j = 0;
 
-  // Buat ngecek valid atau engga
-  for (i = 0; i < keyword.size(); i++)
+  // Looping sampe plainteksnya abis
+  while (key.size() != text.size())
+  {
+    // kalo key-nya udah abis, diulangin lagi dari awal
+    if (i == keyword.size())
+      i = 0;
+
+    // kalo plainteks-nya huruf, masukkin key-nya
+    if (isalpha(text[j]))
+    {
+      key.push_back(keyword[i]);
+      i++;
+    }
+    // kalo bukan, key-nya diconvert ke spasi
+    else
+      key.push_back(' ');
+    j++;
+  }
+  return key;
+}
+
+bool vigenere_isKeyValid(string keyword)
+{
+  bool isValid = true;
+  // Buat ngecek key valid atau engga
+  for (int i = 0; i < keyword.size(); i++)
   {
     if (!isalpha(keyword[i]))
     {
@@ -354,28 +411,7 @@ string vigenere_generate_key(string text, string keyword)
       break;
     }
   }
-  if (!isValid)
-    return "-1";
-
-  // Looping sampe plainteksnya abis
-  while (key.size() != textLength)
-  {
-    // kalo keynya udah abis, diulangin lagi dari awal
-    if (i == keyword.size())
-      i = 0;
-
-    // kalo plainteks-nya huruf, masukkin keynya
-    if (isalpha(text[j]))
-    {
-      key.push_back(keyword[i]);
-      i++;
-    }
-    // kalo bukan, keynya diconvert ke spasi
-    else
-      key.push_back(' ');
-    j++;
-  }
-  return key;
+  return isValid;
 }
 
 // buat ngecek uppercase atau bukan
