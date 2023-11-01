@@ -158,7 +158,7 @@ void affine()
       int shiftKey = stoi(inputShiftKey);
       int coprime = stoi(inputCoprime);
       string cipherText = affine_encrypt(inputText, shiftKey, coprime);
-      string plainText = affine_decrypt(inputText, shiftKey, coprime);
+      string plainText = affine_decrypt(cipherText, shiftKey, coprime);
 
       cout << "Cipher Text: \n"
            << cipherText << "\n\n";
@@ -265,7 +265,7 @@ string caesar_encrypt(string text, int key)
 string caesar_decrypt(string text, int key)
 {
   key %= 26;
-  return caesar_encrypt(text, 26 - key); // Decrypting is just encrypting with the reverse shift
+  return caesar_encrypt(text, 26 - key); // Dekripsi itu cuma enkripsi tapi kuncinya dibalik
 }
 
 // buat ngecek key valid apa engga
@@ -304,9 +304,9 @@ string affine_encrypt(string text, int shiftKey, int coprime)
       // Distandarisasi dulu dari ASCII jadi angke ke berapa di alphabet
       int standarized_huruf = huruf - base;
 
-      shiftKey = shiftKey < 0 ? ((shiftKey % 26) + 26) % 26 : shiftKey; // ngecek key-nya minus apa ga
-      int result = (coprime * standarized_huruf + shiftKey) % 26;       // operasi affine cipher
-      text[i] = result + base;                                          // ubah dari alphabet ke ASCII
+      // shiftKey = shiftKey < 0 ? ((shiftKey % 26) + 26) % 26 : shiftKey; // ngecek key-nya minus apa ga
+      int result = (coprime * standarized_huruf + shiftKey) % 26; // operasi affine cipher
+      text[i] = result + base;                                    // ubah dari alphabet ke ASCII
     }
     encrypted_text += text[i]; // huruf hasil enkripsi di push nyampe bentuk teks
   }
@@ -326,6 +326,7 @@ string affine_decrypt(string text, int shiftKey, int coprime)
     if (((coprime * i) % 26) == 1)
       coprime_inv = i;
   }
+
   for (int i = 0; i < text.length(); i++)
   {
     if (isalpha(text[i]))
